@@ -1,3 +1,26 @@
+html, body{
+  height: 100%;
+}
+
+/* Sections */
+.home-section{
+  min-height: 500px;
+}
+
+.title{
+  color: orange;
+  font-size: 6rem;
+}
+
+.title-div{
+  text-align: center;
+}
+
+.tag-line{
+  color: #444343;
+  font-size: 3rem;
+}
+
 h1 {
   font-size: 2em;
 }
@@ -71,7 +94,7 @@ body {
 * {
   box-sizing: border-box;
 }
-.body-hov {
+/* .body-hov {
  
   display: -webkit-box;
   display: flex;
@@ -84,13 +107,13 @@ body {
   margin-top: 50px;
   margin-bottom: 50px;
   margin-left: 9em;
-}
-.coolBeans {
+} */
+/* .coolBeans {
   border: 2px solid currentColor;
-  border-radius: 3rem;
-  color: #757575 ;
+  border-radius: 2rem;
+  color: #000000 ;
   font-family: roboto;
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: 100;
   overflow: hidden;
   padding: 1rem 2rem;
@@ -105,7 +128,7 @@ body {
 }
 .coolBeans::after {
   background-color:rgb(86, 88, 88);
-  border-radius: 3rem;
+  border-radius: 2rem;
   content: '';
   display: block;
   height: 100%;
@@ -134,7 +157,36 @@ body {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
   will-change: transform;
+} */
+
+.link-div{
+  text-align: left;
+  display: inline-block;
 }
+
+.home-btn{
+  display: inherit;
+  font-size: 1.2rem;
+  border-radius: 2rem;
+  color: white;
+  font-weight: normal;
+  background-color: orange;
+  text-decoration: none;
+  color: #FFFFFF;
+  padding: 16px;
+  margin: 10px; 
+}
+
+  .home-btn:hover { 
+  color: white;
+  border-radius: 2rem;
+  font-weight: normal;
+  text-decoration: underline;
+  cursor: pointer;
+  background-color: rgba(241, 169, 35, 0.911); 
+  padding: 15px; 
+  margin: 10px;
+ } 
 
 .avail-day{
   display: none;
@@ -149,3 +201,7 @@ body {
 }
 
 .big-checkbox {width: 20px; height: 20px;}
+
+footer{
+  background-color: #f7ecec;
+}
