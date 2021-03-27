@@ -35,11 +35,11 @@ export default class Navbar extends Component {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         {/* if current user, show the following links and navigations (COMMON TO ALL)*/}
         {currentUser ? (
-          <a className="navbar-brand" href="/dashboard">
+          <a className="name-link" href="/dashboard">
             <strong>Jaxlooper</strong>
           </a>
         ) : (
-          <a className="navbar-brand" href="/">
+          <a className="name-link" href="/">
             <strong>Jaxlooper</strong>
           </a>
         )}
