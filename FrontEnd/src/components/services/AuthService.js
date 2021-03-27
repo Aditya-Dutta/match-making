@@ -37,19 +37,6 @@ class AuthService {
         });
     }
 
-    //adding an employee
-    addEmployee(firstname, lastname, address, email, phone, password, username) {
-        return axios.post(API_URL + "addemp", {
-            firstname,
-            lastname,
-            address,
-            email,
-            phone,
-            password,
-            username
-        });
-    }
-
     //get current user
     getCurrentUser() {
         return JSON.parse(localStorage.getItem('user'));;
