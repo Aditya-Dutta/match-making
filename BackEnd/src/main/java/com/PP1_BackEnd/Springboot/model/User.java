@@ -28,8 +28,11 @@ public class User {
 	@Column(name="Address")
 	private String address;
 	
-	@Column(name="phone")
+	@Column(name="Phone")
 	private String phone;
+	
+	@Column(name="UserType")
+	private String user_type;
 
 	@Column(name="Password")
 	private String password;
@@ -85,7 +88,7 @@ public class User {
 	}
 
 	public User(String username, String firstname, String lastname, String email, String address, String phone,
-			String password) {
+			String password, String user_type) {
 		super();
 		this.username=username;
 		this.firstname = firstname;
@@ -93,9 +96,18 @@ public class User {
 		this.email = email;
 		this.address = address;
 		this.phone = phone;
-		this.password = password;	
+		this.password = password;
+		this.user_type=user_type;
 	}
 	
+	public String getUser_type() {
+		return user_type;
+	}
+
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
+	}
+
 	public String getUsername() {
 		return username;
 	}
