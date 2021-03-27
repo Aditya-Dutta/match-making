@@ -24,16 +24,14 @@ public class SignupRequest {
 	@Column(name="Username")
 	private String username;
 	
-	/**
-	 * @return the username
-	 */
+	@Column(name="UserType")
+	private String user_type;
+    
+	
 	public String getUsername() {
 		return username;
 	}
 
-	/**
-	 * @param username the username to set
-	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -101,6 +99,15 @@ public class SignupRequest {
 	public void setRole(Set<String> role) {
 		this.role = role;
 	}
-    
+	
+	public String getUser_type() {
+		return user_type;
+	}
+
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
+	}
+
+	
   
 }

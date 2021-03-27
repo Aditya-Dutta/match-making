@@ -14,6 +14,7 @@ export class RegisterCustomerComponent extends Component {
       phone: "",
       email: "",
       username: "",
+      user_type:"",
       password: "",
       successful: false,
       message: "",
@@ -129,7 +130,8 @@ export class RegisterCustomerComponent extends Component {
           this.state.email,
           this.state.phone,
           this.state.password,
-          this.state.username
+          this.state.username,
+          this.state.user_type,
         ).then(
           () => {
             //if success, navigate to profile page
@@ -291,6 +293,43 @@ export class RegisterCustomerComponent extends Component {
               {this.state.errors_message_phone}{" "}
             </small>
 
+
+            
+
+
+            
+
+
+            <label for="phone">User Type: </label>
+            <div className="input-group register-input-fields">
+             
+<label>
+              <input 
+              class="radio-inline"
+              type="radio" 
+              name="optradio" checked
+              value={this.state.phone}
+                onChange={this.onInputChange}
+                />Job Seeker</label>
+
+<label>
+<input 
+              class="radio-inline"
+              type="radio" 
+              name="optradio" checked
+              value={this.state.phone}
+                onChange={this.onInputChange}
+                />Employer</label>
+             
+            </div>
+           
+
+
+
+
+
+
+
             <label for="password">Password: </label>
             <div className="input-group register-input-fields">
               <div className="input-group-prepend">
@@ -321,6 +360,12 @@ export class RegisterCustomerComponent extends Component {
                 <a href="/login">Already a user?</a>
               </p>
             </div>
+            
+            
+
+            
+
+
             <div className="field">
               <p className="control">
                 <button className="btn btn-primary" onClick={this.saveUser}>

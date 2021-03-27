@@ -33,6 +33,8 @@ export default class Navbar extends Component {
     const { currentUser, showAdminBoard } = this.state;
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        
+{/*------------All User------------------------------------------------------------------------------------------------------------*/ }
         {/* if current user, show the following links and navigations (COMMON TO ALL)*/}
         {currentUser ? (
           <a className="name-link" href="/dashboard">
@@ -59,26 +61,28 @@ export default class Navbar extends Component {
           id="navbarNavDropdown"
         >
           <ul class="navbar-nav">
+
+
+{/*------------Admin User------------------------------------------------------------------------------------------------------------*/ }
             {/* if Admin, show the following links and navigations*/}
             {showAdminBoard && (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <a href={"/booking"} className="nav-link">
-                    Booking
-                  </a>
+                  <div className="nav-link">
+                    Admin
+                  </div>
                 </li>
+
                 <li className="nav-item">
-                  <a href={"/addemployee"} className="nav-link">
-                    Employee
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href={"/roster"} className="nav-link">
-                    Roster
+                  <a href={"/userList"} className="nav-link">
+                    View Users
                   </a>
                 </li>
               </div>
             )}
+
+{/*------------Current User------------------------------------------------------------------------------------------------------------*/ }
+
             {/* if current user, show the following links and navigations (COMMON TO ALL)*/}
             {currentUser ? (
               <div className="navbar-nav ml-auto">
@@ -100,6 +104,12 @@ export default class Navbar extends Component {
                 </a>
               </li>
             )}
+
+{/*------------------------------------------------------------------------------------------------------------------------*/ }
+
+            
+
+
           </ul>
         </div>
       </nav>

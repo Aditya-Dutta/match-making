@@ -6,14 +6,15 @@ import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LogIn from "./components/auth/Login";
-
 import Home from "./components/Home";
-/*import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
-library.add(faEdit);
-*/
+import UserList from "./components/Admin/UserList";
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { faEdit } from '@fortawesome/free-solid-svg-icons';
+// library.add(faEdit);
+
 
 function App() {
+  
   return (
     <Router>
       <Navbar />
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/register" component={Register}></Route>
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/login" component={LogIn} />
+        <Route exact path="/userlist" component={UserList} />
       </Switch>
       <Footer />
     </Router>

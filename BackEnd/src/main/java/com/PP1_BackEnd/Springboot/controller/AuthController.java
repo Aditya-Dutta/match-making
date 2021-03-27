@@ -36,7 +36,9 @@ import com.PP1_BackEnd.Springboot.security.services.UserDetailsImpl;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {@Autowired
+public class AuthController {
+	
+	@Autowired
   AuthenticationManager authenticationManager;
 
   @Autowired
@@ -51,7 +53,7 @@ public class AuthController {@Autowired
   @Autowired
   JwtUtils jwtUtils;
 
-  //login for all users
+  //----------login for all users
   @PostMapping("/signin")
   public ResponseEntity < ?>authenticateUser(@Valid@RequestBody LoginRequest loginRequest) {
 
@@ -66,7 +68,9 @@ public class AuthController {@Autowired
 
     return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
   }
-  //create new user
+  
+  
+  //-----------create new user
   @PostMapping("/signup")
   public ResponseEntity < ?>registerUser(@Valid@RequestBody SignupRequest signUpRequest) {
     if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -77,41 +81,36 @@ public class AuthController {@Autowired
       return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
     }
 
-    // Create new user's account
-    User user = new User(signUpRequest.getUsername(), signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getEmail(), signUpRequest.getAddress(), signUpRequest.getPhone(), encoder.encode(signUpRequest.getPassword()));
-
-    Set < String > strRoles = signUpRequest.getRole();
+ 
+    String user_type=signUpRequest.getUser_type();
     Set < Role > roles = new HashSet < >();
-
-    if (strRoles == null && userRepository.findAll().isEmpty() == true) {
+    
+    System.out.println(user_type);
+    
+    
+    if ( userRepository.findAll().isEmpty() == true) {
       Role admin = roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
+      signUpRequest.setUser_type("ADMIN");
       roles.add(admin);
     }
-
+    else if(user_type.equals("EMPLOYER")) {
+    	Role employer = roleRepository.findByName(ERole.ROLE_EMPLOYER).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
+        roles.add(employer);
+    }	
     else {
-      if (strRoles == null) {
-        Role userRole = roleRepository.findByName(ERole.ROLE_USER).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
-        roles.add(userRole);
-      } else {
-        strRoles.forEach(role ->{
-          switch (role) {
-          case "admin":
-            Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
-            roles.add(adminRole);
-
-            break;
-          case "emp":
-            Role modRole = roleRepository.findByName(ERole.ROLE_EMPLOYEE).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
-            roles.add(modRole);
-
-            break;
-          default:
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-          }
-        });
-      }
+    	 Role userRole = roleRepository.findByName(ERole.ROLE_JOB_SEEKER).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
+    	 signUpRequest.setUser_type("JOB_SEEKER");
+         roles.add(userRole);
     }
+    
+ // Create new user's account
+    User user = new User(signUpRequest.getUsername(), signUpRequest.getFirstname(), signUpRequest.getLastname(), 
+    		signUpRequest.getEmail(), signUpRequest.getAddress(),
+    		signUpRequest.getPhone(), encoder.encode(signUpRequest.getPassword())
+    		, signUpRequest.getUser_type());
+
+    
+
 
     user.setRoles(roles);
     userRepository.save(user);
@@ -119,32 +118,6 @@ public class AuthController {@Autowired
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
 
-  //create a new employee
-  @PostMapping("/addemp")
-  public ResponseEntity < ?>addEmployee(@Valid @RequestBody SignupRequest signUpRequest) {
-    if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-      return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
-    }
-
-    if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-      return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
-    }
-
-    // Create new employee account
-    User user = new User(signUpRequest.getUsername(), signUpRequest.getFirstname(), signUpRequest.getLastname(), signUpRequest.getEmail(), signUpRequest.getAddress(), signUpRequest.getPhone(), encoder.encode(signUpRequest.getPassword()));
-
-    Set < String > strRoles = signUpRequest.getRole();
-    Set < Role > roles = new HashSet < >();
-
-    if (strRoles == null) {
-      Role userRole = roleRepository.findByName(ERole.ROLE_EMPLOYEE).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
-      roles.add(userRole);
-    }
-
-    user.setRoles(roles);
-    userRepository.save(user);
-
-    return ResponseEntity.ok(new MessageResponse("Employee registered successfully!"));
-  }
+  
 
 }
