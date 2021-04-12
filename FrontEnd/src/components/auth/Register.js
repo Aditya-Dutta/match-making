@@ -14,7 +14,7 @@ export class RegisterCustomerComponent extends Component {
       phone: "",
       email: "",
       username: "",
-      user_type:"",
+      user_type: "",
       password: "",
       successful: false,
       message: "",
@@ -131,7 +131,7 @@ export class RegisterCustomerComponent extends Component {
           this.state.phone,
           this.state.password,
           this.state.username,
-          this.state.user_type,
+          this.state.user_type
         ).then(
           () => {
             //if success, navigate to profile page
@@ -171,223 +171,229 @@ export class RegisterCustomerComponent extends Component {
           </div>
 
           <form>
-            <label for="username">Username: </label>
-            <div className="input-group register-input-fields">
-              <div className="input-group-prepend">
-                <span className="input-group-text">
-                  {" "}
-                  <i class="fa fa-user-circle" aria-hidden="true"></i>
-                </span>
+            <div className="form-row">
+              <div class="form-group col-md-6">
+                <label for="username">Username: </label>
+                <div className="input-group register-input-fields">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      {" "}
+                      <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </span>
+                  </div>
+
+                  <input
+                    className="form-control"
+                    type="name"
+                    id="username"
+                    placeholder="username"
+                    value={this.state.username}
+                    onChange={this.onInputChange}
+                  />
+                </div>
+                <small id="passwordHelpBlock" class="form-text text-muted">
+                  Your Username must be a combination of your FirstName and
+                  LastName.{" "}
+                </small>
               </div>
-              <input
-                className="form-control"
-                type="name"
-                id="username"
-                placeholder="username"
-                value={this.state.username}
-                onChange={this.onInputChange}
-              />
-            </div>
-            <small id="passwordHelpBlock" class="form-text text-muted">
-              Your Username must be a combination of your FirstName and
-              LastName.{" "}
-            </small>
 
-            <label for="firstname">First Name: </label>
-            <div className="input-group register-input-fields">
-              <div className="input-group-prepend">
-                <span className="input-group-text">
-                  {" "}
-                  <i className="fas fa-user"></i>
-                </span>
-              </div>
-              <input
-                className="form-control"
-                type="name"
-                id="firstname"
-                placeholder="first name"
-                value={this.state.firstname}
-                onChange={this.onInputChange}
-              />
-            </div>
-
-            <label for="lastname">Last Name: </label>
-            <div class="input-group register-input-fields">
-              <div className="input-group-prepend">
-                <span className="input-group-text">
-                  {" "}
-                  <i className="fas fa-user"></i>
-                </span>
-              </div>
-              <input
-                className="form-control"
-                type="name"
-                id="lastname"
-                aria-describedby="userNameHelp"
-                placeholder="last name"
-                value={this.state.lastname}
-                onChange={this.onInputChange}
-              />
-            </div>
-
-            <label for="email">Email: </label>
-            <div className="input-group register-input-fields">
-              <div className="input-group-prepend">
-                <span className="input-group-text">
-                  {" "}
-                  <i className="fas fa-envelope"></i>
-                </span>
-              </div>
-              <input
-                className="form-control"
-                type="email"
-                id="email"
-                aria-describedby="emailHelp"
-                placeholder="email"
-                value={this.state.email}
-                onChange={this.onInputChange}
-              />
-            </div>
-            <small id="passwordHelpBlock" class="form-text text-danger">
-              {this.state.errors_message_email}{" "}
-            </small>
-
-            <label for="address">Address: </label>
-            <div className="input-group register-input-fields">
-              <div className="input-group-prepend">
-                <span className="input-group-text">
-                  {" "}
-                  <i className="fas fa-home"></i>
-                </span>
-              </div>
-              <input
-                className="form-control"
-                type="address"
-                id="address"
-                aria-describedby="addressHelp"
-                placeholder="Enter Address"
-                value={this.state.address}
-                onChange={this.onInputChange}
-              />
-            </div>
-
-            <label for="phone">Phone No: </label>
-            <div className="input-group register-input-fields">
-              <div className="input-group-prepend">
-                <span className="input-group-text">
-                  {" "}
-                  <i className="fas fa-phone"></i>
-                </span>
-              </div>
-              <input
-                className="form-control"
-                type="phone"
-                id="phone"
-                aria-describedby="phoneHelp"
-                placeholder="Enter Phone"
-                value={this.state.phone}
-                onChange={this.onInputChange}
-              />
-            </div>
-            <small class="form-text text-danger">
-              {this.state.errors_message_phone}{" "}
-            </small>
-
-
-            
-
-
-            
-
-
-            <label for="phone">User Type: </label>
-            <div className="input-group register-input-fields">
-             
-<label>
-              <input 
-              class="radio-inline"
-              type="radio" 
-              name="optradio" checked
-              value={this.state.phone}
-                onChange={this.onInputChange}
-                />Job Seeker</label>
-
-<label>
-<input 
-              class="radio-inline"
-              type="radio" 
-              name="optradio" checked
-              value={this.state.phone}
-                onChange={this.onInputChange}
-                />Employer</label>
-             
-            </div>
-           
-
-
-
-
-
-
-
-            <label for="password">Password: </label>
-            <div className="input-group register-input-fields">
-              <div className="input-group-prepend">
-                <span className="input-group-text">
-                  {" "}
-                  <i className="fas fa-lock"></i>
-                </span>
-              </div>
-              <input
-                className="form-control"
-                type="password"
-                id="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.onInputChange}
-              />
-              <small class="form-text text-muted">
-                Password must contain at least one UpperCase, one LowerCase, one
-                Digit, one Special character and minimum 8 character length.
-              </small>
-              <small class="form-text text-danger">
-                {this.state.errors_message_password}{" "}
-              </small>
-            </div>
-
-            <div className="field">
-              <p className="control">
-                <a href="/login">Already a user?</a>
-              </p>
-            </div>
-            
-            
-
-            
-
-
-            <div className="field">
-              <p className="control">
-                <button className="btn btn-primary" onClick={this.saveUser}>
-                  Register
-                </button>
-              </p>
-            </div>
-
-            {this.state.message && (
-              <div className="form-group mt-2">
-                <div
-                  className={
-                    this.state.successful
-                      ? "alert alert-success mt-2"
-                      : "alert alert-danger mt-2 "
-                  }
-                  role="alert"
-                >
-                  {this.state.message}
+              <div class="form-group col-md-6">
+                <label for="firstname">First Name: </label>
+                <div className="input-group register-input-fields">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      {" "}
+                      <i className="fas fa-user"></i>
+                    </span>
+                  </div>
+                  <input
+                    className="form-control"
+                    type="name"
+                    id="firstname"
+                    placeholder="first name"
+                    value={this.state.firstname}
+                    onChange={this.onInputChange}
+                  />
                 </div>
               </div>
-            )}
+
+              <div class="form-group col-md-6">
+                <label for="lastname">Last Name: </label>
+                <div class="input-group register-input-fields">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      {" "}
+                      <i className="fas fa-user"></i>
+                    </span>
+                  </div>
+                  <input
+                    className="form-control"
+                    type="name"
+                    id="lastname"
+                    aria-describedby="userNameHelp"
+                    placeholder="last name"
+                    value={this.state.lastname}
+                    onChange={this.onInputChange}
+                  />
+                </div>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="email">Email: </label>
+                <div className="input-group register-input-fields">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      {" "}
+                      <i className="fas fa-envelope"></i>
+                    </span>
+                  </div>
+                  <input
+                    className="form-control"
+                    type="email"
+                    id="email"
+                    aria-describedby="emailHelp"
+                    placeholder="email"
+                    value={this.state.email}
+                    onChange={this.onInputChange}
+                  />
+                </div>
+                <small id="passwordHelpBlock" class="form-text text-danger">
+                  {this.state.errors_message_email}{" "}
+                </small>
+              </div>
+
+              <div class="form-group col-md-12">
+                <label for="address">Address: </label>
+                <div className="input-group register-input-fields">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      {" "}
+                      <i className="fas fa-home"></i>
+                    </span>
+                  </div>
+                  <input
+                    className="form-control"
+                    type="address"
+                    id="address"
+                    aria-describedby="addressHelp"
+                    placeholder="Enter Address"
+                    value={this.state.address}
+                    onChange={this.onInputChange}
+                  />
+                </div>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="phone">Phone No: </label>
+                <div className="input-group register-input-fields">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      {" "}
+                      <i className="fas fa-phone"></i>
+                    </span>
+                  </div>
+                  <input
+                    className="form-control"
+                    type="phone"
+                    id="phone"
+                    aria-describedby="phoneHelp"
+                    placeholder="Enter Phone"
+                    value={this.state.phone}
+                    onChange={this.onInputChange}
+                  />
+                </div>
+                <small class="form-text text-danger">
+                  {this.state.errors_message_phone}{" "}
+                </small>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="phone">User Type: </label>
+                <div className="input-group register-input-fields">
+                  <label className="radio-register">
+                    <input
+                      className="radio-inline"
+                      type="radio"
+                      name="optradio"
+                      checked
+                      value={this.state.user_type}
+                      onChange={this.onInputChange}
+                    />
+                    Job Seeker
+                  </label>
+
+                  <label className="radio-register">
+                    <input
+                      className="radio-inline"
+                      type="radio"
+                      name="optradio"
+                      checked
+                      value={this.state.user_type}
+                      onChange={this.onInputChange}
+                    />
+                    Employer
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="password">Password: </label>
+                <div className="input-group register-input-fields">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      {" "}
+                      <i className="fas fa-lock"></i>
+                    </span>
+                  </div>
+                  <input
+                    className="form-control"
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.onInputChange}
+                  />
+                  <small class="form-text text-muted">
+                    Password must contain at least one UpperCase, one LowerCase,
+                    one Digit, one Special character and minimum 8 character
+                    length.
+                  </small>
+                  <small class="form-text text-danger">
+                    {this.state.errors_message_password}{" "}
+                  </small>
+                </div>
+              </div>
+
+              <div class="form-group col-md-6">
+                <div className="field">
+                  <p className="control">
+                    <a href="/login">Already a user?</a>
+                  </p>
+                </div>
+
+                <div className="field">
+                  <p className="control">
+                    <button className="btn btn-primary" onClick={this.saveUser}>
+                      Register
+                    </button>
+                  </p>
+                </div>
+              </div>
+
+              {this.state.message && (
+                <div className="form-group mt-2">
+                  <div
+                    className={
+                      this.state.successful
+                        ? "alert alert-success mt-2"
+                        : "alert alert-danger mt-2 "
+                    }
+                    role="alert"
+                  >
+                    {this.state.message}
+                  </div>
+                </div>
+              )}
+            </div>
           </form>
         </div>
       </section>
