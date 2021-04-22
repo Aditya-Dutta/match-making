@@ -1,16 +1,33 @@
 import React, { Component } from "react";
 import AuthService from "../services/AuthService";
 import SideBar from "./SideBar";
+import Validate from "../utility/FormValidaton";
+import AuthEmployer from "../services/AuthEmployer";
 
 export default class Dashboard_Employer extends Component {
+
   constructor(props) {
     super(props);
-    //  this.logOut = this.logOut.bind(this);
+
     this.state = {
-      currentUser: false,
-      showForm: false,
+      jobTitle:"DEMO",
+            location:"DEMO",
+            workType:"DEMO", 
+            payType:"DEMO", 
+            payMinimum:"DEMO", 
+            payMaximum:"DEMO", 
+            payInfo:"DEMO", 
+            category:"DEMO", 
+            jobDescription:"DEMO",
+           employerID: "",
+            //employerID: this.state.currentUser.ID,
+            
+            showForm: false
     };
+    // this.saveUser = this.saveUser.bind(this);
+    // this.onInputChange = this.onInputChange.bind(this);
   }
+
 
   componentDidMount() {
     const user = AuthService.getCurrentUser();
@@ -21,6 +38,94 @@ export default class Dashboard_Employer extends Component {
       });
     }
   }
+
+//to the the update of current user
+componentDidMount() {
+  const currentUser = AuthService.getCurrentUser();
+  if (!currentUser) this.setState({ redirect: "/" });
+  //set redirect path is no user found
+  this.setState({ currentUser: currentUser, userReady: true })
+  this.setState({ employerID: currentUser.username})
+
+  
+}
+
+
+   //to register user
+   saveUser = (e) => {
+    
+    e.preventDefault();
+    this.setState({
+      message: "",
+      successful: false,
+    });
+
+    {
+      // this.clearErrorState();
+      const error = Validate(e, this.state);
+      if (
+        error
+      ) {
+        this.setState({
+          errors: { ...this.state.errors, ...error },
+        });
+      } else {
+        
+        //pass the values into controller
+        AuthEmployer.post_job(
+          this.state.jobTitle,
+          this.state.location,
+          this.state.workType, 
+          this.state.payType, 
+          this.state.payMinimum, 
+          this.state.payMaximum, 
+          this.state.payInfo, 
+          this.state.category, 
+          this.state.jobDescription,
+          this.state.employerID
+          
+        ).then(
+          () => {
+            this.props.history.push("/Dashboard_Employer");
+                window.location.reload();
+          },
+          //else show error
+          (error) => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+
+            this.setState({
+              successful: false,
+              message: resMessage,
+            });
+          }
+        );
+      }
+    }
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   showForm = () => {
     return (
@@ -64,6 +169,7 @@ export default class Dashboard_Employer extends Component {
                 cols="40"
               ></textarea>
             </div>
+            
             <div className="form-group col-md-12 col-lg-6">
               <label for="skills">Skills required:</label>
               <textarea
@@ -157,6 +263,13 @@ export default class Dashboard_Employer extends Component {
                       </a>
                     </div>
                   </div>
+                </div>
+                <div className="field">
+                  <p className="control">
+                    <button className="btn btn-primary" onClick={this.saveUser}>
+                      Register
+                    </button>
+                  </p>
                 </div>
               </div>
             </div>

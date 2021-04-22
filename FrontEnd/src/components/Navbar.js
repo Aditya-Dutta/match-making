@@ -87,7 +87,7 @@ export default class Navbar extends Component {
             {currentUser ? (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <a href={"/dashboard"} className="nav-link">
+                  <a href={"/Dashboard_Seeker"} className="nav-link">
                     <strong> {currentUser.username}</strong>
                   </a>
                 </li>

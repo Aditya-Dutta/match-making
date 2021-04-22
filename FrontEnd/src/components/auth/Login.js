@@ -44,7 +44,7 @@ class LogIn extends Component {
       AuthService.login(this.state.username, this.state.password).then(
         //if success, navigate to profile page
         () => {
-          this.props.history.push("/dashboard");
+          this.props.history.push("/Dashboard_Seeker");
           window.location.reload();
         },
         //else show error on the page
