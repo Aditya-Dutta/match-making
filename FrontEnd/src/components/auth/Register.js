@@ -137,7 +137,7 @@ export class RegisterCustomerComponent extends Component {
             //if success, navigate to profile page
             AuthService.login(this.state.username, this.state.password).then(
               () => {
-                this.props.history.push("/dashboard");
+                this.props.history.push("/Dashboard_Seeker");
                 window.location.reload();
               }
             );

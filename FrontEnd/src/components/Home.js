@@ -14,7 +14,7 @@ export default function Home() {
           <a className="home-btn body-hov" href="/login">
             Login
           </a>
-          <a className="home-btn body-hov" href="/login">
+          <a className="home-btn body-hov" href="/register">
             Register
           </a>
         </div>
