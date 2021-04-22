@@ -1,38 +1,295 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body {
+  height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Sections */
+.home-section {
+  min-height: 500px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.home-pg-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.title {
+  color: orange;
+  font-size: 6rem;
+}
+
+.title-div {
+  text-align: left;
+  margin-left: 3rem;
+}
+
+.tag-line {
+  color: #444343;
+  font-size: 3rem;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+.product-title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.product-id {
+  font-size: 0.8em;
+  margin: 1em 0;
+}
+
+.product-edit-icon {
+  opacity: 0.7;
+  position: absolute;
+  right: 2.3rem;
+  top: 0.4rem;
+}
+
+.product-edit-icon:hover {
+  opacity: 1;
+}
+
+.navbar,
+.navbar-end,
+.navbar-menu,
+.navbar-start {
+  align-items: stretch !important;
+  display: flex !important;
+}
+
+.navbar-menu {
+  flex-grow: 1 !important;
+  flex-shrink: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.navbar-item {
+  display: flex !important;
+  color: aliceblue;
+}
+
+.navbar-item a :hover {
+  color: #000000;
+}
+.navbar-end {
+  justify-content: flex-end !important;
+  margin-left: auto !important;
+}
+
+.features {
+  padding-bottom: 3em;
+}
+
+body {
+  visibility: visible !important;
+}
+
+/* .auth form{
+  margin-top: 1em;
+  max-width: 50%;
+} */
+
+.buttons {
+  margin-left: 3em;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:100");
+* {
+  box-sizing: border-box;
+}
+
+.link-div {
+  text-align: left;
+  display: inline-block;
+  margin-left: 3rem;
+  margin-top: 3rem;
+}
+
+.home-btn {
+  display: inherit;
+  font-size: 1.2rem;
+  border-radius: 2rem;
   color: white;
+  font-weight: normal;
+  background-color: orange;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 16px;
+  margin-right: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.home-btn:hover {
+  color: white;
+  border-radius: 2rem;
+  font-weight: normal;
+  text-decoration: underline;
+  cursor: pointer;
+  background-color: rgba(241, 169, 35, 0.911);
+  padding: 16px;
+  margin-right: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.avail-day {
+  display: none;
 }
+
+.avail-time {
+  display: none;
+}
+
+.service-provider {
+  display: none;
+}
+
+.big-checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+
+footer {
+  background-color: #fff;
+  /* position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  overflow: hidden; */
+}
+
+.login-form {
+  /* background-color: #FFF; */
+  margin: auto 20%;
+  padding-top: 3rem;
+  width: 20rem;
+  color: #ffffff;
+}
+
+.auth {
+  min-height: 65vh;
+  background: linear-gradient(70deg, coral 50%, black 50%);
+}
+
+.new-user {
+  color: #ffffff;
+}
+
+.new-user:hover {
+  color: aqua;
+}
+
+.register-section {
+  background-color: aliceblue;
+}
+
+.register {
+  margin: 0 60px;
+  padding-top: 3rem;
+}
+
+.register-input-fields {
+  /* width: 30% !important; */
+  margin-bottom: 3%;
+}
+
+.register-title {
+  margin-bottom: 3%;
+}
+
+.name-link {
+  color: rgb(160, 9, 190);
+  font-size: 1.2rem;
+}
+
+/* For sidebar */
+.sidenav {
+  height: 100%;
+  width: 12rem;
+  position: fixed;
+  margin-top: 52px;
+  padding-left: 4px;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(10, 43, 192);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 12px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: #ffffff;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f9f9f9;
+}
+
+main {
+  margin-left: 12rem;
+  padding: 0px 3%;
+}
+
+.dashboard-heading {
+  margin-top: 3%;
+}
+
+.job-search-div {
+  display: flex;
+}
+
+.drop-down {
+  font-size: 1.2rem;
+  padding: 2px 8px 4px 0px;
+  margin-right: 3%;
+}
+
+.location-input {
+  margin-right: 4px;
+}
+
+.radio-register {
+  margin-right: 1rem;
+}
+
+.radio-inline {
+  margin-right: 0.5rem;
+}
+
+/* Dashboard Employer */
+
+.employer-title {
+  color: #1164d1;
+}
+
+.created-title {
+  color: #155ab4;
+}
+
+.create-job-form {
+  background-color: #f9f9f9;
+  margin: 1rem 0;
+  padding: 2% 3%;
+  box-shadow: 0px 10px 34px -15px rgb(0 0 0 / 24%);
+}
+
+.create-btn {
+  margin-top: 1rem;
+}
+
+/* Dashboard Employer end */
