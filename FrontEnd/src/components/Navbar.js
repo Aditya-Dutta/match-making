@@ -32,9 +32,8 @@ export default class Navbar extends Component {
   render() {
     const { currentUser, showAdminBoard } = this.state;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        
-{/*------------All User------------------------------------------------------------------------------------------------------------*/ }
+      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        {/*------------All User------------------------------------------------------------------------------------------------------------*/}
         {/* if current user, show the following links and navigations (COMMON TO ALL)*/}
         {currentUser ? (
           <a className="name-link" href="/dashboard">
@@ -61,16 +60,12 @@ export default class Navbar extends Component {
           id="navbarNavDropdown"
         >
           <ul class="navbar-nav">
-
-
-{/*------------Admin User------------------------------------------------------------------------------------------------------------*/ }
+            {/*------------Admin User------------------------------------------------------------------------------------------------------------*/}
             {/* if Admin, show the following links and navigations*/}
             {showAdminBoard && (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <div className="nav-link">
-                    Admin
-                  </div>
+                  <div className="nav-link">Admin</div>
                 </li>
 
                 <li className="nav-item">
@@ -81,7 +76,7 @@ export default class Navbar extends Component {
               </div>
             )}
 
-{/*------------Current User------------------------------------------------------------------------------------------------------------*/ }
+            {/*------------Current User------------------------------------------------------------------------------------------------------------*/}
 
             {/* if current user, show the following links and navigations (COMMON TO ALL)*/}
             {currentUser ? (
@@ -105,11 +100,7 @@ export default class Navbar extends Component {
               </li>
             )}
 
-{/*------------------------------------------------------------------------------------------------------------------------*/ }
-
-            
-
-
+            {/*------------------------------------------------------------------------------------------------------------------------*/}
           </ul>
         </div>
       </nav>
