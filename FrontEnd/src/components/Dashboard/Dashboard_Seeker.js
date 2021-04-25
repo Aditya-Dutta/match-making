@@ -42,6 +42,9 @@ export default class Dashboard_Seeker extends Component {
 
 
 
+  handleDropDown(e) {
+    this.setState({});
+  }
 
   render() {
     const { currentUser } = this.state;
@@ -67,13 +70,14 @@ export default class Dashboard_Seeker extends Component {
 
           <div className="job-search-div">
             <select
+              onChange={this.handleDropDown}
               class="form-select form-select-sm drop-down"
               aria-label=".form-select-sm example"
             >
-              <option selected>Job Type</option>
-              <option value={this.state.job_type}>Full Time</option>
-              <option value={this.state.job_type}>Part Time</option>
-              <option value={this.state.job_type}>Casual</option>
+              <option value="Full">Job Type</option>
+              <option value="Full">Full Time</option>
+              <option value="Part">Part Time</option>
+              <option value="Casual">Casual</option>
             </select>
             <input
               class="form-control form-control-dark w-50 location-input"

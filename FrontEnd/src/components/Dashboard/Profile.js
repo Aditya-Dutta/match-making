@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import SideBar from "./SideBar";
 
 export default class Profile extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      personal_summary: "",
+      university: "",
+      college: "",
+      school: "",
+    };
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -13,7 +24,14 @@ export default class Profile extends Component {
             <fieldset>
               <form>
                 <legend>Personal Summary</legend>
-                <textarea rows="4" cols="50"></textarea>
+                <textarea
+                  rows="4"
+                  cols="50"
+                  value={this.state.personal_summary}
+                  onChange={(e) =>
+                    this.setState({ personal_summary: e.target.value })
+                  }
+                ></textarea>
               </form>
             </fieldset>
           </div>
@@ -31,6 +49,10 @@ export default class Profile extends Component {
                     id="university"
                     name="university"
                     className="form-control w-50"
+                    value={this.state.university}
+                    onChange={(e) =>
+                      this.setState({ university: e.target.value })
+                    }
                   />
                   <label for="college">College</label>
                   <input
@@ -38,6 +60,8 @@ export default class Profile extends Component {
                     id="college"
                     name="college"
                     className="form-control w-50"
+                    value={this.state.college}
+                    onChange={(e) => this.setState({ college: e.target.value })}
                   />
                   <label for="school">School</label>
                   <input
@@ -45,6 +69,8 @@ export default class Profile extends Component {
                     id="school"
                     name="school"
                     className="form-control w-50"
+                    value={this.state.school}
+                    onChange={(e) => this.setState({ school: e.target.value })}
                   />
                 </div>
               </form>
