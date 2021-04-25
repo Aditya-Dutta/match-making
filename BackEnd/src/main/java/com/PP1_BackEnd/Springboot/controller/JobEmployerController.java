@@ -22,7 +22,7 @@ public class JobEmployerController {
 	
 	 @PostMapping("/postjob")
 	    public ResponseEntity < ? > addJob(@RequestBody JobEmployer job) {
-		 System.out.println(job.getEmployerID());
+		 System.out.println(job.getEmployerUsername());
 	        	JobEmployerService.saveBooking(job);
 	           
 	            return ResponseEntity.ok(new MessageResponse("Booking Successfull!"));

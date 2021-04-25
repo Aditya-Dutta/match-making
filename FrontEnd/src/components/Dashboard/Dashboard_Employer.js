@@ -47,7 +47,6 @@ componentDidMount() {
   this.setState({ currentUser: currentUser, userReady: true })
   this.setState({ employerID: currentUser.username})
 
-  
 }
 
 

@@ -8,7 +8,8 @@ import javax.persistence.Table;
 
 
 
-@Entity@Table(name = "AllJobs")
+@Entity
+@Table(name = "AllJobs")
 
 public class JobEmployer {
 	
