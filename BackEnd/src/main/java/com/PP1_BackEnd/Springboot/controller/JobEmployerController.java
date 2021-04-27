@@ -16,16 +16,14 @@ import com.PP1_BackEnd.Springboot.service.JobEmployerService;
 @RestController
 @RequestMapping("/job/employer")
 public class JobEmployerController {
-	
-	 @Autowired
-	    public JobEmployerService JobEmployerService;
-	
-	 @PostMapping("/postjob")
-	    public ResponseEntity < ? > addJob(@RequestBody JobEmployer job) {
-		 System.out.println(job.getEmployerID());
-	        	JobEmployerService.saveBooking(job);
-	           
-	            return ResponseEntity.ok(new MessageResponse("Booking Successfull!"));
-	    }
+	@Autowired
+	public JobEmployerService JobEmployerService;
+
+	@PostMapping("/postjob")
+	public ResponseEntity<?> addJob(@RequestBody JobEmployer job) {
+		System.out.println(job.getEmployerUsername());
+		JobEmployerService.saveBooking(job);
+		return ResponseEntity.ok(new MessageResponse("Booking Successfull!"));
+	}
 
 }

@@ -3,6 +3,7 @@ import AuthService from "../services/AuthService";
 import SideBar from "./SideBar";
 import Validate from "../utility/FormValidaton";
 import AuthEmployer from "../services/AuthEmployer";
+import JobCard from "./Card";
 
 export default class Dashboard_Employer extends Component {
   constructor(props) {
@@ -218,66 +219,34 @@ export default class Dashboard_Employer extends Component {
             <div className="jobs-created">
               <h2 className="created-title">Jobs Created</h2>
               <div className="row">
-                <div className="col-md-12">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
-                        Card subtitle
-                      </h6>
-                      <p class="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </p>
-                      <a href="#1" class="card-link">
-                        Card link
-                      </a>
-                      <a href="#1" class="card-link">
-                        Another link
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
-                        Card subtitle
-                      </h6>
-                      <p class="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </p>
-                      <a href="#1" class="card-link">
-                        Card link
-                      </a>
-                      <a href="#1" class="card-link">
-                        Another link
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">
-                        Card subtitle
-                      </h6>
-                      <p class="card-text">
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card's content.
-                      </p>
-                      <a href="#1" class="card-link">
-                        Card link
-                      </a>
-                      <a href="#1" class="card-link">
-                        Another link
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                <JobCard
+                  jobTitle="Card 1"
+                  jobDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat massa in leo pretium 
+                  consectetur. Nulla a dignissim sem, in placerat eros. Nam a urna in ex suscipit malesuada a quis nisl. Phasellus faucibus commodo rhoncus. Vestibulum mollis congue nibh, sit amet viverra massa tempus a. Quisque ultricies eros ac lorem fermentum consectetur. Morbi quis commodo erat."
+                  jobType="Full"
+                  locationType="In Person"
+                  category="IT"
+                  payType="Hourly"
+                />
+                <JobCard
+                  jobTitle="Card 2"
+                  jobDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat massa in leo pretium 
+                  consectetur. Nulla a dignissim sem, in placerat eros. Nam a urna in ex suscipit malesuada a quis nisl. Phasellus faucibus commodo rhoncus. Vestibulum mollis congue nibh, sit amet viverra massa tempus a. Quisque ultricies eros ac lorem fermentum consectetur. Morbi quis commodo erat."
+                  jobType="Part"
+                  locationType="In Person"
+                  category="Medical"
+                  payType="Hourly"
+                />
+                <JobCard
+                  jobTitle="Card 3"
+                  jobDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat massa in leo pretium 
+                  consectetur. Nulla a dignissim sem, in placerat eros. Nam a urna in ex suscipit malesuada a quis nisl. Phasellus faucibus commodo rhoncus. Vestibulum mollis congue nibh, sit amet viverra massa tempus a. Quisque ultricies eros ac lorem fermentum consectetur. Morbi quis commodo erat."
+                  jobType="Casual"
+                  locationType="Remote"
+                  category="Art"
+                  payType="Monthly"
+                />
+
                 {/* <div className="field">
                   <p className="control">
                     <button className="btn btn-primary" onClick={this.saveUser}>
