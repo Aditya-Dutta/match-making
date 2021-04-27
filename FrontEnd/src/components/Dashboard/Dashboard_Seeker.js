@@ -11,6 +11,7 @@ export default class Dashboard_Seeker extends Component {
     //  this.logOut = this.logOut.bind(this);
     this.state = {
       job_list:[],
+     
       currentUser: false,
     };
   }
@@ -32,7 +33,7 @@ export default class Dashboard_Seeker extends Component {
     if (!currentUser) this.setState({ redirect: "/" });
     
     this.setState({ currentUser: currentUser, userReady: true })
-    AuthSeeker.getServiceName().then(
+    AuthSeeker.get_job().then(
         (result) => {
             this.setState({
                 job_list: result.data

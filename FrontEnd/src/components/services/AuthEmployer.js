@@ -6,23 +6,20 @@ const API_URL = "http://localhost:8080/job/employer/";
 
 class AuthEmployer {
     
-
-
+    
 
     //register an user
-    post_job(jobTitle, location, workType, payType, payMinimum, payMaximum, payInfo, category, jobDescription,employerID)
+    post_job(jobTitle, locationPincode, payType, category, jobDescription, jobType, skills, employerUsername)
     {
         return axios.post(API_URL + "postjob", {
             jobTitle,
-            location,
-            workType, 
+            locationPincode,
             payType, 
-            payMinimum, 
-            payMaximum, 
-            payInfo, 
             category, 
-            jobDescription,
-            employerID
+            jobDescription, 
+            jobType, 
+            skills, 
+            employerUsername
         },{ headers: authHeader() }
         );
     }

@@ -22,6 +22,7 @@ export default class Navbar extends Component {
         showEmployeeBoard: user.roles.includes("ROLE_EMPLOYEE"),
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
       });
+      
     }
   }
 
@@ -36,7 +37,7 @@ export default class Navbar extends Component {
         {/*------------All User------------------------------------------------------------------------------------------------------------*/}
         {/* if current user, show the following links and navigations (COMMON TO ALL)*/}
         {currentUser ? (
-          <a className="name-link" href="/dashboard">
+          <a className="name-link" href="/dashboard_employer">
             <strong>Jaxlooper</strong>
           </a>
         ) : (
@@ -75,6 +76,7 @@ export default class Navbar extends Component {
                 </li>
               </div>
             )}
+          
 
             {/*------------Current User------------------------------------------------------------------------------------------------------------*/}
 

@@ -16,60 +16,55 @@ public class JobEmployer {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	  private long id;
 
+//	jobTitle,
+//    locationPincode,
+//    payType, 
+//    category, 
+//    jobDescription, 
+	
+//    jobType, 
+//    skills, 
+//    employerUsername
+//    
+    
 	  @Column(name = "Job_Title")
 	  private String jobTitle;
 
-	  @Column(name = "Location")
-	  private String location;
-
-	  @Column(name = "Work_Type")
-	  private String workType;
+	  @Column(name = "Pincode")
+	  private String locationPincode;
 
 	  @Column(name = "Pay_Type")
 	  private String payType;
 
-	  @Column(name = "Minimum_Pay")
-	  private String payMinimum;
-
-	  @Column(name = "Maximum_Pay")
-	  private String payMaximum;
-	  
-	  
-	  @Column(name = "Pay_Information")
-	  private String payInfo;
-	  
 	  @Column(name = "Category")
 	  private String category;
 	  
 	  @Column(name = "Job_Description")
 	  private String jobDescription;
 	  
+	  @Column(name = "Job_Type")
+	  private String jobType;
+	  
+	  @Column(name = "Skills")
+	  private String skills;
+	  
 	  @Column(name = "Employer_UserName")
 	  private String employerUsername;
 	  
+	  
+	  
 
-
-	 
-	  public String getEmployerUsername() {
-		return employerUsername;
-	}
-
-	public void setEmployerUsername(String employerUsername) {
-		this.employerUsername = employerUsername;
-	}
-
-	public JobEmployer(String jobTitle, String location, String workType, String payType, String payMinimum,
-			String payMaximum, String payInfo, String category, String jobDescription, String employerUsername) {
+	public JobEmployer(long id, String jobTitle, String locationPincode, String payType, String category, String jobDescription,
+			String jobType, String skills, String employerUsername) {
 		super();
+		this.id = id;
 		this.jobTitle = jobTitle;
-		this.location = location;
-		this.workType = workType;
+		this.locationPincode = locationPincode;
 		this.payType = payType;
-		this.payMinimum = payMinimum;
-		this.payMaximum = payMaximum;
-		this.payInfo = payInfo;
 		this.category = category;
 		this.jobDescription = jobDescription;
+		this.jobType = jobType;
+		this.skills = skills;
 		this.employerUsername = employerUsername;
 	}
 
@@ -89,20 +84,12 @@ public class JobEmployer {
 		this.jobTitle = jobTitle;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getlocationPincode() {
+		return locationPincode;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getWorkType() {
-		return workType;
-	}
-
-	public void setWorkType(String workType) {
-		this.workType = workType;
+	public void setlocationPincode(String locationPincode) {
+		this.locationPincode = locationPincode;
 	}
 
 	public String getPayType() {
@@ -111,30 +98,6 @@ public class JobEmployer {
 
 	public void setPayType(String payType) {
 		this.payType = payType;
-	}
-
-	public String getPayMinimum() {
-		return payMinimum;
-	}
-
-	public void setPayMinimum(String payMinimum) {
-		this.payMinimum = payMinimum;
-	}
-
-	public String getPayMaximum() {
-		return payMaximum;
-	}
-
-	public void setPayMaximum(String payMaximum) {
-		this.payMaximum = payMaximum;
-	}
-
-	public String getPayInfo() {
-		return payInfo;
-	}
-
-	public void setPayInfo(String payInfo) {
-		this.payInfo = payInfo;
 	}
 
 	public String getCategory() {
@@ -153,7 +116,33 @@ public class JobEmployer {
 		this.jobDescription = jobDescription;
 	}
 
-	
+	public String getJobType() {
+		return jobType;
+	}
+
+	public void setJobType(String jobType) {
+		this.jobType = jobType;
+	}
+
+	public String getSkills() {
+		return skills;
+	}
+
+	public void setSkills(String skills) {
+		this.skills = skills;
+	}
+
+	public String getEmployerUsername() {
+		return employerUsername;
+	}
+
+	public void setEmployerUsername(String employerUsername) {
+		this.employerUsername = employerUsername;
+	}
+	  
+
+
+	 
 	
 	
 	

@@ -62,6 +62,8 @@ public class AuthController {
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
     String jwt = jwtUtils.generateJwtToken(authentication);
+    
+    System.out.println(jwt);
 
     UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
     List < String > roles = userDetails.getAuthorities().stream().map(item ->item.getAuthority()).collect(Collectors.toList());
@@ -85,7 +87,7 @@ public class AuthController {
     String user_type=signUpRequest.getUser_type();
     Set < Role > roles = new HashSet < >();
     
-    System.out.println(user_type);
+    System.out.println("iduuf----------------------------------------"+user_type);
     
     
     if ( userRepository.findAll().isEmpty() == true) {

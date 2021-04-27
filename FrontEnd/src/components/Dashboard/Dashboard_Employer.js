@@ -11,13 +11,14 @@ export default class Dashboard_Employer extends Component {
     this.state = {
       jobTitle: "",
       jobType: "",
-      locationType: "",
+      locationPincode: "",
       skills: "",
       workType: "",
       payType: "",
       category: "",
       jobDescription: "",
-      employerID: "",
+      employerUsername: "",
+      currentUser: { username: "" },
       //employerID: this.state.currentUser.ID,
       showForm: false,
     };
@@ -42,25 +43,14 @@ componentDidMount() {
   if (!currentUser) this.setState({ redirect: "/" });
   //set redirect path is no user found
   this.setState({ currentUser: currentUser, userReady: true })
-  this.setState({ employerID: currentUser.username})
+  this.setState({ employerUsername: currentUser.username})
+  console.log(this.state.employerUsername+"    hhh")
 
 }
 
-
-   //to register user
-   saveUser = (e) => {
-    
-  //to the the update of current user
-  // componentDidMount() {
-  //   const currentUser = AuthService.getCurrentUser();
-  //   if (!currentUser) this.setState({ redirect: "/" });
-  //   //set redirect path is no user found
-  //   this.setState({ currentUser: currentUser, userReady: true });
-  //   this.setState({ employerID: currentUser.username });
-  // }
-
-  //to register user
   saveUser = (e) => {
+
+   
     e.preventDefault();
     this.setState({
       message: "",
@@ -78,12 +68,13 @@ componentDidMount() {
         //pass the values into controller
         AuthEmployer.post_job(
           this.state.jobTitle,
-          this.state.location,
-          this.state.workType,
+          this.state.locationPincode,
           this.state.payType,
           this.state.category,
           this.state.jobDescription,
-          this.state.employerID
+          this.state.jobType,
+          this.state.skills,
+          this.state.employerUsername
         ).then(
           () => {
             this.props.history.push("/Dashboard_Employer");
@@ -115,6 +106,7 @@ componentDidMount() {
   };
 
   showForm = () => {
+
     return (
       <div className="create-job-form">
         <form onSubmit={this.saveUser}>
@@ -130,6 +122,8 @@ componentDidMount() {
                 onChange={(e) => this.setState({ jobTitle: e.target.value })}
               />
             </div>
+            {this.state.employerUsername=this.state.currentUser.getCurrentUser}
+            
             <div className="form-group col-md-3">
               <label for="job-type">Job Type:</label>
               <select
@@ -149,7 +143,7 @@ componentDidMount() {
                 id="location-type"
                 class="form-control"
                 onChange={(e) =>
-                  this.setState({ locationType: e.target.value })
+                  this.setState({ locationPincode: e.target.value })
                 }
               >
                 <option value="Person">Location Type</option>
@@ -157,6 +151,7 @@ componentDidMount() {
                 <option value="Remote">Remote</option>
               </select>
             </div>
+
             <div className="form-group col-md-6 col-lg-6">
               <label for="category">Category:</label>
               <select
@@ -171,6 +166,8 @@ componentDidMount() {
                 <option value="Art">Art</option>
               </select>
             </div>
+
+
             <div className="form-group col-md-3">
               <label for="pay-type">Pay type:</label>
               <select
@@ -217,7 +214,7 @@ componentDidMount() {
         </form>
       </div>
     );
-  };}
+  };
 
   render() {
     return (
