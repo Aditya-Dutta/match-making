@@ -28,4 +28,11 @@ public class JobEmployerController {
 	            return ResponseEntity.ok(new MessageResponse("Booking Successfull!"));
 	    }
 
+	@PostMapping("/postjob")
+	public ResponseEntity<?> addJob(@RequestBody JobEmployer job) {
+		System.out.println(job.getEmployerUsername());
+		JobEmployerService.saveBooking(job);
+		return ResponseEntity.ok(new MessageResponse("Booking Successfull!"));
+	}
+
 }

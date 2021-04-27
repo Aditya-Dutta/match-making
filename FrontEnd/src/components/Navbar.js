@@ -54,13 +54,13 @@ export default class Navbar extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          class="collapse navbar-collapse justify-content-end"
+          className="collapse navbar-collapse justify-content-end"
           id="navbarNavDropdown"
         >
-          <ul class="navbar-nav">
+          <ul className="navbar-nav">
             {/*------------Admin User------------------------------------------------------------------------------------------------------------*/}
             {/* if Admin, show the following links and navigations*/}
             {showAdminBoard && (
@@ -95,8 +95,8 @@ export default class Navbar extends Component {
                 </li>
               </div>
             ) : (
-              <li class="nav-item">
-                <a class="nav-link" href={"/"}>
+              <li className="nav-item">
+                <a className="nav-link" href={"/"}>
                   <strong>Home</strong>
                 </a>
               </li>

@@ -58,11 +58,11 @@ export default class Dashboard_Seeker extends Component {
             <div className="input-group-prepend">
               <span className="input-group-text">
                 {" "}
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
               </span>
             </div>
             <input
-              class="form-control form-control-dark"
+              className="form-control form-control-dark"
               type="text"
               placeholder="Search"
               aria-label="Search"
@@ -72,7 +72,7 @@ export default class Dashboard_Seeker extends Component {
           <div className="job-search-div">
             <select
               onChange={this.handleDropDown}
-              class="form-select form-select-sm drop-down"
+              className="form-select form-select-sm drop-down"
               aria-label=".form-select-sm example"
             >
               <option value="Full">Job Type</option>
@@ -81,12 +81,12 @@ export default class Dashboard_Seeker extends Component {
               <option value="Casual">Casual</option>
             </select>
             <input
-              class="form-control form-control-dark w-50 location-input"
+              className="form-control form-control-dark w-50 location-input"
               type="text"
               placeholder="Location"
               aria-label="location"
             />
-            <button type="button" class="btn btn-success">
+            <button type="button" className="btn btn-success">
               Find
             </button>
           </div>
