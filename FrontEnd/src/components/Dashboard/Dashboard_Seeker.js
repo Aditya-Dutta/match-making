@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AuthSeeker from "../services/AuthSeeker";
 import AuthService from "../services/AuthService";
 import SideBar from "./SideBar";
 
@@ -6,8 +7,11 @@ import SideBar from "./SideBar";
 export default class Dashboard_Seeker extends Component {
   constructor(props) {
     super(props);
+
     //  this.logOut = this.logOut.bind(this);
     this.state = {
+      job_list:[],
+     
       currentUser: false,
     };
   }
@@ -23,6 +27,21 @@ export default class Dashboard_Seeker extends Component {
       });
     }
   }
+
+  componentDidMount() {
+    const currentUser = AuthService.getCurrentUser();
+    if (!currentUser) this.setState({ redirect: "/" });
+    
+    this.setState({ currentUser: currentUser, userReady: true })
+    AuthSeeker.get_job().then(
+        (result) => {
+            this.setState({
+                job_list: result.data
+            });
+        })
+}
+
+
 
   handleDropDown(e) {
     this.setState({});
