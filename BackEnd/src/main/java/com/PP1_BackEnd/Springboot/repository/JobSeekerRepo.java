@@ -1,6 +1,6 @@
 package com.PP1_BackEnd.Springboot.repository;
 
-import java.util.List; 
+import java.util.List;  
 
 import javax.transaction.Transactional;
 
@@ -15,17 +15,23 @@ import com.PP1_BackEnd.Springboot.model.JobEmployer;
 @Repository
 public interface JobSeekerRepo extends JpaRepository < JobEmployer, Long > {
 
-	@Query(value = "SELECT * FROM JobEmployer", nativeQuery = true)
+	@Query(value = "SELECT * FROM All_JOBS", nativeQuery = true)
 	List<JobEmployer> getAllJobs();
 	
-//	@Query(value = "SELECT * FROM Bookings WHERE  Name = :name AND status='confirmed'", nativeQuery = true)
-//	  List < Booking > confirmedWork(@Param("name") String name);
-//
-//	  @Transactional
-//	  @Modifying
-//	  @Query(value = "UPDATE Bookings SET status = 'confirmed' WHERE id= :id", nativeQuery = true)
-//	  void approveBooking(@Param("id") long id);
-
+	@Query(value = "SELECT * FROM All_JOBS WHERE  Employer_Username = :username", nativeQuery = true)
+	List <JobEmployer> getByUsername(@Param("username") String username);
+	
+	@Query(value = "SELECT * FROM All_JOBS WHERE  Pincode = :pincode", nativeQuery = true)
+	List <JobEmployer> getByLocationPincode(@Param("pincode") int pincode);
+	
+	@Query(value = "SELECT * FROM All_JOBS WHERE  Category = :category", nativeQuery = true)
+	List <JobEmployer> getByCategory(@Param("category") String category);
+	
+	@Query(value = "SELECT * FROM All_JOBS WHERE  Job_Type = :jobType", nativeQuery = true)
+	List <JobEmployer> getByJobType(@Param("jobType") String jobtype);
+	
 	  
+	 
+	
 	  
 }

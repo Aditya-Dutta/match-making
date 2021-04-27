@@ -31,7 +31,7 @@ public class JobEmployer {
 	  private String jobTitle;
 
 	  @Column(name = "Pincode")
-	  private String locationPincode;
+	  private int locationPincode;
 
 	  @Column(name = "Pay_Type")
 	  private String payType;
@@ -48,13 +48,16 @@ public class JobEmployer {
 	  @Column(name = "Skills")
 	  private String skills;
 	  
-	  @Column(name = "Employer_UserName")
+	  @Column(name = "Employer_Username")
 	  private String employerUsername;
 	  
-	  
+	  public JobEmployer()
+	  {
+		  super();
+	  }
 	  
 
-	public JobEmployer(long id, String jobTitle, String locationPincode, String payType, String category, String jobDescription,
+	public JobEmployer(long id, String jobTitle, int locationPincode, String payType, String category, String jobDescription,
 			String jobType, String skills, String employerUsername) {
 		super();
 		this.id = id;
@@ -84,11 +87,11 @@ public class JobEmployer {
 		this.jobTitle = jobTitle;
 	}
 
-	public String getlocationPincode() {
+	public int getlocationPincode() {
 		return locationPincode;
 	}
 
-	public void setlocationPincode(String locationPincode) {
+	public void setlocationPincode(int locationPincode) {
 		this.locationPincode = locationPincode;
 	}
 

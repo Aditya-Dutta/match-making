@@ -22,4 +22,29 @@ public class JobSeekerService {
 	{
 		return seekerRepo.getAllJobs();
 	}
+	
+	public List<JobEmployer> getByCategory(String category)
+	{
+		return seekerRepo.getByCategory(category);
+	}
+	
+	public List<JobEmployer> getByUsername(String username)
+	{
+		return seekerRepo.getByUsername(username);
+	}
+	
+	
+	public List<JobEmployer> getByLocation(int pincode)
+	{
+		return seekerRepo.getByLocationPincode(pincode);
+	}
+	
+	
+	public List<JobEmployer> getByJobType(String jobtype)
+	{
+		return seekerRepo.getByJobType(jobtype);
+	}
+	
+	
+	
 }

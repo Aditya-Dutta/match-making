@@ -18,7 +18,7 @@ export default class Dashboard_Employer extends Component {
       category: "",
       jobDescription: "",
       employerUsername: "",
-      currentUser: { username: "" },
+      currentUser: undefined,
       //employerID: this.state.currentUser.ID,
       showForm: false,
     };
@@ -27,29 +27,37 @@ export default class Dashboard_Employer extends Component {
     this.handleForm = this.handleForm.bind(this);
   }
 
-  componentDidMount() {
-    const user = AuthService.getCurrentUser();
-    //get the current user type
-    if (user) {
-      this.setState({
-        currentUser: user,
-      });
-    }
-  }
+  
 
 //to the the update of current user
 componentDidMount() {
-  const currentUser = AuthService.getCurrentUser();
-  if (!currentUser) this.setState({ redirect: "/" });
+  const user = AuthService.getCurrentUser();
+  if (!user) this.setState({ redirect: "/" });
   //set redirect path is no user found
-  this.setState({ currentUser: currentUser, userReady: true })
-  this.setState({ employerUsername: currentUser.username})
-  console.log(this.state.employerUsername+"    hhh")
+  
+  
+  if (user) {
+    this.setState({
+      currentUser: user,
+      
+      showEmployeeBoard: user.roles.includes("ROLE_EMPLOYEE"),
+      showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+    });
+    
+  }
+
+  
 
 }
 
+
+
+
+
   saveUser = (e) => {
 
+    
+    
    
     e.preventDefault();
     this.setState({
@@ -74,7 +82,7 @@ componentDidMount() {
           this.state.jobDescription,
           this.state.jobType,
           this.state.skills,
-          this.state.employerUsername
+          this.state.currentUser.username
         ).then(
           () => {
             this.props.history.push("/Dashboard_Employer");
@@ -122,7 +130,7 @@ componentDidMount() {
                 onChange={(e) => this.setState({ jobTitle: e.target.value })}
               />
             </div>
-            {this.state.employerUsername=this.state.currentUser.getCurrentUser}
+            {/* {this.state.employerUsername=this.state.currentUser.getCurrentUser} */}
             
             <div className="form-group col-md-3">
               <label for="job-type">Job Type:</label>
@@ -131,13 +139,13 @@ componentDidMount() {
                 class="form-control"
                 onChange={(e) => this.setState({ jobType: e.target.value })}
               >
-                <option value="Full">Job Type</option>
-                <option value="Full">Full Time</option>
-                <option value="Part">Part Time</option>
-                <option value="Casual">Contract</option>
+                <option value="NA">Job Type</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Casual">Casual</option>
               </select>
             </div>
-            <div className="form-group col-md-3">
+            {/* <div className="form-group col-md-3">
               <label for="location-type">Location type:</label>
               <select
                 id="location-type"
@@ -150,7 +158,23 @@ componentDidMount() {
                 <option vaue="Person">In Person</option>
                 <option value="Remote">Remote</option>
               </select>
+            </div> */}
+
+            <div className="form-group col-md-3">
+              <label for="location-type">Pincode:</label>
+              <textarea
+              id="location-type"
+              class="form-control"
+              
+                value={this.state.locationPincode}
+                onChange={(e) =>
+                  this.setState({ locationPincode: e.target.value })
+                }
+              ></textarea>
             </div>
+
+
+
 
             <div className="form-group col-md-6 col-lg-6">
               <label for="category">Category:</label>
@@ -217,6 +241,7 @@ componentDidMount() {
   };
 
   render() {
+   
     return (
       <React.Fragment>
         <SideBar />
@@ -225,7 +250,7 @@ componentDidMount() {
             <div className="employer-title">
               <h1>Employer Name Dashboard</h1>
             </div>
-
+            
             <div className="jobs-created">
               <h2 className="created-title">Jobs Created</h2>
               <div className="row">
