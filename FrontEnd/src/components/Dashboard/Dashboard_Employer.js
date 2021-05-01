@@ -4,6 +4,7 @@ import SideBar from "./SideBar";
 import Validate from "../utility/FormValidaton";
 import AuthEmployer from "../services/AuthEmployer";
 import JobCard from "./Card";
+import AuthSeeker from "../services/AuthSeeker";
 
 export default class Dashboard_Employer extends Component {
   constructor(props) {
@@ -40,12 +41,15 @@ componentDidMount() {
   if (user) {
     this.setState({
       currentUser: user,
+      employerUsername: user.username,
       
       showEmployeeBoard: user.roles.includes("ROLE_EMPLOYEE"),
       showAdminBoard: user.roles.includes("ROLE_ADMIN"),
     });
     
   }
+
+ 
 
   
 
