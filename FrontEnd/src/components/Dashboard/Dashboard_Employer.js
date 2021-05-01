@@ -4,6 +4,7 @@ import SideBar from "./SideBar";
 import Validate from "../utility/FormValidaton";
 import AuthEmployer from "../services/AuthEmployer";
 import JobCard from "./Card";
+import AuthSeeker from "../services/AuthSeeker";
 
 export default class Dashboard_Employer extends Component {
   constructor(props) {
@@ -20,46 +21,38 @@ export default class Dashboard_Employer extends Component {
       jobDescription: "",
       employerUsername: "",
       currentUser: undefined,
-      //employerID: this.state.currentUser.ID,
+      // employerID: this.state.currentUser.ID,
       showForm: false,
+      jobList: [],
     };
-    // this.saveUser = this.saveUser.bind(this);
+    this.saveJob = this.saveJob.bind(this);
     // this.onInputChange = this.onInputChange.bind(this);
     this.handleForm = this.handleForm.bind(this);
   }
 
-  
+  //to the the update of current user
+  componentDidMount() {
+    // console.log(this.state);
+    const user = AuthService.getCurrentUser();
+    if (!user) this.setState({ redirect: "/" });
+    //set redirect path is no user found
 
-//to the the update of current user
-componentDidMount() {
-  const user = AuthService.getCurrentUser();
-  if (!user) this.setState({ redirect: "/" });
-  //set redirect path is no user found
-  
-  
-  if (user) {
-    this.setState({
-      currentUser: user,
-      
-      showEmployeeBoard: user.roles.includes("ROLE_EMPLOYEE"),
-      showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+    if (user) {
+      this.setState({
+        currentUser: user,
+        employerUsername: user.username,
+        showEmployeeBoard: user.roles.includes("ROLE_EMPLOYEE"),
+        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+      });
+    }
+    // console.clear();
+    AuthSeeker.get_job().then((result) => {
+      this.setState({ jobList: result.data });
+      console.log(result.data);
     });
-    
   }
 
-  
-
-}
-
-
-
-
-
-  saveUser = (e) => {
-
-    
-    
-   
+  saveJob = (e) => {
     e.preventDefault();
     this.setState({
       message: "",
@@ -88,6 +81,7 @@ componentDidMount() {
           () => {
             this.props.history.push("/Dashboard_Employer");
             window.location.reload();
+            alert("Job Created");
           },
           //else show error
           (error) => {
@@ -115,10 +109,9 @@ componentDidMount() {
   };
 
   showForm = () => {
-
     return (
       <div className="create-job-form">
-        <form onSubmit={this.saveUser}>
+        <form onSubmit={this.saveJob}>
           <h4>Create Job</h4>
           <div className="form-row">
             <div className="form-group col-md-12 col-lg-6">
@@ -132,7 +125,7 @@ componentDidMount() {
               />
             </div>
             {/* {this.state.employerUsername=this.state.currentUser.getCurrentUser} */}
-            
+
             <div className="form-group col-md-3">
               <label for="job-type">Job Type:</label>
               <select
@@ -163,19 +156,15 @@ componentDidMount() {
 
             <div className="form-group col-md-3">
               <label for="location-type">Pincode:</label>
-              <textarea
-              id="location-type"
-              class="form-control"
-              
+              <input
+                id="location-type"
+                class="form-control"
                 value={this.state.locationPincode}
                 onChange={(e) =>
                   this.setState({ locationPincode: e.target.value })
                 }
-              ></textarea>
+              ></input>
             </div>
-
-
-
 
             <div className="form-group col-md-6 col-lg-6">
               <label for="category">Category:</label>
@@ -191,7 +180,6 @@ componentDidMount() {
                 <option value="Art">Art</option>
               </select>
             </div>
-
 
             <div className="form-group col-md-3">
               <label for="pay-type">Pay type:</label>
@@ -242,46 +230,30 @@ componentDidMount() {
   };
 
   render() {
-   
+    const currentUser = this.state;
     return (
       <React.Fragment>
         <SideBar />
         <main>
           <div className="component">
             <div className="employer-title">
-              <h1>Employer Name Dashboard</h1>
+              {/* {console.log(currentUser.username)} */}
+              <h1>{this.state.employerUsername}</h1>
             </div>
-            
+
             <div className="jobs-created">
-              <h2 className="created-title">Jobs Created</h2>
+              <h2 className="created-title">Recent Jobs Created</h2>
               <div className="row">
-                <JobCard
-                  jobTitle="Card 1"
-                  jobDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat massa in leo pretium 
-                  consectetur. Nulla a dignissim sem, in placerat eros. Nam a urna in ex suscipit malesuada a quis nisl. Phasellus faucibus commodo rhoncus. Vestibulum mollis congue nibh, sit amet viverra massa tempus a. Quisque ultricies eros ac lorem fermentum consectetur. Morbi quis commodo erat."
-                  jobType="Full"
-                  locationType="In Person"
-                  category="IT"
-                  payType="Hourly"
-                />
-                <JobCard
-                  jobTitle="Card 2"
-                  jobDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat massa in leo pretium 
-                  consectetur. Nulla a dignissim sem, in placerat eros. Nam a urna in ex suscipit malesuada a quis nisl. Phasellus faucibus commodo rhoncus. Vestibulum mollis congue nibh, sit amet viverra massa tempus a. Quisque ultricies eros ac lorem fermentum consectetur. Morbi quis commodo erat."
-                  jobType="Part"
-                  locationType="In Person"
-                  category="Medical"
-                  payType="Hourly"
-                />
-                <JobCard
-                  jobTitle="Card 3"
-                  jobDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat massa in leo pretium 
-                  consectetur. Nulla a dignissim sem, in placerat eros. Nam a urna in ex suscipit malesuada a quis nisl. Phasellus faucibus commodo rhoncus. Vestibulum mollis congue nibh, sit amet viverra massa tempus a. Quisque ultricies eros ac lorem fermentum consectetur. Morbi quis commodo erat."
-                  jobType="Casual"
-                  locationType="Remote"
-                  category="Art"
-                  payType="Monthly"
-                />
+                {this.state.jobList.map((item) => (
+                  <JobCard
+                    jobTitle={item.jobTitle}
+                    jobDescription={item.jobDescription}
+                    jobType={item.jobType}
+                    locationType={item.locationPincode}
+                    category={item.category}
+                    payType={item.payType}
+                  />
+                ))}
 
                 {/* <div className="field">
                   <p className="control">

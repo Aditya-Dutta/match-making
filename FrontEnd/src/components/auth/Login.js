@@ -46,6 +46,7 @@ class LogIn extends Component {
         () => {
           this.props.history.push("/Dashboard_Employer");
           window.location.reload();
+          // window.location.replace("http://www.w3schools.com");
         },
         //else show error on the page
         (error) => {

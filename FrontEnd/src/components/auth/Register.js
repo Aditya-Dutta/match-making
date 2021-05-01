@@ -58,7 +58,7 @@ export class RegisterCustomerComponent extends Component {
     }
     if (event.target.id === "password") {
       var pattern = new RegExp(
-        /^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$)/i
+        /^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$)/i
       );
       if (!pattern.test(this.state.fields)) {
         this.setState({
@@ -89,7 +89,9 @@ export class RegisterCustomerComponent extends Component {
     this.setState({
       [event.target.id]: event.target.value,
     });
-    document.getElementById(event.target.id).classList.remove("is-danger");
+    console.clear();
+    console.log(this.state);
+    // document.getElementById(event.target.id).classList.remove("is-danger");
   };
 
   //clear error states
@@ -108,6 +110,8 @@ export class RegisterCustomerComponent extends Component {
       message: "",
       successful: false,
     });
+
+    console.log(this.state);
 
     {
       this.clearErrorState();
@@ -137,8 +141,15 @@ export class RegisterCustomerComponent extends Component {
             //if success, navigate to profile page
             AuthService.login(this.state.username, this.state.password).then(
               () => {
-                this.props.history.push("/Dashboard_Employer");
-                window.location.reload();
+                if (this.state.user_type === "EMPLOYER") {
+                  this.props.history.push("/Dashboard_Employer");
+                  window.location.reload();
+                } else {
+                  this.props.history.push("/Dashboard_Seeker");
+                  window.location.reload();
+                }
+
+                // window.location.replace("http://localhost:3000/");
               }
             );
           },
@@ -309,26 +320,22 @@ export class RegisterCustomerComponent extends Component {
               <div class="form-group col-md-6">
                 <label for="phone">User Type: </label>
                 <div className="input-group register-input-fields">
-                  <label className="radio-register">
+                  <label className="Seeker">
                     <input
                       className="radio-inline"
                       type="radio"
-                      name="optradio"
-                      checked
-                      value={this.state.user_type}
-                      onChange={this.onInputChange}
+                      name="userType"
+                      onChange={(e) => this.setState({ user_type: "SEEKER" })}
                     />
                     Job Seeker
                   </label>
 
-                  <label className="radio-register">
+                  <label className="Employer">
                     <input
                       className="radio-inline"
                       type="radio"
-                      name="optradio"
-                      checked
-                      value={this.state.user_type}
-                      onChange={this.onInputChange}
+                      name="userType"
+                      onChange={(e) => this.setState({ user_type: "EMPLOYER" })}
                     />
                     Employer
                   </label>

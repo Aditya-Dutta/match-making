@@ -10,38 +10,25 @@ export default class Dashboard_Seeker extends Component {
 
     //  this.logOut = this.logOut.bind(this);
     this.state = {
-      job_list:[],
-     
+      job_list: [],
+
       currentUser: false,
     };
   }
 
   componentDidMount() {
-    const user = AuthService.getCurrentUser();
-    //get the current user type
-    if (user) {
-      this.setState({
-        currentUser: user,
-        job_type: "",
-        search: "",
-      });
-    }
-  }
-
-  componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
     if (!currentUser) this.setState({ redirect: "/" });
-    
-    this.setState({ currentUser: currentUser, userReady: true })
-    AuthSeeker.get_job().then(
-        (result) => {
-            this.setState({
-                job_list: result.data
-            });
-        })
-}
 
+    this.setState({ currentUser: currentUser, userReady: true });
 
+    // console.log(currentUser.roles);
+    AuthSeeker.get_job().then((result) => {
+      this.setState({
+        job_list: result.data,
+      });
+    });
+  }
 
   handleDropDown(e) {
     this.setState({});
