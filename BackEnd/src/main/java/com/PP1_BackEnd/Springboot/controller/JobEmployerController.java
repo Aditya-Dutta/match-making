@@ -12,6 +12,7 @@ import com.PP1_BackEnd.Springboot.model.JobEmployer;
 import com.PP1_BackEnd.Springboot.payload.response.MessageResponse;
 import com.PP1_BackEnd.Springboot.service.JobEmployerService;
 
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/job/employer")
@@ -20,13 +21,13 @@ public class JobEmployerController {
 	 @Autowired
 	    public JobEmployerService JobEmployerService;
 	
-	 @PostMapping("/postjob")
-	    public ResponseEntity < ? > addJob(@RequestBody JobEmployer job) {
-		 System.out.println("This   -----  username ----- "+job.getEmployerUsername());
-	        	JobEmployerService.saveBooking(job);
-	           
-	            return ResponseEntity.ok(new MessageResponse("Booking Successfull!"));
-	    }
+//	 @PostMapping("/postjob")
+//	    public ResponseEntity<?> addJob(@RequestBody JobEmployer job) {
+//		 System.out.println("This   -----  username ----- "+job.getEmployerUsername());
+//	        	JobEmployerService.saveBooking(job);
+//	           
+//	            return ResponseEntity.ok(new MessageResponse("Booking Successfull!"));
+//	    }
 
 	
 

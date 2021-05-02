@@ -1,5 +1,5 @@
 package com.PP1_BackEnd.Springboot.controller;
-import java.util.HashSet; 
+import java.util.HashSet;  
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -90,7 +90,7 @@ public class AuthController {
     System.out.println("iduuf----------------------------------------"+user_type);
     
     
-    if ( userRepository.findAll().isEmpty() == true) {
+    if (userRepository.findAll().isEmpty() == true) {
       Role admin = roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
       signUpRequest.setUser_type("ADMIN");
       roles.add(admin);
