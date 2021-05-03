@@ -2,16 +2,28 @@ package com.PP1_BackEnd.Springboot.payload.request;
 
 public class JobSeekerRequest {
 	
-	private String location;
-	
-	private String category;
+	 private String username;
 
-	public String getLocation() {
-		return location;
+	  private int locationPincode;
+
+	  private String category;
+
+	  private String jobType;
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public int getLocationPincode() {
+		return locationPincode;
+	}
+
+	public void setLocationPincode(int locationPincode) {
+		this.locationPincode = locationPincode;
 	}
 
 	public String getCategory() {
@@ -21,7 +33,14 @@ public class JobSeekerRequest {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
-	
 
+	public String getJobType() {
+		return jobType;
+	}
+
+	public void setJobType(String jobType) {
+		this.jobType = jobType;
+	}
+
+	  
 }

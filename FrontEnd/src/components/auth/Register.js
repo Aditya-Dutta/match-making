@@ -202,10 +202,7 @@ export class RegisterCustomerComponent extends Component {
                     onChange={this.onInputChange}
                   />
                 </div>
-                <small id="passwordHelpBlock" class="form-text text-muted">
-                  Your Username must be a combination of your FirstName and
-                  LastName.{" "}
-                </small>
+               
               </div>
 
               <div class="form-group col-md-6">
