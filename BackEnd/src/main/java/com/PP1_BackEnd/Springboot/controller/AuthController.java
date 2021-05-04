@@ -87,8 +87,7 @@ public class AuthController {
     String user_type=signUpRequest.getUser_type();
     Set < Role > roles = new HashSet < >();
     
-    System.out.println("iduuf----------------------------------------"+user_type);
-    
+  
     
     if (userRepository.findAll().isEmpty() == true) {
       Role admin = roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
