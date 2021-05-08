@@ -40,6 +40,14 @@ public class JobSeekerService {
 	}
 	
 	
+	public List<JobEmployer> getByJobType(String jobType)
+	{
+		return seekerRepo.getByJobType(jobType);
+	}
+	
+	
+	
+	
 	public List<JobEmployer> findJobs(String jobtype, String category, int pincode )
 	{
 		return seekerRepo.findJob(jobtype, category, pincode);

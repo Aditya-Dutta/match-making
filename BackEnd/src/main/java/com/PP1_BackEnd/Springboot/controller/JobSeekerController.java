@@ -41,9 +41,15 @@ public class JobSeekerController {
 	public List<JobEmployer> getByLocation(@RequestBody JobSeekerRequest info){
 		return JobSeekerService.getByLocation(info.getLocationPincode());
 	}
-
-	@PostMapping("/jobtype")
+	
+	@PostMapping("/job_type")
 	public List<JobEmployer> getByJobType(@RequestBody JobSeekerRequest info){
+		return JobSeekerService.getByJobType(info.getJobType());
+	}
+	
+	
+	@PostMapping("/findall")
+	public List<JobEmployer> getByAllSearch(@RequestBody JobSeekerRequest info){
 		return JobSeekerService.findJobs(info.getJobType(), info.getCategory(), info.getLocationPincode());
 	}
 	
