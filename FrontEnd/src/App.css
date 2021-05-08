@@ -158,7 +158,6 @@ body {
   height: 20px;
 }
 
-
 footer {
   background-color: #fff;
   /* position: fixed;
@@ -293,3 +292,12 @@ main {
 }
 
 /* Dashboard Employer end */
+
+/* Register page */
+
+.box {
+  width: 50%;
+  margin: 0 auto;
+  box-shadow: 1px solid black;
+}
+/* Register page end */

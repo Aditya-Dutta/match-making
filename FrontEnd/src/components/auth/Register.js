@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FormErrors from "../FormErrors";
 import Validate from "../utility/FormValidaton";
 import AuthService from "../services/AuthService";
+import TermsConditions from "./termsConditions";
 
 export class RegisterCustomerComponent extends Component {
   constructor(props) {
@@ -25,6 +26,8 @@ export class RegisterCustomerComponent extends Component {
     };
     this.saveUser = this.saveUser.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
+    this.popUp = this.popUp.bind(this);
+    this.showForm = this.showForm.bind(this);
   }
 
   //assign values for this state
@@ -172,7 +175,11 @@ export class RegisterCustomerComponent extends Component {
     }
   };
 
-  render() {
+  popUp() {
+    <TermsConditions />;
+  }
+
+  showForm = () => {
     return (
       <section className="register-section">
         <div className="register">
@@ -202,7 +209,6 @@ export class RegisterCustomerComponent extends Component {
                     onChange={this.onInputChange}
                   />
                 </div>
-               
               </div>
 
               <div class="form-group col-md-6">
@@ -401,6 +407,25 @@ export class RegisterCustomerComponent extends Component {
           </form>
         </div>
       </section>
+    );
+  };
+
+  render() {
+    return (
+      <React.Fragment>
+        <div className="container">
+          <div className="box">
+            <TermsConditions />
+            <form onSubmit={this.showForm}>
+              <input type="checkbox" id="agree" name="agree" value="agree" />
+              <label for="agree">Agree</label>
+              <button className="btn btn-primary submit-created-job">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }
