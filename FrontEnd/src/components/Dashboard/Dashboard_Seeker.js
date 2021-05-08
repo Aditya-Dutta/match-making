@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AuthSeeker from "../services/AuthSeeker";
 import AuthService from "../services/AuthService";
 import SideBar from "./SideBar";
+import JobCard from "./Card";
 
 //home page for all users
 export default class Dashboard_Seeker extends Component {
@@ -10,7 +11,7 @@ export default class Dashboard_Seeker extends Component {
 
     //  this.logOut = this.logOut.bind(this);
     this.state = {
-      job_list: [],
+      jobList: [],
 
       currentUser: false,
     };
@@ -25,7 +26,7 @@ export default class Dashboard_Seeker extends Component {
     // console.log(currentUser.roles);
     AuthSeeker.get_job().then((result) => {
       this.setState({
-        job_list: result.data,
+        jobList: result.data,
       });
     });
   }
@@ -77,7 +78,23 @@ export default class Dashboard_Seeker extends Component {
               Find
             </button>
           </div>
+        
+
+        
+          
+          {this.state.jobList.map((item) => (
+            <JobCard
+              jobTitle={item.jobTitle}
+              jobDescription={item.jobDescription}
+              jobType={item.jobType}
+              locationType={item.locationPincode}
+              category={item.category}
+              payType={item.payType}
+            />
+          ))}
         </main>
+        
+
 
         {/* {currentUser ? (
           <p>Implement Dash Board</p>

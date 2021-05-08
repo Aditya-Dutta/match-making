@@ -4,7 +4,7 @@ const JobCard = (props) => {
   console.log(props);
   return (
     <div>
-      <div className="col-md-12">
+      <div className="col-md-12 my-3">
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">{props.jobTitle}</h5>
@@ -25,5 +25,8 @@ const JobCard = (props) => {
     </div>
   );
 };
+
+//Also implement a APPLY button for users to click 
+
 
 export default JobCard;

@@ -15,7 +15,7 @@ public interface JobEmployerRepo extends JpaRepository < JobEmployer, Long > {
 	@Query(value = "SELECT * FROM All_JOBS WHERE  Employer_Username = :username", nativeQuery = true)
 	List <JobEmployer> getAllJobs(@Param("username") String username);
 	
-	@Query(value = "SELECT Top 3 * FROM All_jobs WHERE Employer_Username = :username ORDER BY id DESC", nativeQuery = true)
+	@Query(value = "SELECT * FROM All_jobs WHERE Employer_Username = :username ORDER BY id DESC Limit 0,3", nativeQuery = true)
 	List <JobEmployer> getTop3Jobs(@Param("username") String username);
 
 }
