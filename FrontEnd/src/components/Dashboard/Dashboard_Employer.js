@@ -230,7 +230,6 @@ export default class Dashboard_Employer extends Component {
   };
 
   render() {
-    const currentUser = this.state;
     return (
       <React.Fragment>
         <SideBar />
