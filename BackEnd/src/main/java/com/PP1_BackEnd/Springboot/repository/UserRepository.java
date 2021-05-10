@@ -21,6 +21,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	Boolean existsByEmail(String email);
 	
+	@Query(value = "SELECT user_type FROM USERS WHERE user_name= :username  ", nativeQuery= true)
+	String getUserType(String username);
+	
 	@Query(value = "SELECT USERS.* "
 			+ "FROM USER_ROLES,USERS "
 			+ "where USERS.ID=USER_ROLES.USER_ID "

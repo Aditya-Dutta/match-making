@@ -19,6 +19,9 @@ public class Profile {
 	@Column(name = "Summary")
 	private String summary;
 	
+	@Column(name = "Username")
+	private String username;
+	
 	
 	@Column(name = "University")
 	private String university;
@@ -110,6 +113,18 @@ public class Profile {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	
 	
 	
 	
