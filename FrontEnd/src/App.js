@@ -10,6 +10,7 @@ import UserList from "./components/Admin/UserList";
 import Profile from "./components/Dashboard/Profile";
 import Dashboard_Seeker from "./components/Dashboard/Dashboard_Seeker";
 import Dashboard_Employer from "./components/Dashboard/Dashboard_Employer";
+import Jobs from "./components/Dashboard/Jobs";
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import { faEdit } from '@fortawesome/free-solid-svg-icons';
 // library.add(faEdit);
@@ -25,8 +26,12 @@ function App() {
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/userlist" component={UserList} />
         <Route exact path="/dashboard/profile" component={Profile} />
-        <Route exact path="/dashboard_employer" component={Dashboard_Employer}
+        <Route
+          exact
+          path="/dashboard_employer"
+          component={Dashboard_Employer}
         />
+        <Route exact path="/dashboard/jobs" component={Jobs} />
       </Switch>
       {/* <Footer /> */}
     </Router>

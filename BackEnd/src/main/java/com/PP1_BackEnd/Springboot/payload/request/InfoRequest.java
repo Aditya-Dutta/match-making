@@ -5,60 +5,44 @@ public class InfoRequest {
 
   private String username;
 
-  private String day;
+  private int locationPincode;
 
-  private String time;
+  private String category;
 
-  private String service;
+  private String jobType;
 
-  /**
-	 * @return the day
-	 */
-  public String getDay() {
-    return day;
-  }
+public String getUsername() {
+	return username;
+}
 
-  /**
-	 * @param day the day to set
-	 */
-  public void setDay(String day) {
-    this.day = day;
-  }
+public void setUsername(String username) {
+	this.username = username;
+}
 
-  /**
-	 * @return the time
-	 */
-  public String getTime() {
-    return time;
-  }
+public int getLocationPincode() {
+	return locationPincode;
+}
 
-  /**
-	 * @param time the time to set
-	 */
-  public void setTime(String time) {
-    this.time = time;
-  }
+public void setLocationPincode(int locationPincode) {
+	this.locationPincode = locationPincode;
+}
 
-  /**
-	 * @return the service
-	 */
-  public String getService() {
-    return service;
-  }
+public String getCategory() {
+	return category;
+}
 
-  /**
-	 * @param service the service to set
-	 */
-  public void setService(String service) {
-    this.service = service;
-  }
+public void setCategory(String category) {
+	this.category = category;
+}
 
-  public String getUsername() {
-    return username;
-  }
+public String getJobType() {
+	return jobType;
+}
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+public void setJobType(String jobType) {
+	this.jobType = jobType;
+}
+
+  
 
 }

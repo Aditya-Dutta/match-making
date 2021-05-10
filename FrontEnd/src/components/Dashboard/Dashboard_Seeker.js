@@ -1,27 +1,38 @@
 import React, { Component } from "react";
+import AuthSeeker from "../services/AuthSeeker";
 import AuthService from "../services/AuthService";
 import SideBar from "./SideBar";
+import JobCard from "./Card";
 
 //home page for all users
 export default class Dashboard_Seeker extends Component {
   constructor(props) {
     super(props);
+
     //  this.logOut = this.logOut.bind(this);
     this.state = {
+      jobList: [],
+
       currentUser: false,
     };
   }
 
   componentDidMount() {
-    const user = AuthService.getCurrentUser();
-    //get the current user type
-    if (user) {
+    const currentUser = AuthService.getCurrentUser();
+    if (!currentUser) this.setState({ redirect: "/" });
+
+    this.setState({ currentUser: currentUser, userReady: true });
+
+    // console.log(currentUser.roles);
+    AuthSeeker.get_job().then((result) => {
       this.setState({
-        currentUser: user,
-        job_type: "",
-        search: "",
+        jobList: result.data,
       });
-    }
+    });
+  }
+
+  handleDropDown(e) {
+    this.setState({});
   }
 
   render() {
@@ -35,11 +46,11 @@ export default class Dashboard_Seeker extends Component {
             <div className="input-group-prepend">
               <span className="input-group-text">
                 {" "}
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
               </span>
             </div>
             <input
-              class="form-control form-control-dark"
+              className="form-control form-control-dark"
               type="text"
               placeholder="Search"
               aria-label="Search"
@@ -48,25 +59,42 @@ export default class Dashboard_Seeker extends Component {
 
           <div className="job-search-div">
             <select
-              class="form-select form-select-sm drop-down"
+              onChange={this.handleDropDown}
+              className="form-select form-select-sm drop-down"
               aria-label=".form-select-sm example"
             >
-              <option selected>Job Type</option>
-              <option value={this.state.job_type}>Full Time</option>
-              <option value={this.state.job_type}>Part Time</option>
-              <option value={this.state.job_type}>Casual</option>
+              <option value="Full">Job Type</option>
+              <option value="Full">Full Time</option>
+              <option value="Part">Part Time</option>
+              <option value="Casual">Casual</option>
             </select>
             <input
-              class="form-control form-control-dark w-50 location-input"
+              className="form-control form-control-dark w-50 location-input"
               type="text"
               placeholder="Location"
               aria-label="location"
             />
-            <button type="button" class="btn btn-success">
+            <button type="button" className="btn btn-success">
               Find
             </button>
           </div>
+        
+
+        
+          
+          {this.state.jobList.map((item) => (
+            <JobCard
+              jobTitle={item.jobTitle}
+              jobDescription={item.jobDescription}
+              jobType={item.jobType}
+              locationType={item.locationPincode}
+              category={item.category}
+              payType={item.payType}
+            />
+          ))}
         </main>
+        
+
 
         {/* {currentUser ? (
           <p>Implement Dash Board</p>

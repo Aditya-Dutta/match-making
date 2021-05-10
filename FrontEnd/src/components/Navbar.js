@@ -22,6 +22,7 @@ export default class Navbar extends Component {
         showEmployeeBoard: user.roles.includes("ROLE_EMPLOYEE"),
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
       });
+      
     }
   }
 
@@ -32,12 +33,11 @@ export default class Navbar extends Component {
   render() {
     const { currentUser, showAdminBoard } = this.state;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        
-{/*------------All User------------------------------------------------------------------------------------------------------------*/ }
+      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        {/*------------All User------------------------------------------------------------------------------------------------------------*/}
         {/* if current user, show the following links and navigations (COMMON TO ALL)*/}
         {currentUser ? (
-          <a className="name-link" href="/dashboard">
+          <a className="name-link" href="/dashboard_employer">
             <strong>Jaxlooper</strong>
           </a>
         ) : (
@@ -54,23 +54,19 @@ export default class Navbar extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          class="collapse navbar-collapse justify-content-end"
+          className="collapse navbar-collapse justify-content-end"
           id="navbarNavDropdown"
         >
-          <ul class="navbar-nav">
-
-
-{/*------------Admin User------------------------------------------------------------------------------------------------------------*/ }
+          <ul className="navbar-nav">
+            {/*------------Admin User------------------------------------------------------------------------------------------------------------*/}
             {/* if Admin, show the following links and navigations*/}
             {showAdminBoard && (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <div className="nav-link">
-                    Admin
-                  </div>
+                  <div className="nav-link">Admin</div>
                 </li>
 
                 <li className="nav-item">
@@ -80,8 +76,9 @@ export default class Navbar extends Component {
                 </li>
               </div>
             )}
+          
 
-{/*------------Current User------------------------------------------------------------------------------------------------------------*/ }
+            {/*------------Current User------------------------------------------------------------------------------------------------------------*/}
 
             {/* if current user, show the following links and navigations (COMMON TO ALL)*/}
             {currentUser ? (
@@ -98,18 +95,14 @@ export default class Navbar extends Component {
                 </li>
               </div>
             ) : (
-              <li class="nav-item">
-                <a class="nav-link" href={"/"}>
+              <li className="nav-item">
+                <a className="nav-link" href={"/"}>
                   <strong>Home</strong>
                 </a>
               </li>
             )}
 
-{/*------------------------------------------------------------------------------------------------------------------------*/ }
-
-            
-
-
+            {/*------------------------------------------------------------------------------------------------------------------------*/}
           </ul>
         </div>
       </nav>

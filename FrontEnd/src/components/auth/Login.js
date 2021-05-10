@@ -12,6 +12,7 @@ class LogIn extends Component {
       password: "",
       loading: false,
       message: "",
+      userType: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
@@ -44,8 +45,18 @@ class LogIn extends Component {
       AuthService.login(this.state.username, this.state.password).then(
         //if success, navigate to profile page
         () => {
-          this.props.history.push("/Dashboard_Seeker");
-          window.location.reload();
+          const user = AuthService.getCurrentUser();
+          this.setState({ userType: user.roles });
+          console.log(this.state.userType);
+          if (this.state.userType == "ROLE_EMPLOYER") {
+            this.props.history.push("/Dashboard_Employer");
+            window.location.reload();
+          } else {
+            this.props.history.push("/Dashboard_Seeker");
+            window.location.reload();
+          }
+
+          
         },
         //else show error on the page
         (error) => {

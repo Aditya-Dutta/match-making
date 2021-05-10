@@ -17,12 +17,8 @@ public class UserService {
   private UserRepository userRepo;
 
   //get only employee list form USER table
-  public List < User > getEmployeeDetails() {
-    return userRepo.getEmployeeDetails();
+  public String getUserType(String username) {
+    return userRepo.getUserType(username);
   }
 
-//get only customer list form USER table
-  public List < User > getCustomerDetails() {
-    return userRepo.getCustomerDetails();
-  }
 }
