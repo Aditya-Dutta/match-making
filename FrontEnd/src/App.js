@@ -3,7 +3,6 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Register from "./components/auth/Register";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import LogIn from "./components/auth/Login";
 import Home from "./components/Home";
 import UserList from "./components/Admin/UserList";
@@ -11,6 +10,7 @@ import Profile from "./components/Dashboard/Profile";
 import Dashboard_Seeker from "./components/Dashboard/Dashboard_Seeker";
 import Dashboard_Employer from "./components/Dashboard/Dashboard_Employer";
 import Jobs from "./components/Dashboard/Jobs";
+import CreateJob from "./components/Dashboard/CreateJob";
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import { faEdit } from '@fortawesome/free-solid-svg-icons';
 // library.add(faEdit);
@@ -32,6 +32,7 @@ function App() {
           component={Dashboard_Employer}
         />
         <Route exact path="/dashboard/jobs" component={Jobs} />
+        <Route exact path="/dashboard/create_job" component={CreateJob} />
       </Switch>
       {/* <Footer /> */}
     </Router>

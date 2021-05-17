@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import AuthSeeker from "../services/AuthSeeker";
-import AuthEmployer from "../services/AuthEmployer";
 import AuthService from "../services/AuthService";
 
 export default class SideBar extends Component {
@@ -37,6 +36,7 @@ export default class SideBar extends Component {
           <a href="/dashboard_employer">Dashboard</a>
           <a href="/dashboard/profile">Profile</a>
           <a href="/dashboard/jobs">All Jobs Created</a>
+          <a href="/dashboard/create_job">Create Job</a>
           <a href="#s">Applicants</a>
         </div>
       );
