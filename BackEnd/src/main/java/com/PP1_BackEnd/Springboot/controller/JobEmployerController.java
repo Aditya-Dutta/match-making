@@ -29,6 +29,12 @@ public class JobEmployerController {
 	public List<JobEmployer> getTop3Jobs(@RequestBody JobEmployerRequest info){
 		return JobEmployerService.getTop3Jobs(info.getUsername());
 	}
+	
+	@PostMapping("/postjob")
+	public  void saveJob(@RequestBody JobEmployer info){
+		
+		JobEmployerService.saveJob(info);
+	}
 
 
 

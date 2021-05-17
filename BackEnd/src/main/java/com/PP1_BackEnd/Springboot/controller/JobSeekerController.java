@@ -50,6 +50,8 @@ public class JobSeekerController {
 	
 	@PostMapping("/findall")
 	public List<JobEmployer> getByAllSearch(@RequestBody JobSeekerRequest info){
+		// "null"
+		
 		return JobSeekerService.findJobs(info.getJobType(), info.getCategory(), info.getLocationPincode());
 	}
 	

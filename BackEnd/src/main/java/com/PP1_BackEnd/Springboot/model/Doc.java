@@ -1,83 +1,67 @@
 package com.PP1_BackEnd.Springboot.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
-@Table(name="docs")
+@Table(name = "files")
 public class Doc {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-	
-	 @Column(name = "Doc_Name")
-	private String docName;
-	 
-	 @Column(name = "Doc_Type")
-	private String docType;
-	
-	 @Column(name = "username")
-	private String username;
-	
-	
-	
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	private String id;
+
+	private String fileName;
+
+	private String fileType;
+
 	@Lob
 	private byte[] data;
-	
-	public Doc() {}
 
-	public Doc(String docName, String docType, byte[] data) {
-		super();
-		this.docName = docName;
-		this.docType = docType;
+	public Doc() {
+
+	}
+
+	public Doc(String fileName, String fileType, byte[] data) {
+		this.fileName = fileName;
+		this.fileType = fileType;
 		this.data = data;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public String getFileName() {
+		return fileName;
 	}
 
-	public String getDocName() {
-		return docName;
-	}
-
-	public void setDocName(String docName) {
-		this.docName = docName;
-	}
-
-	public String getDocType() {
-		return docType;
-	}
-
-	public void setDocType(String docType) {
-		this.docType = docType;
+	public String getFileType() {
+		return fileType;
 	}
 
 	public byte[] getData() {
 		return data;
 	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
+
 	public void setData(byte[] data) {
 		this.data = data;
 	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	
-
 }
