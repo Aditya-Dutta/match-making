@@ -21,14 +21,6 @@ class AuthEmployer {
     );
   }
 
-  //   get_top3_jobs(username) {
-  //     return axios.post(
-  //       API_URL + "top3",
-  //       { username },
-  //       { headers: authHeader() }
-  //     );
-  //   }
-
   //register an user
   post_job(
     jobTitle,

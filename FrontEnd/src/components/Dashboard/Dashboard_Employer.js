@@ -44,8 +44,8 @@ export default class Dashboard_Employer extends Component {
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
       });
     }
-    // console.clear();
-    console.log(user.username);
+    //console.clear();
+    //this.state.employerUsername = user.username;
     AuthEmployer.get_top3_jobs(user.username).then((result) => {
       this.setState({ jobList: result.data });
       console.log(result.data);

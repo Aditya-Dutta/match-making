@@ -24,4 +24,6 @@ const JobCard = (props) => {
   );
 };
 
+//Also implement a APPLY button for users to click
+
 export default JobCard;

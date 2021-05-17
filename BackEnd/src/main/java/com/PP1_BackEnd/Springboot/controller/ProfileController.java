@@ -1,5 +1,7 @@
 package com.PP1_BackEnd.Springboot.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,15 +16,31 @@ import com.PP1_BackEnd.Springboot.service.ProfileService;
 @RestController
 @RequestMapping("/seeker/profile")
 public class ProfileController {
-	
+
 	@Autowired
 	private ProfileService profileService;
+
+
+	@PostMapping("/saveProfile")
+	public void saveProfile(@RequestBody Profile info){
+		profileService.saveProfile(info);
+	}
 	
 	
-	@PostMapping("/details")
-	 public void getByCategory(@RequestBody Profile info){
-		  profileService.saveProfile(info);
-	 }
+	@PostMapping("/updateProfile")
+	public void updateProfile(@RequestBody Profile info)
+	{
+		profileService.updateProfile(info.getSummary(), info.getUniversity(), info.getDegree_type(), 
+				info.getDate_of_graduation(), info.getLocationPincode(), info.getCategory(), info.getUsername());
+	}
+	
+	@PostMapping("/getProfile")
+	public List<Profile> getProfile(@RequestBody Profile info)
+	{
+		return profileService.getByUsername(info.getUsername());
+	}
+	
+	
 
 }
 

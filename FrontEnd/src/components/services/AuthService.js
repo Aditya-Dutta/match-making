@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "./AuthHeader";
 
 const API_URL = "http://localhost:8080/api/auth/";
 
@@ -36,6 +37,11 @@ class AuthService {
             username,
             user_type
         });
+    }
+
+    get_user_type(username)
+    {
+        return axios.get(API_URL + "getType", {username},{ headers: authHeader() } )
     }
 
     //get current user

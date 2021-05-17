@@ -30,6 +30,9 @@ public interface JobSeekerRepo extends JpaRepository < JobEmployer, Long > {
 	@Query(value = "SELECT * FROM All_JOBS WHERE  Job_Type = :jobType", nativeQuery = true)
 	List <JobEmployer> getByJobType(@Param("jobType") String jobtype);
 	
+	@Query(value = "SELECT * FROM All_JOBS WHERE  Job_Type = :jobType AND Pincode= :pincode AND category= :category", nativeQuery = true)
+	List <JobEmployer> findJob(@Param("jobType") String jobtype, @Param("category") String category,@Param("pincode") int pincode);
+	
 	  
 	 
 	
