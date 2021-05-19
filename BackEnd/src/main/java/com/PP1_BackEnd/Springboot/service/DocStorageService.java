@@ -26,7 +26,7 @@ public class DocStorageService {
     @Autowired
     private DocRepository dbFileRepository;
 
-    public Doc storeFile(MultipartFile file) {
+    public Doc storeFile(MultipartFile file, String username) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
@@ -36,7 +36,7 @@ public class DocStorageService {
                 throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
-            Doc dbFile = new Doc(fileName, file.getContentType(), file.getBytes());
+            Doc dbFile = new Doc(fileName, file.getContentType(), file.getBytes(), username);
 
             return dbFileRepository.save(dbFile);
         } catch (IOException ex) {

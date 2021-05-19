@@ -29,7 +29,25 @@ class AuthSeeker {
     return axios.post(API_URL + "/findall", {jobType, category, locationPincode} , { headers: authHeader() });
   }
 
+  apply_job(id, username)
+  {
+    return axios.post(API_URL + "/applyJob", {id, username} , { headers: authHeader() });
+  }
 
+  getAppliedJobs(username)
+  {
+    return axios.post(API_URL + "/getAppliedJobs", { username} , { headers: authHeader() });
+  }
+
+  viewAllSeeker()
+  {
+    return axios.post(API_URL + "/viewAllSeeker" , { headers: authHeader() });
+  }
+
+  deleteSeeker(username)
+  {
+    return axios.post(API_URL + "/deleteSeeker", { username} , { headers: authHeader() });
+  }
 
 }
 

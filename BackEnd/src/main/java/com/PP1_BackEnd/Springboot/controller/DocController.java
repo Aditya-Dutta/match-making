@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.PP1_BackEnd.Springboot.model.Doc;
+import com.PP1_BackEnd.Springboot.payload.request.DocRequest;
 import com.PP1_BackEnd.Springboot.payload.response.DocResponse;
 import com.PP1_BackEnd.Springboot.service.DocStorageService;
 
@@ -51,8 +53,10 @@ public class DocController {
     }
 
     @PostMapping("/uploadFile")
-    public DocResponse uploadFile(@RequestParam("file") MultipartFile file) {
-    	Doc fileName = fileStorageService.storeFile(file);
+    public DocResponse uploadFile(@RequestParam("file") MultipartFile file,@RequestParam("username") String username) {
+    	
+    	
+    	Doc fileName = fileStorageService.storeFile(file, username);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
@@ -64,13 +68,13 @@ public class DocController {
                 file.getContentType(), file.getSize());
     }
 
-    @PostMapping("/uploadMultipleFiles")
-    public List<DocResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
-        return Arrays.asList(files)
-                .stream()
-                .map(file -> uploadFile(file))
-                .collect(Collectors.toList());
-    }
+//    @PostMapping("/uploadMultipleFiles")
+//    public List<DocResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+//        return Arrays.asList(files)
+//                .stream()
+//                .map(file -> uploadFile(file))
+//                .collect(Collectors.toList());
+//    }
     
     
     

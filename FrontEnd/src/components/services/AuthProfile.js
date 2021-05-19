@@ -37,6 +37,11 @@ class AuthProfile {
         return axios.post(API_URL + "getProfile", {username}, { headers: authHeader() });
       }
 
+      viewAllProfile()
+      {
+        return axios.post(API_URL + "viewAllProfile", {username}, { headers: authHeader() });
+      }
+
     
 
 }

@@ -11,6 +11,11 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "files")
 public class Doc {
+	
+	
+	//@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -19,6 +24,8 @@ public class Doc {
 	private String fileName;
 
 	private String fileType;
+	
+	private String user_name;
 
 	@Lob
 	private byte[] data;
@@ -27,10 +34,11 @@ public class Doc {
 
 	}
 
-	public Doc(String fileName, String fileType, byte[] data) {
+	public Doc(String fileName, String fileType, byte[] data, String user_name) {
 		this.fileName = fileName;
 		this.fileType = fileType;
 		this.data = data;
+		this.user_name = user_name;
 	}
 
 	public String getId() {
@@ -63,5 +71,13 @@ public class Doc {
 
 	public void setData(byte[] data) {
 		this.data = data;
+	}
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 }

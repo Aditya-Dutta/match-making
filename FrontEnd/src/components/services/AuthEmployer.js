@@ -32,6 +32,28 @@ class AuthEmployer {
         );
     }
 
+    getApplicants(id)
+    {
+      return axios.post(API_URL + "getApplicants", {id}, { headers: authHeader() });
+    
+    }
+
+    viewAllJobs()
+    {
+      return axios.post(API_URL + "viewAllJobs", { headers: authHeader() });
+    }
+
+    viewAllEmployers()
+    {
+      return axios.post(API_URL + "viewAllEmployers", { headers: authHeader() });
+    }
+   
+
+    deleteEmployer(username)
+    {
+      return axios.post(API_URL + "deleteEmployer", {username}, { headers: authHeader() });
+    }
+
 }
 
 export default new AuthEmployer();

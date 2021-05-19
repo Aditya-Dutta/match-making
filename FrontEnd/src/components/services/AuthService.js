@@ -44,6 +44,28 @@ class AuthService {
         return axios.get(API_URL + "getType", {username},{ headers: authHeader() } )
     }
 
+    deleteAdmin(username)
+    {
+        return axios.post(API_URL + "deleteAdmin", {username},{ headers: authHeader() } )
+    }
+
+
+    add_admin(firstname, lastname, address, email, phone, password, username) {
+        return axios.post(API_URL + "addAdmin", {
+            firstname,
+            lastname,
+            address,
+            email,
+            phone,
+            password,
+            username
+        });
+    }
+
+    viewAllAdmin()
+    {
+        return axios.post(API_URL + "viewAllAdmin", { headers: authHeader() } )
+    }
     //get current user
     getCurrentUser() {
         return JSON.parse(localStorage.getItem('user'));;
