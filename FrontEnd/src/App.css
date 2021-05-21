@@ -323,3 +323,7 @@ main {
 .Employer {
   margin-left: 1rem;
 }
+
+a.side-active {
+  text-decoration: underline;
+}

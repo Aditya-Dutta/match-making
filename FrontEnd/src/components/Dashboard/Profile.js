@@ -10,8 +10,6 @@ export default class Profile extends Component {
     this.state = {
       personal_summary: "",
       university: "",
-      college: "",
-      school: "",
       degree_type: "",
       year_of_grad: "",
       pincode: "",
@@ -35,10 +33,16 @@ export default class Profile extends Component {
     }
     console.log(user.username);
     AuthProfile.getProfile(user.username).then((e) => {
-      this.setState({ profileData: e.data });
+      this.setState({
+        personal_summary: e.data.summary,
+        category: e.data.category,
+        year_of_grad: e.data.date_of_graduation,
+        degree_type: e.data.degree_type,
+        university: e.data.university,
+        pincode: e.data.locationPincode,
+      });
       console.log(e.data);
     });
-    console.log(this.state.profileData);
   }
 
   saveProfile = (e) => {
@@ -73,7 +77,7 @@ export default class Profile extends Component {
   render() {
     return (
       <React.Fragment>
-        <SideBar />
+        <SideBar active="profile" />
         <main>
           <form onSubmit={this.saveProfile}>
             <div className="form-row">
@@ -95,11 +99,6 @@ export default class Profile extends Component {
 
               <div className="education col-md-8 form-group">
                 <h2>Education</h2>
-                <p>
-                  {this.state.profileData.map((item) => (
-                    <p>{item.university}</p>
-                  ))}
-                </p>
                 <fieldset>
                   <div className="form-group">
                     <legend>Education</legend>
@@ -114,17 +113,22 @@ export default class Profile extends Component {
                         this.setState({ university: e.target.value })
                       }
                     />
-                    <label for="college">Degree Type</label>
-                    <input
-                      type="text"
+                    <label for="degree">Degree Type:</label>
+                    <select
                       id="degree"
-                      name="degree"
-                      className="form-control w-50"
-                      value={this.state.degree}
+                      class="form-control"
                       onChange={(e) =>
                         this.setState({ degree_type: e.target.value })
                       }
-                    />
+                      value={this.state.degree_type}
+                    >
+                      <option value="NA">NA</option>
+                      <option value="Bachelor's">Bachelor's</option>
+                      <option value="Masters">Masters</option>
+                      <option value="PHD">PHD</option>
+                      <option value="Associate">Associate</option>
+                      <option value="Doctoral">Doctoral</option>
+                    </select>
                     <label for="school">Year of Graduation</label>
                     <input
                       type="text"
@@ -136,7 +140,7 @@ export default class Profile extends Component {
                         this.setState({ year_of_grad: e.target.value })
                       }
                     />
-                  </div>{" "}
+                  </div>
                 </fieldset>
               </div>
               <div className="form-group col-md-6">
@@ -146,6 +150,7 @@ export default class Profile extends Component {
                   id="field"
                   class="form-control"
                   onChange={(e) => this.setState({ category: e.target.value })}
+                  value={this.state.category}
                 >
                   <option value="NA">NA</option>
                   <option value="IT">IT</option>

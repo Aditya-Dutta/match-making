@@ -111,7 +111,7 @@ export default class Dashboard_Employer extends Component {
   render() {
     return (
       <React.Fragment>
-        <SideBar />
+        <SideBar active="dashboard" />
         <main>
           <div className="component">
             <div className="employer-title">

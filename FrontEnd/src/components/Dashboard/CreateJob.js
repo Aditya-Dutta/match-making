@@ -105,7 +105,7 @@ export default class CreateJob extends Component {
   render() {
     return (
       <React.Fragment>
-        <SideBar />
+        <SideBar active="create" />
         <main>
           <div className="create-job-form">
             <form onSubmit={this.saveJob}>

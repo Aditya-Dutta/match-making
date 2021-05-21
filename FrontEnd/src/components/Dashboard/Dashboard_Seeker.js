@@ -39,7 +39,7 @@ export default class Dashboard_Seeker extends Component {
     const { currentUser } = this.state;
     return (
       <React.Fragment>
-        <SideBar />
+        <SideBar active="dashboard" />
         <main>
           <h1 className="dashboard-heading">Dashboard</h1>
           <div className="input-group mb-3">
@@ -78,10 +78,7 @@ export default class Dashboard_Seeker extends Component {
               Find
             </button>
           </div>
-        
 
-        
-          
           {this.state.jobList.map((item) => (
             <JobCard
               jobTitle={item.jobTitle}
@@ -93,8 +90,6 @@ export default class Dashboard_Seeker extends Component {
             />
           ))}
         </main>
-        
-
 
         {/* {currentUser ? (
           <p>Implement Dash Board</p>
