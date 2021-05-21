@@ -1,11 +1,10 @@
 import axios from "axios";
 
-import authHeader from './AuthHeader';
+import authHeader from "./AuthHeader";
 
 const API_URL = "http://localhost:8080/job/employer/";
 
 class AuthEmployer {
-    
 
     get_all_jobs(username) {
         return axios.post(API_URL + "alljobs", {username}, { headers: authHeader() });

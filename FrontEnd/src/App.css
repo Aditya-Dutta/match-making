@@ -314,3 +314,12 @@ main {
   margin-right: 0.3rem;
 }
 /* Register page end */
+
+.job-card {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.Employer {
+  margin-left: 1rem;
+}
