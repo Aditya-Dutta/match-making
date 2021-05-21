@@ -48,8 +48,9 @@ export default class Jobs extends Component {
   render() {
     return (
       <React.Fragment>
+        <SideBar />
         <main>
-          <SideBar />
+          <h2>All Jobs Created</h2>
           {this.state.jobList.map((item) => (
             <JobCard
               jobTitle={item.jobTitle}

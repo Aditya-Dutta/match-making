@@ -18,7 +18,7 @@ export default class SideBar extends Component {
 
     this.setState({ currentUser: currentUser, userReady: true });
 
-    console.log(currentUser.roles);
+    // console.log(currentUser.roles);
     AuthSeeker.get_job().then((result) => {
       this.setState({
         job_list: result.data,
@@ -28,9 +28,9 @@ export default class SideBar extends Component {
 
   renderContent() {
     // console.clear();
-    console.log(this.state.currentUser.roles);
+    // console.log(this.state.currentUser.roles);
     if (this.state.currentUser.roles == "ROLE_EMPLOYER") {
-      console.log("Employer Dashboard");
+      // console.log("Employer Dashboard");
       return (
         <div class="sidenav">
           <a href="/dashboard_employer">Dashboard</a>
