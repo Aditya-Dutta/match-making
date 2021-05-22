@@ -133,6 +133,7 @@ export default class Profile extends Component {
                   <textarea
                     rows="4"
                     cols="50"
+                    className="summary-text-area"
                     value={this.state.personal_summary}
                     onChange={(e) =>
                       this.setState({ personal_summary: e.target.value })
@@ -145,13 +146,12 @@ export default class Profile extends Component {
                 <h2>Education</h2>
                 <fieldset>
                   <div className="form-group">
-                    <legend>Education</legend>
                     <label for="university">University</label>
                     <input
                       type="text"
+                      className="form-control"
                       id="university"
                       name="university"
-                      className="form-control w-50"
                       value={this.state.university}
                       onChange={(e) =>
                         this.setState({ university: e.target.value })
@@ -160,7 +160,7 @@ export default class Profile extends Component {
                     <label for="degree">Degree Type:</label>
                     <select
                       id="degree"
-                      class="form-control"
+                      className="form-control"
                       onChange={(e) =>
                         this.setState({ degree_type: e.target.value })
                       }
@@ -212,11 +212,11 @@ export default class Profile extends Component {
                   onChange={(e) => this.setState({ pincode: e.target.value })}
                 ></input>
               </div>
-            </div>
-            <div className="col-md-6">
-              <button className="btn btn-primary submit-created-job">
-                Submit
-              </button>
+              <div className="col-md-6">
+                <button className="btn btn-primary submit-created-job">
+                  Submit
+                </button>
+              </div>
             </div>
           </form>
         </main>

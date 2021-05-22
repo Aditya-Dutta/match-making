@@ -53,7 +53,7 @@ export default class JobCard extends Component {
                     Job Type: {this.props.jobType} <br />
                     Description: {this.props.jobDescription}
                   </p>
-                  <p className="card-text">
+                  <p className="card-text last-text">
                     Pay Type: {this.props.payType} <br />
                     Location Type: {this.props.locationType}
                   </p>

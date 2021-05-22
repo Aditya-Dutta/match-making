@@ -11,6 +11,7 @@ import Dashboard_Seeker from "./components/Dashboard/Dashboard_Seeker";
 import Dashboard_Employer from "./components/Dashboard/Dashboard_Employer";
 import Jobs from "./components/Dashboard/Jobs";
 import CreateJob from "./components/Dashboard/CreateJob";
+import AppliedJobs from "./components/Dashboard/AppliedJobs";
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import { faEdit } from '@fortawesome/free-solid-svg-icons';
 // library.add(faEdit);
@@ -33,6 +34,7 @@ function App() {
         />
         <Route exact path="/dashboard/jobs" component={Jobs} />
         <Route exact path="/dashboard/create_job" component={CreateJob} />
+        <Route exact path="/dashboard/appliedJobs" component={AppliedJobs} />
       </Switch>
       {/* <Footer /> */}
     </Router>

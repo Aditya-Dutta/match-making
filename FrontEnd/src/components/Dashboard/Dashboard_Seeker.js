@@ -61,11 +61,24 @@ export default class Dashboard_Seeker extends Component {
               onChange={this.handleDropDown}
               className="form-select form-select-sm drop-down"
               aria-label=".form-select-sm example"
+              id="job_type"
             >
               <option value="Full">Job Type</option>
               <option value="Full">Full Time</option>
               <option value="Part">Part Time</option>
               <option value="Casual">Casual</option>
+            </select>
+            <select
+              onChange={this.handleDropDown}
+              className="form-select form-select-sm drop-down"
+              aria-label=".form-select-sm example"
+              id="category"
+            >
+              <option value="">Category</option>
+              <option vaue="IT">Information Technology</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Medical">Medical</option>
+              <option value="Art">Art</option>
             </select>
             <input
               className="form-control form-control-dark w-50 location-input"

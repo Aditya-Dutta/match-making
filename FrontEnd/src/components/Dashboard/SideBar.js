@@ -82,7 +82,7 @@ export default class SideBar extends Component {
             <a href="/dashboard/profile">Profile</a>
           )}
           <a href="/dashboard/jobs">Saved Jobs</a>
-          <a href="#s">Applied Jobs</a>
+          <a href="/dashboard/appliedJobs">Applied Jobs</a>
         </div>
       );
     }
