@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AuthSeeker from "./services/AuthSeeker";
 import AuthService from "./services/AuthService";
 
 //navbar
@@ -10,7 +11,9 @@ export default class Navbar extends Component {
       showEmployeeBoard: false,
       showAdminBoard: false,
       currentUser: undefined,
+      username: undefined,
     };
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   componentDidMount() {
@@ -19,15 +22,20 @@ export default class Navbar extends Component {
     if (user) {
       this.setState({
         currentUser: user,
+        username: user.username,
         showEmployeeBoard: user.roles.includes("ROLE_EMPLOYEE"),
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
       });
-      
     }
   }
 
   logOut() {
     AuthService.logout();
+  }
+
+  deleteUser() {
+    // console.log(this.state.username);
+    AuthSeeker.deleteSeeker(this.state.username);
   }
 
   render() {
@@ -76,7 +84,6 @@ export default class Navbar extends Component {
                 </li>
               </div>
             )}
-          
 
             {/*------------Current User------------------------------------------------------------------------------------------------------------*/}
 
@@ -88,10 +95,33 @@ export default class Navbar extends Component {
                     <strong> {currentUser.username}</strong>
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a href="/login" className="nav-link" onClick={this.logOut}>
-                    LogOut
+                <li className="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Options
                   </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a
+                      href="/login"
+                      className="dropdown-item"
+                      onClick={this.logOut}
+                    >
+                      LogOut
+                    </a>
+                    <a
+                      class="dropdown-item"
+                      href="/login"
+                      onClick={this.deleteUser}
+                    >
+                      Delete
+                    </a>
+                  </div>
                 </li>
               </div>
             ) : (

@@ -12,7 +12,6 @@ export default class Dashboard_Seeker extends Component {
     //  this.logOut = this.logOut.bind(this);
     this.state = {
       jobList: [],
-
       currentUser: false,
     };
   }
@@ -28,6 +27,7 @@ export default class Dashboard_Seeker extends Component {
       this.setState({
         jobList: result.data,
       });
+      console.log(result);
     });
   }
 
@@ -45,7 +45,6 @@ export default class Dashboard_Seeker extends Component {
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">
-                {" "}
                 <i className="fas fa-search"></i>
               </span>
             </div>
@@ -87,6 +86,9 @@ export default class Dashboard_Seeker extends Component {
               locationType={item.locationPincode}
               category={item.category}
               payType={item.payType}
+              jobId={item.id}
+              username={this.state.currentUser.username}
+              userType="Seeker"
             />
           ))}
         </main>

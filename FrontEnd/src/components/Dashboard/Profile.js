@@ -17,9 +17,12 @@ export default class Profile extends Component {
       username: "",
       currentUser: "",
       profileData: [],
+      profileExists: false,
     };
 
     this.saveProfile = this.saveProfile.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateProfile = this.updateProfile.bind(this);
   }
 
   componentDidMount() {
@@ -41,7 +44,10 @@ export default class Profile extends Component {
         university: e.data.university,
         pincode: e.data.locationPincode,
       });
-      console.log(e.data);
+      if (this.state.category) {
+        this.setState({ profileExists: true });
+      }
+      console.log(this.state.profileExists);
     });
   }
 
@@ -74,18 +80,56 @@ export default class Profile extends Component {
     );
   };
 
+  updateProfile = (e) => {
+    e.preventDefault();
+    AuthProfile.updateProfile(
+      this.state.personal_summary,
+      this.state.university,
+      this.state.degree_type,
+      this.state.year_of_grad,
+      this.state.pincode,
+      this.state.category,
+      this.state.username
+    ).then(
+      () => {
+        alert("Profile Updated");
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        this.setState({
+          successful: false,
+          message: resMessage,
+        });
+      }
+    );
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const exists = this.state.profileExists;
+    if (exists) {
+      this.updateProfile(e);
+    } else {
+      this.saveProfile(e);
+    }
+    // console.log(exits);
+  };
+
   render() {
     return (
       <React.Fragment>
         <SideBar active="profile" />
-        <main>
-          <form onSubmit={this.saveProfile}>
-            <div className="form-row">
+        <main className="profile-body">
+          <form className="profile-form" onSubmit={this.handleSubmit}>
+            <div className="form-row details-form">
               <div className="personal-summary col-md-8 form-group">
                 <h2>Personal Summary</h2>
-                <p>Display by default and let them update later</p>
                 <fieldset>
-                  <legend>Personal Summary</legend>
                   <textarea
                     rows="4"
                     cols="50"

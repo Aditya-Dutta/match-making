@@ -114,11 +114,7 @@ export default class Dashboard_Employer extends Component {
         <SideBar active="dashboard" />
         <main>
           <div className="component">
-            <div className="employer-title">
-              {/* {console.log(currentUser.username)} */}
-              <h1>{this.state.employerUsername}</h1>
-            </div>
-
+            <h1 className="name-of-user">{this.state.employerUsername}</h1>
             <div className="jobs-created">
               <h2 className="created-title">Recent Jobs Created</h2>
               <div className="row">
@@ -130,6 +126,7 @@ export default class Dashboard_Employer extends Component {
                     locationType={item.locationPincode}
                     category={item.category}
                     payType={item.payType}
+                    userType="Employer"
                   />
                 ))}
 

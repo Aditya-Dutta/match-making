@@ -44,14 +44,6 @@ export default class SideBar extends Component {
           ) : (
             <a href="/dashboard_employer">Dashboard</a>
           )}
-
-          {active === "profile" ? (
-            <a href="/dashboard/profile" className="side-active">
-              Profile
-            </a>
-          ) : (
-            <a href="/dashboard/profile">Profile</a>
-          )}
           {active === "all_jobs" ? (
             <a href="/dashboard/jobs" className="side-active">
               All Jobs Created
