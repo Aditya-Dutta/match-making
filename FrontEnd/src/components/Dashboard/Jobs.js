@@ -3,6 +3,7 @@ import JobCard from "./Card";
 import SideBar from "./SideBar";
 import AuthService from "../services/AuthService";
 import AuthSeeker from "../services/AuthSeeker";
+import AuthEmployer from "../services/AuthEmployer";
 
 export default class Jobs extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ export default class Jobs extends Component {
       });
     }
     // console.clear();
-    AuthSeeker.get_job().then((result) => {
+    AuthEmployer.get_all_jobs(user.username).then((result) => {
       this.setState({ jobList: result.data });
       console.log(result.data);
     });
@@ -47,8 +48,9 @@ export default class Jobs extends Component {
   render() {
     return (
       <React.Fragment>
+        <SideBar />
         <main>
-          <SideBar />
+          <h2>All Jobs Created</h2>
           {this.state.jobList.map((item) => (
             <JobCard
               jobTitle={item.jobTitle}
