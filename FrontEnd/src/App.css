@@ -417,3 +417,20 @@ a.side-active {
 .last-text {
   display: inline;
 }
+
+.admin-functionality-list {
+  line-height: 2;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  padding-left: 2rem;
+}
+
+.form-row.admin-form {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.admin-title {
+  text-align: center;
+  margin: 2rem 0;
+}

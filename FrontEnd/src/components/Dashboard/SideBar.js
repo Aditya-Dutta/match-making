@@ -63,7 +63,7 @@ export default class SideBar extends Component {
           <a href="#s">Applicants</a>
         </div>
       );
-    } else {
+    } else if (this.state.currentUser.roles == "ROLE_JOB_SEEKER") {
       return (
         <div class="sidenav">
           {active === "dashboard" ? (
@@ -81,8 +81,35 @@ export default class SideBar extends Component {
           ) : (
             <a href="/dashboard/profile">Profile</a>
           )}
-          <a href="/dashboard/jobs">Saved Jobs</a>
-          <a href="/dashboard/appliedJobs">Applied Jobs</a>
+          {active == "appJobs" ? (
+            <a href="/dashboard/appliedJobs" className="side-active">
+              Applied Jobs
+            </a>
+          ) : (
+            <a href="/dashboard/appliedJobs">Applied Jobs</a>
+          )}
+        </div>
+      );
+    } else {
+      return (
+        <div class="sidenav">
+          {active === "dashboard" ? (
+            <a href="/dashboard_admin" className="side-active">
+              Dashboard
+            </a>
+          ) : (
+            <a href="/dashboard_admin">Dashboard</a>
+          )}
+
+          {active === "viewUsers" ? (
+            <a href="/dashboard/viewUsers" className="side-active">
+              View Users
+            </a>
+          ) : (
+            <a href="/dashboard/viewUsers">View Users</a>
+          )}
+
+          <a href="/dashboard/create_admin">Add Admin</a>
         </div>
       );
     }

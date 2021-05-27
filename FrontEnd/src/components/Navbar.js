@@ -76,12 +76,6 @@ export default class Navbar extends Component {
                 <li className="nav-item">
                   <div className="nav-link">Admin</div>
                 </li>
-
-                <li className="nav-item">
-                  <a href={"/userList"} className="nav-link">
-                    View Users
-                  </a>
-                </li>
               </div>
             )}
 

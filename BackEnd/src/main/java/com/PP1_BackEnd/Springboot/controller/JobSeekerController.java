@@ -89,7 +89,7 @@ public class JobSeekerController {
 	}
 	
 	
-	@PostMapping("/viewAllSeeker")
+	@GetMapping("/viewAllSeeker")
 	public List<User> viewAllBySeeker()
 	{
 		return userService.getAllBySeeker();

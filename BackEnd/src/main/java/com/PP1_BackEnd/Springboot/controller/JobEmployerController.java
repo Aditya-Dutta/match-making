@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,13 +58,13 @@ public class JobEmployerController {
 		JobEmployerService.saveJob(info);
 	}
 
-	@PostMapping("/viewAllJobs")
+	@GetMapping("/viewAllJobs")
 	public List<JobEmployer> viewAllJob()
 	{
 		return JobEmployerService.viewAll();
 	}
 	
-	@PostMapping("/viewAllEmployers")
+	@GetMapping("/viewAllEmployers")
 	public List<User> viewAllByEmployers()
 	{
 		return userService.getAllByEmployer();

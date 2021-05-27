@@ -34,7 +34,7 @@ export default class AppliedJobs extends Component {
   render() {
     return (
       <React.Fragment>
-        <SideBar active="all_jobs" />
+        <SideBar active="appJobs" />
         <main>
           <h2>You have applied for: </h2>
           {this.state.jobList.map((item) => (
