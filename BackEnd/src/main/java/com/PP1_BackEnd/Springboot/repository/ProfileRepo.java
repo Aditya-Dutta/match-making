@@ -38,6 +38,12 @@ public interface ProfileRepo extends JpaRepository < Profile, Long > {
 	@Query(value = "SELECT * FROM Profile ", nativeQuery = true)
 	List<Profile> getAllProfile();
 	
+	@Query(value = "SELECT category FROM Profile WHERE  username = :username", nativeQuery = true)
+	String getUserByCategory(@Param("username")String username);
+	
+	@Query(value = "SELECT pincode FROM Profile WHERE  username = :username", nativeQuery = true)
+	int getUserByLocation(@Param("username")String username);
+	
 	
 
 }
