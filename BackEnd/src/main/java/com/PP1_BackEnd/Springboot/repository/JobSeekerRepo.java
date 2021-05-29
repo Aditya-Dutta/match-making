@@ -46,7 +46,8 @@ public interface JobSeekerRepo extends JpaRepository < JobEmployer, Long > {
 	
 	@Query(value = "SELECT * FROM All_JOBS WHERE  id=:id ", nativeQuery = true)
 	JobEmployer getJobsFromID(@Param("id") int id);
-	 
+	
+	
 	
 	  
 }

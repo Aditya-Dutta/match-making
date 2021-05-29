@@ -33,10 +33,10 @@ class AuthSeeker {
     );
   }
 
-  find_all_search(jobType, category, locationPincode) {
+  find_all_search(jobType, category, locationPincode, username) {
     return axios.post(
       API_URL + "/findall",
-      { jobType, category, locationPincode },
+      { jobType, category, locationPincode, username },
       { headers: authHeader() }
     );
   }

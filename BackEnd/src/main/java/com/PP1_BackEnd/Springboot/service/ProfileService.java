@@ -40,6 +40,17 @@ public class ProfileService {
 		return profileRepo.getAllProfile();
 	}
 	
+	public String getByCategory(String username)
+	{
+		return profileRepo.getUserByCategory(username);
+	}
+	
+	
+	public int getByPincode(String username)
+	{
+		return profileRepo.getUserByLocation(username);
+	}
+	
 	
 
 
