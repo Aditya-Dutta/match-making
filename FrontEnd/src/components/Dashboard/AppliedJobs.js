@@ -1,56 +1,42 @@
 import React, { Component } from "react";
-import JobCard from "./Card";
 import SideBar from "./SideBar";
-import AuthService from "../services/AuthService";
+import JobCard from "./Card";
 import AuthSeeker from "../services/AuthSeeker";
-import AuthEmployer from "../services/AuthEmployer";
+import AuthService from "../services/AuthService";
 
-export default class Jobs extends Component {
+export default class AppliedJobs extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      currentUser: undefined,
-      jobTitle: "",
-      jobType: "",
-      locationPincode: "",
-      skills: "",
-      workType: "",
-      payType: "",
-      category: "",
-      jobDescription: "",
-      employerUsername: "",
-      showForm: false,
+      username: undefined,
       jobList: [],
     };
+    // console.log(props);
   }
 
   componentDidMount() {
-    // console.log(this.state);
     const user = AuthService.getCurrentUser();
     if (!user) this.setState({ redirect: "/" });
     //set redirect path is no user found
 
     if (user) {
       this.setState({
-        currentUser: user,
-        employerUsername: user.username,
-        showEmployeeBoard: user.roles.includes("ROLE_EMPLOYEE"),
-        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        username: user.username,
       });
     }
-    // console.clear();
-    AuthEmployer.get_all_jobs(user.username).then((result) => {
+    // console.log(user.username);
+    AuthSeeker.getAppliedJobs(user.username).then((result) => {
       this.setState({ jobList: result.data });
-      console.log(result.data);
     });
   }
 
   render() {
     return (
       <React.Fragment>
-        <SideBar active="all_jobs" />
+        <SideBar active="appJobs" />
         <main>
-          <h2>All Jobs Created</h2>
+          <h2>You have applied for: </h2>
           {this.state.jobList.map((item) => (
             <JobCard
               jobTitle={item.jobTitle}

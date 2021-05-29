@@ -12,7 +12,6 @@ export default class Dashboard_Seeker extends Component {
     //  this.logOut = this.logOut.bind(this);
     this.state = {
       jobList: [],
-
       currentUser: false,
     };
   }
@@ -28,6 +27,7 @@ export default class Dashboard_Seeker extends Component {
       this.setState({
         jobList: result.data,
       });
+      console.log(result);
     });
   }
 
@@ -39,13 +39,12 @@ export default class Dashboard_Seeker extends Component {
     const { currentUser } = this.state;
     return (
       <React.Fragment>
-        <SideBar />
+        <SideBar active="dashboard" />
         <main>
           <h1 className="dashboard-heading">Dashboard</h1>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
               <span className="input-group-text">
-                {" "}
                 <i className="fas fa-search"></i>
               </span>
             </div>
@@ -62,11 +61,24 @@ export default class Dashboard_Seeker extends Component {
               onChange={this.handleDropDown}
               className="form-select form-select-sm drop-down"
               aria-label=".form-select-sm example"
+              id="job_type"
             >
               <option value="Full">Job Type</option>
               <option value="Full">Full Time</option>
               <option value="Part">Part Time</option>
               <option value="Casual">Casual</option>
+            </select>
+            <select
+              onChange={this.handleDropDown}
+              className="form-select form-select-sm drop-down"
+              aria-label=".form-select-sm example"
+              id="category"
+            >
+              <option value="">Category</option>
+              <option vaue="IT">Information Technology</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Medical">Medical</option>
+              <option value="Art">Art</option>
             </select>
             <input
               className="form-control form-control-dark w-50 location-input"
@@ -78,10 +90,7 @@ export default class Dashboard_Seeker extends Component {
               Find
             </button>
           </div>
-        
 
-        
-          
           {this.state.jobList.map((item) => (
             <JobCard
               jobTitle={item.jobTitle}
@@ -90,11 +99,12 @@ export default class Dashboard_Seeker extends Component {
               locationType={item.locationPincode}
               category={item.category}
               payType={item.payType}
+              jobId={item.id}
+              username={this.state.currentUser.username}
+              userType="Seeker"
             />
           ))}
         </main>
-        
-
 
         {/* {currentUser ? (
           <p>Implement Dash Board</p>

@@ -2,22 +2,19 @@ import React, { Component } from "react";
 import AuthSeeker from "../services/AuthSeeker";
 
 // const JobCard = (props) => {
-export default class JobCard extends Component {
+export default class UsersCard extends Component {
   constructor(props) {
     super(props);
     // console.log(props);
     //  this.logOut = this.logOut.bind(this);
     this.state = {
-      jobTitle: "",
-      jobType: "",
-      locationPincode: "",
-      skills: "",
-      workType: "",
-      payType: "",
-      category: "",
-      jobDescription: "",
-      employerUsername: "",
-      jobId: "",
+      username: undefined,
+      address: "",
+      firstname: "",
+      lastname: "",
+      phone: "",
+      email: "",
+      user_type: "",
       currentUser: undefined,
     };
     console.log(props);
@@ -33,31 +30,32 @@ export default class JobCard extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    AuthSeeker.apply_job(this.state.jobId, this.state.currentUser);
-    alert("Applied for job");
+    // Delete the user here
+    // AuthSeeker.apply_job(this.state.jobId, this.state.currentUser);
+    // alert("Applied for job");
   }
 
   render() {
-    if (this.props.userType === "Seeker") {
+    if (this.props.userType === "Admin") {
       return (
         <React.Fragment>
           <form onSubmit={this.handleSubmit}>
             <div className="col-md-12 job-card">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title">{this.props.jobTitle}</h5>
+                  <h5 className="card-title">{this.props.username}</h5>
                   <h6 className="card-subtitle mb-2">
-                    Category: {this.props.category}
+                    {this.props.firstname} {this.props.lastname}
                   </h6>
                   <p className="card-text">
-                    Job Type: {this.props.jobType} <br />
-                    Description: {this.props.jobDescription}
+                    User Type: {this.props.user_type} <br />
+                    Address: {this.props.address}
                   </p>
                   <p className="card-text last-text">
-                    Pay Type: {this.props.payType} <br />
-                    Location Type: {this.props.locationType}
+                    Email: {this.props.email} <br />
+                    Phone: {this.props.phone}
                   </p>
-                  <button className="apply-job-btn">Apply</button>
+                  <button className="apply-job-btn">Delete</button>
                 </div>
               </div>
             </div>

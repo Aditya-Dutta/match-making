@@ -222,7 +222,8 @@ footer {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgb(10, 43, 192);
+  /* background-color: rgb(10, 43, 192); */
+  background-color: #143599;
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -272,12 +273,19 @@ main {
 
 /* Dashboard Employer */
 
-.employer-title {
+.name-of-user {
   color: #1164d1;
+  font-family: "Bebas Neue", cursive;
+  text-decoration: underline;
+  margin: 2rem 0;
+  font-size: 3.5rem;
 }
 
 .created-title {
   color: #155ab4;
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
 }
 
 .create-job-form {
@@ -317,9 +325,112 @@ main {
 
 .job-card {
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .Employer {
   margin-left: 1rem;
+}
+
+a.side-active {
+  text-decoration: underline;
+}
+
+.job-card .card {
+  background-color: #1f5c74;
+  color: #fff;
+  width: 75%;
+  border-radius: 15px;
+  -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
+    5px 5px 6px 5px rgba(255, 255, 255, 0);
+  box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
+    5px 5px 6px 5px rgba(255, 255, 255, 0);
+  line-height: 2;
+}
+
+.apply-job-btn {
+  box-shadow: 0px 0px 0px 2px #9fb4f2;
+  background: linear-gradient(to bottom, #3f6da8 5%, #3f64df 100%);
+  background-color: #2f6686;
+  border-radius: 10px;
+  border: 1px solid #4e6096;
+  display: inline;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 1rem;
+  padding: 0.4rem;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #283966;
+  margin-left: 2rem;
+}
+
+.apply-job-btn:hover {
+  background: linear-gradient(to bottom, #542ed1 5%, #7154a8 100%);
+  background-color: #542ed1;
+}
+
+.form-row.details-form {
+  margin: 2rem 0;
+}
+
+.personal-summary {
+  margin: 2rem 0 1rem;
+}
+
+.profile-body {
+  background-color: #fbfbfd;
+}
+
+.profile-body .form-row {
+  background-color: #fff;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  padding: 3% 4%;
+}
+
+.profile-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.personal-summary h2 {
+  margin-bottom: 1.2rem;
+}
+
+.summary-text-area {
+  padding: 0.2rem;
+  border-radius: 10px;
+}
+
+.summary-text-area:focus {
+  outline: none;
+}
+
+.form-group input[type="text"],
+.form-group select {
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.last-text {
+  display: inline;
+}
+
+.admin-functionality-list {
+  line-height: 2;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  padding-left: 2rem;
+}
+
+.form-row.admin-form {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.admin-title {
+  text-align: center;
+  margin: 2rem 0;
 }
