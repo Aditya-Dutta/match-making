@@ -16,6 +16,7 @@ export default class Dashboard_Seeker extends Component {
       job_type: "",
       category: "",
       locationPincode: "",
+      currentUser: undefined,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,7 +26,7 @@ export default class Dashboard_Seeker extends Component {
     const currentUser = AuthService.getCurrentUser();
     if (!currentUser) this.setState({ redirect: "/" });
 
-    this.setState({ currentUser: currentUser, userReady: true });
+    this.setState({ currentUser: currentUser.username, userReady: true });
 
     // console.log(currentUser.roles);
     AuthSeeker.get_job().then((result) => {
@@ -42,7 +43,8 @@ export default class Dashboard_Seeker extends Component {
     AuthSeeker.find_all_search(
       this.state.job_type,
       this.state.category,
-      this.state.locationPincode
+      this.state.locationPincode,
+      this.state.currentUser
     ).then((result) => {
       this.setState({ jobList: result.data });
       // console.log(result);
@@ -119,7 +121,7 @@ export default class Dashboard_Seeker extends Component {
               category={item.category}
               payType={item.payType}
               jobId={item.id}
-              username={this.state.currentUser.username}
+              username={this.state.currentUser}
               userType="Seeker"
             />
           ))}

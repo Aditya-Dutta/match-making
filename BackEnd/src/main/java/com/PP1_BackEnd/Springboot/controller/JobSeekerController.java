@@ -235,7 +235,7 @@ public class JobSeekerController {
 	}
 
 	// username
-	@PostMapping("/getAppliedJobs")
+	@GetMapping("/getAppliedJobs")
 	public List<JobEmployer> getJobsApplied(@RequestBody JobSeekerRequest info)
 	{
 		List<Integer> ids = SeekerService.getAppliedJob(info.getUsername());
