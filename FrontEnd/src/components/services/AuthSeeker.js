@@ -57,8 +57,10 @@ class AuthSeeker {
     );
   }
 
+
   viewAllSeeker() {
     return axios.get(API_URL + "/viewAllSeeker", { headers: authHeader() });
+
   }
 
   deleteSeeker(username) {

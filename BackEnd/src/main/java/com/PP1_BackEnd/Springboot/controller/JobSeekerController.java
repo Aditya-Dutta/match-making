@@ -73,7 +73,94 @@ public class JobSeekerController {
 	public List<JobEmployer> getByAllSearch(@RequestBody JobSeekerRequest info){
 		// "null"
 
-		return SeekerService.findJobs(info.getJobType(), info.getCategory(), info.getLocationPincode());
+		//List<String> jobType=;
+		
+		List<JobEmployer> jobList = new ArrayList<JobEmployer>();
+		String info_jobtype = info.getJobType();
+		String info_category = info.getCategory();
+		int info_pincode = info.getLocationPincode();
+		if(info_jobtype == null)
+		{
+			info_jobtype="Full Time";
+		}
+		if(info_category == null)
+		{
+			info_category = "Engineering";
+		}
+		if(info_pincode == 0)
+		{
+			info_pincode=3000;
+		}
+		
+		
+		String[] jobType= {"Full Time","Part Time","Casual"};
+		String[] category= {"Engineering","Medical","Art","Information Technology"};
+		
+		List<String> selected_jobtype = new ArrayList<String>(); 
+		selected_jobtype.add(info_jobtype);
+		
+		List<String> selected_category = new ArrayList<String>(); 
+		selected_category.add(info_category);
+		
+		
+		for(int i=0; i<jobType.length; i++)
+		{
+			if(!info.getJobType().equalsIgnoreCase(jobType[i]))
+			{
+				selected_jobtype.add(jobType[i]);
+			}
+		}
+		
+		for(int i=0; i<category.length; i++)
+		{
+			if(!info.getCategory().equalsIgnoreCase(category[i]))
+			{
+				selected_category.add(category[i]);
+			}
+		}
+		
+		int count = 0;
+		int dec_pincode = 1;
+		int inc_pincode =999;
+		for(int i=0; i<selected_jobtype.size(); i++)
+		{
+			for(int j=0; j<selected_category.size(); j++)
+			{
+				if(!(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode)==null))
+				{
+					jobList.addAll(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode));
+				}
+				while(count<10)
+				{
+					if(dec_pincode>=1 && dec_pincode<=5 && inc_pincode==999)
+					{
+						if(!(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode-dec_pincode)==null))
+						{
+							jobList.addAll(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode-dec_pincode));
+						}
+						dec_pincode+=1;
+						if(dec_pincode ==6)
+						{
+							inc_pincode=5;
+						}
+					}
+					if(inc_pincode != 999){
+						if(!(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode+inc_pincode)==null))
+						{
+							jobList.addAll(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode+inc_pincode));
+						}
+						inc_pincode--;
+						
+					}
+					count++;
+				}
+			}
+		}
+		
+		
+		
+
+		return jobList;
 	}
 
 	@PostMapping("/viewAll")
