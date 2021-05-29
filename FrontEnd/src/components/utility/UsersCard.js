@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import AuthEmployer from "../services/AuthEmployer";
 import AuthSeeker from "../services/AuthSeeker";
+import AuthService from "../services/AuthService";
 
 // const JobCard = (props) => {
 export default class UsersCard extends Component {
@@ -19,6 +21,7 @@ export default class UsersCard extends Component {
     };
     console.log(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -31,9 +34,21 @@ export default class UsersCard extends Component {
   handleSubmit(e) {
     e.preventDefault();
     // Delete the user here
-    // AuthSeeker.apply_job(this.state.jobId, this.state.currentUser);
-    // alert("Applied for job");
+    // console.log(this.props);
+    if (this.props.user_type === "JOB_SEEKER") {
+      AuthSeeker.deleteSeeker(this.props.username);
+    } else if (this.props.user_type == "EMPLOYER") {
+      AuthEmployer.deleteEmployer(this.props.username);
+    } else {
+      AuthService.deleteAdmin(this.props.username);
+    }
+    alert(this.props.username + " has been deleted");
+    document.location.reload();
   }
+
+  // handleDelete() {
+  //   console.log(this.props);
+  // }
 
   render() {
     if (this.props.userType === "Admin") {
@@ -56,6 +71,7 @@ export default class UsersCard extends Component {
                     Phone: {this.props.phone}
                   </p>
                   <button className="apply-job-btn">Delete</button>
+                  {/* {button} */}
                 </div>
               </div>
             </div>

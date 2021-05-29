@@ -177,7 +177,7 @@ public class AuthController {
 	}
 
 
-	@PostMapping("/viewAllAdmin")
+	@GetMapping("/viewAllAdmin")
 	public List<User> getAllByAdmin()
 	{
 		return userService.getAllByAdmin();

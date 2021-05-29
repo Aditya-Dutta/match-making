@@ -147,8 +147,11 @@ class RegisterCustomerComponent extends Component {
                 if (this.state.user_type === "EMPLOYER") {
                   this.props.history.push("/Dashboard_Employer");
                   window.location.reload();
-                } else {
+                } else if (this.state.userType === "SEEKER") {
                   this.props.history.push("/Dashboard_Seeker");
+                  window.location.reload();
+                } else {
+                  this.props.history.push("/Dashboard_admin");
                   window.location.reload();
                 }
 
