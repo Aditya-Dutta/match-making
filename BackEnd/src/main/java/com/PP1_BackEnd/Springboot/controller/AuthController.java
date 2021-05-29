@@ -85,10 +85,10 @@ public class AuthController {
 
 
 
-
 	//-----------create new user
 	@PostMapping("/signup")
 	public ResponseEntity < ?>registerUser(@Valid@RequestBody SignupRequest signUpRequest) {
+		// check for existing records 
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
 		}
@@ -97,11 +97,8 @@ public class AuthController {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
 		}
 
-
 		String user_type=signUpRequest.getUser_type();
 		Set < Role > roles = new HashSet < >();
-
-
 
 		if (userRepository.findAll().isEmpty() == true) {
 			Role admin = roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
@@ -131,8 +128,10 @@ public class AuthController {
 	}
 
 
+	//controller to add another admin by the existing admin
 	@PostMapping("/addAdmin")
 	public ResponseEntity < ?>addAdmin(@Valid@RequestBody SignupRequest signUpRequest) {
+		// adding another admin
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
 		}
@@ -177,7 +176,8 @@ public class AuthController {
 	}
 
 
-	@PostMapping("/viewAllAdmin")
+	// view all admin control over the application
+	@GetMapping("/viewAllAdmin")
 	public List<User> getAllByAdmin()
 	{
 		return userService.getAllByAdmin();

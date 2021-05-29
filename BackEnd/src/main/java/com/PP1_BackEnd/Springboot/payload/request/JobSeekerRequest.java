@@ -1,16 +1,19 @@
 package com.PP1_BackEnd.Springboot.payload.request;
 
+/*
+ * request partamater used on seeker controller
+ */
 public class JobSeekerRequest {
-	
+
 	private int id;
-	
-	 private String username;
 
-	  private int locationPincode;
+	private String username;
 
-	  private String category;
+	private int locationPincode;
 
-	  private String jobType;
+	private String category;
+
+	private String jobType;
 
 	public String getUsername() {
 		return username;
@@ -52,5 +55,5 @@ public class JobSeekerRequest {
 		this.id = id;
 	}
 
-	  
+
 }

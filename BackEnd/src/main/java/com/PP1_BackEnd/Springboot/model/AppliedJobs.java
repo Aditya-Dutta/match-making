@@ -6,16 +6,19 @@ import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/*
+ * table used to store data of the jobs applied by a user
+ */
 @Entity
 @Table(name = "Applied_Jobs")
 
 public class AppliedJobs {
-	
+
 	@Id
-	 @Column(name = "JobId")
+	@Column(name = "JobId")
 	private int id;
-	
-	 @Column(name = "username")
+
+	@Column(name = "username")
 	private String username;
 
 	public int getId() {
@@ -33,7 +36,7 @@ public class AppliedJobs {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	 
-	 
+
+
 
 }

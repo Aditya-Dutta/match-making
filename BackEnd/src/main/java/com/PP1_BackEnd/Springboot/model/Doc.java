@@ -8,14 +8,13 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/*
+ * stores the details of the file uploaded with the username
+ */
 @Entity
 @Table(name = "files")
 public class Doc {
-	
-	
-	//@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	
+
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -24,7 +23,7 @@ public class Doc {
 	private String fileName;
 
 	private String fileType;
-	
+
 	private String user_name;
 
 	@Lob

@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import com.PP1_BackEnd.Springboot.model.Profile;
 import com.PP1_BackEnd.Springboot.repository.ProfileRepo;
 
+/*
+ * service responsible and used by the controllers
+ * to communicate with the repositories
+ */
 @Service
 public class ProfileService {
 	
