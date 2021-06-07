@@ -162,7 +162,7 @@ public class AuthController {
 	@PostMapping("/deleteAdmin")
 	public Boolean deleteAdmin(@Valid@RequestBody SignupRequest signUpRequest) {
 
-		if (userRepository.existsByUsername(signUpRequest.getUsername()) && userService.getAdminExistanceCount()>=2 
+		if (userRepository.existsByUsername(signUpRequest.getUsername()) && userService.getAdminExistanceCount()>2 
 				&& userService.getUserType(signUpRequest.getUsername()).equals("ADMIN")) {
 			String username = signUpRequest.getUsername();
 			profileService.deleteProfile(username);
