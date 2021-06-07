@@ -102,6 +102,7 @@ public class JobSeekerController {
 		}
 		if(info_pincode == 0)
 		{
+			System.out.println(info_pincode+ username);
 			info_pincode = profileService.getByPincode(username);
 			if(info_pincode == 0)
 				info_pincode=3000;

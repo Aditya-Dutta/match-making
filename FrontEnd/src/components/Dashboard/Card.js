@@ -42,42 +42,56 @@ export default class JobCard extends Component {
       return (
         <React.Fragment>
           <form onSubmit={this.handleSubmit}>
-            <div className="col-md-12 job-card">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{this.props.jobTitle}</h5>
-                  <h6 className="card-subtitle mb-2">
+          <article className="job-card">
+  
+  <div className="job-title">{this.props.jobTitle}</div>
+  <div className="category">{this.props.category} </div>
+  <div className="description">{this.props.jobDescription}</div>
+  <div className="skills-container">
+    <div className="skill">Pay: {this.props.payType}</div>
+    <div className="skill">Job Type: {this.props.jobType}</div>
+    <div className="skill">Location: {this.props.locationType}</div>
+  </div>
+  <button className="apply">Apply</button>
+  
+ 
+</article>
+            {/* <div classNameName="col-md-12 job-card">
+              <div classNameName="card">
+                <div classNameName="card-body">
+                  <h5 classNameName="card-title">{this.props.jobTitle}</h5>
+                  <h6 classNameName="card-subtitle mb-2">
                     Category: {this.props.category}
                   </h6>
-                  <p className="card-text">
+                  <p classNameName="card-text">
                     Job Type: {this.props.jobType} <br />
                     Description: {this.props.jobDescription}
                   </p>
-                  <p className="card-text last-text">
+                  <p classNameName="card-text last-text">
                     Pay Type: {this.props.payType} <br />
                     Location Type: {this.props.locationType}
                   </p>
-                  <button className="apply-job-btn">Apply</button>
+                  <button classNameName="apply-job-btn">Apply</button>
                 </div>
               </div>
-            </div>
+            </div> */}
           </form>
         </React.Fragment>
       );
     } else {
       return (
-        <div className="col-md-12 job-card">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">{this.props.jobTitle}</h5>
-              <h6 className="card-subtitle mb-2">
+        <div classNameName="col-md-12 job-card">
+          <div classNameName="card">
+            <div classNameName="card-body">
+              <h5 classNameName="card-title">{this.props.jobTitle}</h5>
+              <h6 classNameName="card-subtitle mb-2">
                 Category: {this.props.category}
               </h6>
-              <p className="card-text">
+              <p classNameName="card-text">
                 Job Type: {this.props.jobType} <br />
                 Description: {this.props.jobDescription}
               </p>
-              <p className="card-text">
+              <p classNameName="card-text">
                 Pay Type: {this.props.payType} <br />
                 Location Type: {this.props.locationType}
               </p>

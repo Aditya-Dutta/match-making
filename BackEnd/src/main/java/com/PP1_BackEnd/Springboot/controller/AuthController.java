@@ -175,12 +175,30 @@ public class AuthController {
 
 	}
 
-
 	// view all admin control over the application
 	@GetMapping("/viewAllAdmin")
 	public List<User> getAllByAdmin()
 	{
 		return userService.getAllByAdmin();
+	}
+	
+	@GetMapping("/getAdminCount")
+	public int getCountAdmin()
+	{
+		return userRepository.getTotalAdminCount();
+	}
+	
+	@GetMapping("/getEmployeeCount")
+	public int getCountEmployee()
+	{
+		return userRepository.getTotalEmployeesCount();
+	}
+	
+	
+	@GetMapping("/getEmployerCount")
+	public int getCountEmployer()
+	{
+		return userRepository.getTotalEmployersCount();
 	}
 
 

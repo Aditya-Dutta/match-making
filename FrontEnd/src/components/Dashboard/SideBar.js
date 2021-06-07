@@ -33,6 +33,7 @@ export default class SideBar extends Component {
     // console.log(this.state.currentUser.roles);
     const active = this.state.active;
     // console.log(active);
+    
     if (this.state.currentUser.roles == "ROLE_EMPLOYER") {
       // console.log("Employer Dashboard");
       return (
