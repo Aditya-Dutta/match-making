@@ -200,7 +200,8 @@ export default class Profile extends Component {
                   <option value="IT">IT</option>
                   <option value="Art">Art</option>
                   <option value="Medical">Medical</option>
-                  <option value="Commerce">Commerce</option>
+                  <option value="Engineering">Engineering</option>
+                  <option value="Education">Education</option>
                 </select>
               </div>
               <div className="form-group col-md-8">

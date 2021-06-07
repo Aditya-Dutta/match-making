@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import SideBar from "./SideBar";
 import AuthService from "../services/AuthService";
-import Validate from "../utility/FormValidaton";
-import AuthEmployer from "../services/AuthEmployer";
-import AuthSeeker from "../services/AuthSeeker";
 
 export default class CreateAdmin extends Component {
   constructor(props) {
@@ -34,16 +31,6 @@ export default class CreateAdmin extends Component {
     // console.log(this.state);
     const user = AuthService.getCurrentUser();
     if (!user) this.setState({ redirect: "/" });
-    //set redirect path is no user found
-
-    // if (user) {
-    //   this.setState({
-    //     currentUser: user,
-    //     employerUsername: user.username,
-    //     showEmployeeBoard: user.roles.includes("ROLE_EMPLOYEE"),
-    //     showAdminBoard: user.roles.includes("ROLE_ADMIN"),
-    //   });
-    // }
   }
 
   handleForm = (e) => {
@@ -54,8 +41,8 @@ export default class CreateAdmin extends Component {
       this.state.address,
       this.state.email,
       this.state.phone,
-      this.state.username,
-      this.state.password
+      this.state.password,
+      this.state.username
     ).then(
       () => {
         alert("Admin added");
@@ -152,7 +139,7 @@ export default class CreateAdmin extends Component {
               <div className="form-group col-md-6">
                 <label for="pwd">Password</label>
                 <input
-                  type="text"
+                  type="password"
                   className="form-control"
                   id="pwd"
                   onChange={(e) => this.setState({ password: e.target.value })}

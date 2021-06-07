@@ -179,6 +179,7 @@ export default class CreateJob extends Component {
                     <option value="Engineering">Engineering</option>
                     <option value="Medical">Medical</option>
                     <option value="Art">Art</option>
+                    <option value="Education">Education</option>
                   </select>
                 </div>
 

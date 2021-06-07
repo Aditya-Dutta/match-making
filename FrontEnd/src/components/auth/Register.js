@@ -24,77 +24,35 @@ class RegisterCustomerComponent extends Component {
       fields: {},
       errors_message_phone: "",
       showForm: "",
+      validationCheck: false,
     };
     this.saveUser = this.saveUser.bind(this);
-    this.onInputChange = this.onInputChange.bind(this);
+    // this.onInputChange = this.onInputChange.bind(this);
+    this.checkValidate = this.checkValidate.bind(this);
     this.handleAgree = this.handleAgree.bind(this);
   }
 
-  //assign values for this state
-  onInputChange = (event) => {
-    this.setState({
-      fields: event.target.value,
-    });
-
-    if (event.target.id === "email") {
-      if (this.state.fields !== "") {
-        let lastAtPos = this.state.fields.lastIndexOf("@");
-        let lastDotPos = this.state.fields.lastIndexOf(".");
-        if (
-          !(
-            lastAtPos < lastDotPos &&
-            lastAtPos > 0 &&
-            this.state.fields.indexOf("@@") === -1 &&
-            lastDotPos > 2 &&
-            this.state.fields.length - lastDotPos > 2
-          )
-        ) {
-          this.setState({
-            errors_message_email: "Email is not valid",
-          });
-        } else {
-          this.setState({
-            errors_message_email: "",
-          });
-        }
-      }
-    }
-    if (event.target.id === "password") {
+  checkValidate = (field) => {
+    if (field.target.id === "password") {
       var pattern = new RegExp(
-        /^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$)/i
+        /(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
       );
-      if (!pattern.test(this.state.fields)) {
-        this.setState({
-          errors_message_password: "Password not valid.",
-        });
+      if (pattern.test(field.target.value)) {
+        this.setState({ errors_message_password: "" });
       } else {
-        this.setState({
-          errors_message_password: "",
-        });
+        this.setState({ errors_message_password: "Password not valid" });
+      }
+    }
+    if (field.target.id === "phone") {
+      var p_pattern = new RegExp(/^([\d]{8,13})$/);
+      if (p_pattern.test(field.target.value)) {
+        this.setState({ errors_message_phone: "" });
+      } else {
+        this.setState({ errors_message_phone: "Number not valid" });
       }
     }
 
-    if (event.target.id === "phone") {
-      var phone_pattern = new RegExp(
-        /(\(+61\)|\+61|\(0[1-9]\)|0[1-9])?( ?-?[0-9]){6,9}/i
-      );
-      if (!phone_pattern.test(this.state.fields)) {
-        this.setState({
-          errors_message_phone: "Phone not valid.",
-        });
-      } else {
-        this.setState({
-          errors_message_phone: "",
-        });
-      }
-    }
-
-    this.setState({
-      [event.target.id]: event.target.value,
-    });
-    console.clear();
-    console.log(this.state);
-    // document.getElementById(event.target.id).classList.remove("is-danger");
+    console.log(this.state.user_type);
   };
 
   //clear error states
@@ -109,75 +67,67 @@ class RegisterCustomerComponent extends Component {
   //to register user
   saveUser = (e) => {
     e.preventDefault();
+    // const validate = this.checkValidate(e);
     this.setState({
       message: "",
       successful: false,
     });
 
-    console.log(this.state);
-
-    {
-      this.clearErrorState();
-      const error = Validate(e, this.state);
-      if (
-        error ||
-        this.state.errors_message_email !== "" ||
-        this.state.errors_message_password !== "" ||
-        this.state.errors_message_phone !== ""
-      ) {
-        this.setState({
-          errors: { ...this.state.errors, ...error },
-        });
-      } else {
-        //pass the values into controller
-        AuthService.register(
-          this.state.firstname,
-          this.state.lastname,
-          this.state.address,
-          this.state.email,
-          this.state.phone,
-          this.state.password,
-          this.state.username,
-          this.state.user_type
-        ).then(
-          () => {
-            //if success, navigate to profile page
-            AuthService.login(this.state.username, this.state.password).then(
-              () => {
-                if (this.state.user_type === "EMPLOYER") {
-                  this.props.history.push("/Dashboard_Employer");
-                  window.location.reload();
-                } else {
-                  this.props.history.push("/Dashboard_Seeker");
-                  window.location.reload();
-                }
-
-                // window.location.replace("http://localhost:3000/");
+    // console.log("Validation " + this.state.validationCheck);
+    // this.clearErrorState();
+    const error = Validate(e, this.state);
+    if (
+      error ||
+      this.state.errors_message_email !== "" ||
+      this.state.errors_message_password !== "" ||
+      this.state.errors_message_phone !== ""
+    ) {
+      this.setState({
+        errors: { ...this.state.errors, ...error },
+      });
+    } else {
+      //pass the values into controller
+      AuthService.register(
+        this.state.firstname,
+        this.state.lastname,
+        this.state.address,
+        this.state.email,
+        this.state.phone,
+        this.state.password,
+        this.state.username,
+        this.state.user_type
+      ).then(
+        () => {
+          AuthService.login(this.state.username, this.state.password).then(
+            () => {
+              if (this.state.user_type == "EMPLOYER") {
+                this.props.history.push("/Dashboard_Employer");
+                window.location.reload();
+              } else if (this.state.user_type == "SEEKER") {
+                console.log(this.state.user_type);
+                this.props.history.push("/Dashboard_Seeker");
+                window.location.reload();
               }
-            );
-          },
-          //else show error
-          (error) => {
-            const resMessage =
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString();
+            }
+          );
+        },
+        //else show error
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
 
-            this.setState({
-              successful: false,
-              message: resMessage,
-            });
-          }
-        );
-      }
+          this.setState({
+            successful: false,
+            message: resMessage,
+          });
+        }
+      );
     }
   };
-
-  // popUp() {
-  //   <TermsConditions />;
-  // }
 
   showForm = () => {
     return (
@@ -189,13 +139,13 @@ class RegisterCustomerComponent extends Component {
               <FormErrors formerrors={this.state.errors} />
             </div>
 
-            <form>
+            <form onSubmit={this.saveUser}>
               <div className="form-row">
                 <div class="form-group col-md-6">
                   <label for="username">Username: </label>
                   <div className="input-group register-input-fields">
                     <div className="input-group-prepend">
-                      <span className="input-group-text">
+                      <span className="input-group-text icon-size">
                         {" "}
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
                       </span>
@@ -203,11 +153,15 @@ class RegisterCustomerComponent extends Component {
 
                     <input
                       className="form-control"
-                      type="name"
+                      type="text"
                       id="username"
                       placeholder="username"
                       value={this.state.username}
-                      onChange={this.onInputChange}
+                      onInput={this.checkValidate}
+                      onChange={(e) =>
+                        this.setState({ username: e.target.value })
+                      }
+                      required
                     />
                   </div>
                 </div>
@@ -216,18 +170,22 @@ class RegisterCustomerComponent extends Component {
                   <label for="firstname">First Name: </label>
                   <div className="input-group register-input-fields">
                     <div className="input-group-prepend">
-                      <span className="input-group-text">
+                      <span className="input-group-text icon-size">
                         {" "}
                         <i className="fas fa-user"></i>
                       </span>
                     </div>
                     <input
                       className="form-control"
-                      type="name"
+                      type="text"
                       id="firstname"
                       placeholder="first name"
                       value={this.state.firstname}
-                      onChange={this.onInputChange}
+                      onInput={this.checkValidate}
+                      onChange={(e) =>
+                        this.setState({ firstname: e.target.value })
+                      }
+                      required
                     />
                   </div>
                 </div>
@@ -236,19 +194,23 @@ class RegisterCustomerComponent extends Component {
                   <label for="lastname">Last Name: </label>
                   <div class="input-group register-input-fields">
                     <div className="input-group-prepend">
-                      <span className="input-group-text">
+                      <span className="input-group-text icon-size">
                         {" "}
                         <i className="fas fa-user"></i>
                       </span>
                     </div>
                     <input
                       className="form-control"
-                      type="name"
+                      type="text"
                       id="lastname"
                       aria-describedby="userNameHelp"
                       placeholder="last name"
                       value={this.state.lastname}
-                      onChange={this.onInputChange}
+                      onInput={this.checkValidate}
+                      onChange={(e) =>
+                        this.setState({ lastname: e.target.value })
+                      }
+                      required
                     />
                   </div>
                 </div>
@@ -269,7 +231,9 @@ class RegisterCustomerComponent extends Component {
                       aria-describedby="emailHelp"
                       placeholder="email"
                       value={this.state.email}
-                      onChange={this.onInputChange}
+                      onInput={this.checkValidate}
+                      onChange={(e) => this.setState({ email: e.target.value })}
+                      required
                     />
                   </div>
                   <small id="passwordHelpBlock" class="form-text text-danger">
@@ -281,19 +245,23 @@ class RegisterCustomerComponent extends Component {
                   <label for="address">Address: </label>
                   <div className="input-group register-input-fields">
                     <div className="input-group-prepend">
-                      <span className="input-group-text">
+                      <span className="input-group-text icon-size">
                         {" "}
                         <i className="fas fa-home"></i>
                       </span>
                     </div>
                     <input
                       className="form-control"
-                      type="address"
+                      type="text"
                       id="address"
                       aria-describedby="addressHelp"
                       placeholder="Enter Address"
                       value={this.state.address}
-                      onChange={this.onInputChange}
+                      onInput={this.checkValidate}
+                      onChange={(e) =>
+                        this.setState({ address: e.target.value })
+                      }
+                      required
                     />
                   </div>
                 </div>
@@ -314,9 +282,14 @@ class RegisterCustomerComponent extends Component {
                       aria-describedby="phoneHelp"
                       placeholder="Enter Phone"
                       value={this.state.phone}
-                      onChange={this.onInputChange}
+                      onInput={this.checkValidate}
+                      onChange={(e) => this.setState({ phone: e.target.value })}
+                      required
                     />
                   </div>
+                  <small class="form-text text-muted">
+                    Phone no between 8-13 digits no characters.
+                  </small>
                   <small class="form-text text-danger">
                     {this.state.errors_message_phone}{" "}
                   </small>
@@ -363,7 +336,11 @@ class RegisterCustomerComponent extends Component {
                       id="password"
                       placeholder="Password"
                       value={this.state.password}
-                      onChange={this.onInputChange}
+                      onInput={this.checkValidate}
+                      onChange={(e) =>
+                        this.setState({ password: e.target.value })
+                      }
+                      required
                     />
                     <small class="form-text text-muted">
                       Password must contain at least one UpperCase, one
@@ -387,7 +364,8 @@ class RegisterCustomerComponent extends Component {
                     <p className="control">
                       <button
                         className="btn btn-primary"
-                        onClick={this.saveUser}
+                        // onClick={this.saveUser}
+                        type="submit"
                       >
                         Register
                       </button>

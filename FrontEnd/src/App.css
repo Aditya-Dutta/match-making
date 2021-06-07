@@ -271,6 +271,10 @@ main {
   margin-right: 0.5rem;
 }
 
+span.icon-size {
+  margin-bottom: 1rem;
+}
+
 /* Dashboard Employer */
 
 .name-of-user {
@@ -337,14 +341,21 @@ a.side-active {
 }
 
 .job-card .card {
-  background-color: #1f5c74;
+  /* background-color: #1f5c74; */
+  /* background-color: #2f2fa2; */
+  background: url("https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Ymx1ZSUyMGJhY2tncm91bmRzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60");
+  background-size: cover;
   color: #fff;
   width: 75%;
   border-radius: 15px;
-  -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
+  /* -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
     5px 5px 6px 5px rgba(255, 255, 255, 0);
   box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
-    5px 5px 6px 5px rgba(255, 255, 255, 0);
+    5px 5px 6px 5px rgba(255, 255, 255, 0); */
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    21px -24px 36px -7px rgba(0, 0, 0, 0.07);
+  box-shadow: 0px 10px 13px -7px #000000,
+    21px -24px 36px -7px rgba(0, 0, 0, 0.07);
   line-height: 2;
 }
 

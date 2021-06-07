@@ -50,17 +50,15 @@ class AuthSeeker {
   }
 
   getAppliedJobs(username) {
-    return axios.post(
+    return axios.get(
       API_URL + "/getAppliedJobs",
       { username },
       { headers: authHeader() }
     );
   }
 
-
   viewAllSeeker() {
     return axios.get(API_URL + "/viewAllSeeker", { headers: authHeader() });
-
   }
 
   deleteSeeker(username) {

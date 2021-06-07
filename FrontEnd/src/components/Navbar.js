@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AuthSeeker from "./services/AuthSeeker";
 import AuthService from "./services/AuthService";
+import AuthEmployer from "./services/AuthEmployer";
 
 //navbar
 export default class Navbar extends Component {
@@ -34,8 +35,17 @@ export default class Navbar extends Component {
   }
 
   deleteUser() {
-    // console.log(this.state.username);
-    AuthSeeker.deleteSeeker(this.state.username);
+    // console.log(this.state.currentUser.roles);
+    const role = this.state.currentUser.roles[0];
+    console.log(role);
+    if (role === "ROLE_EMPLOYER") {
+      AuthEmployer.deleteEmployer(this.state.username);
+    } else if (role === "ROLE_JOB_SEEKER") {
+      AuthSeeker.deleteSeeker(this.state.username);
+    } else {
+      AuthService.deleteAdmin(this.state.username);
+    }
+    AuthService.logout();
   }
 
   render() {
@@ -110,8 +120,8 @@ export default class Navbar extends Component {
                     </a>
                     <a
                       class="dropdown-item"
-                      href="/login"
                       onClick={this.deleteUser}
+                      href="/login"
                     >
                       Delete
                     </a>

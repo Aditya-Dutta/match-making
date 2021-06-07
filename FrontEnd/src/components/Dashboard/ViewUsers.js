@@ -33,6 +33,11 @@ export default class ViewUsers extends Component {
       console.log(result.data);
     });
 
+    AuthService.viewAllAdmin().then((result) => {
+      this.setState({ all_admins: result.data });
+      // console.log(result.data);
+    });
+
     // var listOFUsers = AuthSeeker.viewAllSeeker();
     // console.log(listOFUsers);
   }
@@ -55,6 +60,18 @@ export default class ViewUsers extends Component {
             />
           ))}
           {this.state.all_employers.map((item) => (
+            <UsersCard
+              userType="Admin"
+              username={item.username}
+              user_type={item.user_type}
+              address={item.address}
+              phone={item.phone}
+              email={item.email}
+              firstname={item.firstname}
+              lastname={item.lastname}
+            />
+          ))}
+          {this.state.all_admins.map((item) => (
             <UsersCard
               userType="Admin"
               username={item.username}
