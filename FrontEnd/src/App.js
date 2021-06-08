@@ -30,11 +30,7 @@ function App() {
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/userlist" component={UserList} />
         <Route exact path="/dashboard/profile" component={Profile} />
-        <Route
-          exact
-          path="/dashboard_employer"
-          component={Dashboard_Employer}
-        />
+        <Route exact path="/dashboard_employer" component={Dashboard_Employer}/>
         <Route exact path="/dashboard/jobs" component={Jobs} />
         <Route exact path="/dashboard/create_job" component={CreateJob} />
         <Route exact path="/dashboard/appliedJobs" component={AppliedJobs} />

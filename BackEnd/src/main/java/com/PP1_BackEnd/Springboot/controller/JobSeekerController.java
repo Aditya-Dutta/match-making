@@ -1,6 +1,6 @@
 package com.PP1_BackEnd.Springboot.controller;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.PP1_BackEnd.Springboot.model.JobEmployer;
 import com.PP1_BackEnd.Springboot.model.Profile;
 import com.PP1_BackEnd.Springboot.model.User;
-import com.PP1_BackEnd.Springboot.payload.request.JobEmployerRequest;
 import com.PP1_BackEnd.Springboot.payload.request.JobSeekerRequest;
 import com.PP1_BackEnd.Springboot.repository.UserRepository;
 import com.PP1_BackEnd.Springboot.service.JobEmployerService;
@@ -26,11 +25,16 @@ import com.PP1_BackEnd.Springboot.service.UserService;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/job/seeker")
+/*
+ * this controller operates all the operation done by
+ * the user seeker on the application
+ */
 public class JobSeekerController {
 
 
 	@Autowired
-	public JobSeekerService SeekerService;
+	JobSeekerService SeekerService; 
+
 	@Autowired
 	UserRepository userRepository;
 
@@ -42,46 +46,50 @@ public class JobSeekerController {
 
 	@Autowired
 	UserService userService;
+	
+	private List<JobEmployer> jobList = new ArrayList<JobEmployer>();
 
+	// get list of all jobs 
 	@GetMapping("/getjob")
 	public List<JobEmployer> getJob() {
 		return SeekerService.getAllJobs();     
 	}
 
-	@PostMapping("/category")
-	public List<JobEmployer> getByCategory(@RequestBody JobSeekerRequest info){
-		return SeekerService.getByCategory(info.getCategory());
-	}
+	//	//
+	//	@PostMapping("/category")
+	//	public List<JobEmployer> getByCategory(@RequestBody JobSeekerRequest info){
+	//		return SeekerService.getByCategory(info.getCategory());
+	//	}
 
+	// get all jobs applied by an seeker
 	@PostMapping("/username")
 	public List<JobEmployer> getByUsername(@RequestBody JobSeekerRequest info){
 		return SeekerService.getByUsername(info.getUsername());
 	}
 
-	@PostMapping("/location")
-	public List<JobEmployer> getByLocation(@RequestBody JobSeekerRequest info){
-		return SeekerService.getByLocation(info.getLocationPincode());
-	}
+	//	@PostMapping("/location")
+	//	public List<JobEmployer> getByLocation(@RequestBody JobSeekerRequest info){
+	//		return SeekerService.getByLocation(info.getLocationPincode());
+	//	}
+	//
+	//	@PostMapping("/job_type")
+	//	public List<JobEmployer> getByJobType(@RequestBody JobSeekerRequest info){
+	//		return SeekerService.getByJobType(info.getJobType());
+	//	}
 
-	@PostMapping("/job_type")
-	public List<JobEmployer> getByJobType(@RequestBody JobSeekerRequest info){
-		return SeekerService.getByJobType(info.getJobType());
-	}
 
-
+	// find the relevant job from the database based on search input
 	@PostMapping("/findall")
 	public List<JobEmployer> getByAllSearch(@RequestBody JobSeekerRequest info){
-		// "null"
 
-		//List<String> jobType=;
 		
-		List<JobEmployer> jobList = new ArrayList<JobEmployer>();
+		List<JobEmployer> allList = SeekerService.getAllJobs();     
+		  
 		String info_jobtype = info.getJobType();
 		String info_category = info.getCategory();
 		int info_pincode = info.getLocationPincode();
 		String username = info.getUsername();
-		//System.out.println(info_jobtype+"  "+info_category+"  "+info_pincode);
-		
+
 		if(info_jobtype == null)
 		{
 			info_jobtype="Full Time";
@@ -94,27 +102,22 @@ public class JobSeekerController {
 		}
 		if(info_pincode == 0)
 		{
+			System.out.println(info_pincode+ username);
 			info_pincode = profileService.getByPincode(username);
 			if(info_pincode == 0)
 				info_pincode=3000;
 		}
-		
-		//System.out.println(info_jobtype+"  "+info_category+"  "+info_pincode);
-		
-		
-		
-		
-		
+
 		String[] jobType= {"Full Time","Part Time","Casual"};
 		String[] category= {"Engineering","Medical","Art","Information Technology"};
-		
+
 		List<String> selected_jobtype = new ArrayList<String>(); 
 		selected_jobtype.add(info_jobtype);
-		
+
 		List<String> selected_category = new ArrayList<String>(); 
 		selected_category.add(info_category);
-		
-		
+
+
 		for(int i=0; i<jobType.length; i++)
 		{
 			if(!info_jobtype.equalsIgnoreCase(jobType[i]))
@@ -122,8 +125,8 @@ public class JobSeekerController {
 				selected_jobtype.add(jobType[i]);
 			}
 		}
-		
-		
+
+
 		for(int i=0; i<category.length; i++)
 		{
 			if(!info_category.equalsIgnoreCase(category[i]))
@@ -131,10 +134,7 @@ public class JobSeekerController {
 				selected_category.add(category[i]);
 			}
 		}
-		//System.out.println(selected_category);
-		//System.out.println(selected_jobtype);
-		
-		
+
 		int dec_pincode = 1;
 		int inc_pincode =1;
 		boolean check1=true;
@@ -142,68 +142,90 @@ public class JobSeekerController {
 		{
 			for(int i=0; i<selected_jobtype.size(); i++)
 			{
-				//System.out.println(selected_jobtype.get(i)+"  "+selected_category.get(j)+"  "+info_pincode);
-				if(!(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode)==null))
-				{
-					jobList.addAll(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode));
-					//System.out.println(selected_jobtype.get(i)+"  "+selected_category.get(j)+"  "+(info_pincode));
-				}
+
+				findMatch(selected_jobtype.get(i), selected_category.get(j), info_pincode, allList);
+				
 				dec_pincode = 1;
 				inc_pincode =1;
 				for(int x=0;x<20;x++)
 				{
 					if(check1==true)
 					{
-						if(!(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode-dec_pincode)==null))
-						{
-							jobList.addAll(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), (info_pincode-dec_pincode)));
-						}
-						//System.out.println(selected_jobtype.get(i)+"  "+selected_category.get(j)+"  "+(info_pincode-dec_pincode));
+						
+						findMatch(selected_jobtype.get(i), selected_category.get(j), info_pincode-dec_pincode, allList);
+						
+//						if(!(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode-dec_pincode)==null))
+//						{
+//							jobList.addAll(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), (info_pincode-dec_pincode)));
+//						}
+
 						dec_pincode+=1;
 						check1=false;
 					}
 					if(check1==false) {
-						if(!(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode+inc_pincode)==null))
-						{
-							jobList.addAll(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), (info_pincode+inc_pincode)));
-						}
-						//System.out.println(selected_jobtype.get(i)+"  "+selected_category.get(j)+"  "+(info_pincode+inc_pincode));
+						findMatch(selected_jobtype.get(i), selected_category.get(j), info_pincode+inc_pincode, allList);
+						
+//						if(!(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), info_pincode+inc_pincode)==null))
+//						{
+//							jobList.addAll(SeekerService.findJobs(selected_jobtype.get(i), selected_category.get(j), (info_pincode+inc_pincode)));
+//						}
+
 						inc_pincode+=1;
 						check1=true;
-						
+
 					}
-					
+
 				}
 			}
 		}
-		
-		
-		
+
+
+
 
 		return jobList;
 	}
-
-	@PostMapping("/viewAll")
-	public List<JobEmployer> viewAllJob()
+	
+	
+	public void findMatch(String jobType, String category, int location, List<JobEmployer> allList)
 	{
+		List<JobEmployer> foundJob  = new ArrayList<JobEmployer>();
+		for(int i=0;i<allList.size(); i++)
+		{
+			if(allList.get(i).getCategory().equalsIgnoreCase(category) && allList.get(i).getJobType().equalsIgnoreCase(jobType)
+					&& allList.get(i).getlocationPincode()==location)
+			{
+				foundJob.add(allList.get(i));
+			}
+		}
+		if(foundJob!=null)
+			jobList.addAll(foundJob);
+		
+		
+		
+	}
+
+	// view all jobs available
+	@PostMapping("/viewAll")
+	public List<JobEmployer> viewAllJob(){
 		return SeekerService.viewAll();
 	}
-	
-	@PostMapping("/viewAllProfile")
+
+	// get the profile of all users
+	@GetMapping("/viewAllProfile")
 	public List<Profile> viewAllProfile()
 	{
 		return profileService.getAllProfile();
 	}
-	
-	
+
+	// get the list of all seekers
 	@GetMapping("/viewAllSeeker")
 	public List<User> viewAllBySeeker()
 	{
 		return userService.getAllBySeeker();
 	}
-	
 
-	// passing username only
+
+	// delete a seeker
 	@PostMapping("/deleteSeeker")
 	public Boolean deleteAdmin(@Valid@RequestBody JobSeekerRequest info) {
 		if (userRepository.existsByUsername(info.getUsername()) && userService.getUserType(info.getUsername()).equals("JOB_SEEKER")) {
@@ -216,12 +238,12 @@ public class JobSeekerController {
 		return false;
 	}
 
-	// job id and username
+	// apply for a job by seeker
 	@PostMapping("/applyJob")
 	public Boolean applyJob(@RequestBody JobSeekerRequest info){
-		
+
 		List<Integer> ids = SeekerService.getAppliedJob(info.getUsername());
-		
+
 		for(Integer i: ids)
 		{
 			if(i==info.getId())
@@ -234,8 +256,8 @@ public class JobSeekerController {
 		return true;
 	}
 
-	// username
-	@GetMapping("/getAppliedJobs")
+	// get the list of applied jobs of a user
+	@PostMapping("/getAppliedJobs")
 	public List<JobEmployer> getJobsApplied(@RequestBody JobSeekerRequest info)
 	{
 		List<Integer> ids = SeekerService.getAppliedJob(info.getUsername());

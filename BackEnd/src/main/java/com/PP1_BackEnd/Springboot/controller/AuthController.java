@@ -85,10 +85,10 @@ public class AuthController {
 
 
 
-
 	//-----------create new user
 	@PostMapping("/signup")
 	public ResponseEntity < ?>registerUser(@Valid@RequestBody SignupRequest signUpRequest) {
+		// check for existing records 
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
 		}
@@ -97,11 +97,8 @@ public class AuthController {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
 		}
 
-
 		String user_type=signUpRequest.getUser_type();
 		Set < Role > roles = new HashSet < >();
-
-
 
 		if (userRepository.findAll().isEmpty() == true) {
 			Role admin = roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() ->new RuntimeException("Error: Role is not found."));
@@ -131,8 +128,10 @@ public class AuthController {
 	}
 
 
+	//controller to add another admin by the existing admin
 	@PostMapping("/addAdmin")
 	public ResponseEntity < ?>addAdmin(@Valid@RequestBody SignupRequest signUpRequest) {
+		// adding another admin
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
 		}
@@ -163,7 +162,7 @@ public class AuthController {
 	@PostMapping("/deleteAdmin")
 	public Boolean deleteAdmin(@Valid@RequestBody SignupRequest signUpRequest) {
 
-		if (userRepository.existsByUsername(signUpRequest.getUsername()) && userService.getAdminExistanceCount()>=2 
+		if (userRepository.existsByUsername(signUpRequest.getUsername()) && userService.getAdminExistanceCount()>2 
 				&& userService.getUserType(signUpRequest.getUsername()).equals("ADMIN")) {
 			String username = signUpRequest.getUsername();
 			profileService.deleteProfile(username);
@@ -176,11 +175,30 @@ public class AuthController {
 
 	}
 
-
+	// view all admin control over the application
 	@GetMapping("/viewAllAdmin")
 	public List<User> getAllByAdmin()
 	{
 		return userService.getAllByAdmin();
+	}
+	
+	@GetMapping("/getAdminCount")
+	public int getCountAdmin()
+	{
+		return userRepository.getTotalAdminCount();
+	}
+	
+	@GetMapping("/getEmployeeCount")
+	public int getCountEmployee()
+	{
+		return userRepository.getTotalEmployeesCount();
+	}
+	
+	
+	@GetMapping("/getEmployerCount")
+	public int getCountEmployer()
+	{
+		return userRepository.getTotalEmployersCount();
 	}
 
 

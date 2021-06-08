@@ -1,25 +1,20 @@
 package com.PP1_BackEnd.Springboot.service;
 
-import java.util.List;
-
+import java.util.List; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.PP1_BackEnd.Springboot.model.JobEmployer;
-import com.PP1_BackEnd.Springboot.repository.AppliedJobsRepository;
 import com.PP1_BackEnd.Springboot.repository.JobSeekerRepo;
 
+/*
+ * service responsible and used by the controllers
+ * to communicate with the repositories
+ */
 @Service
 public class JobSeekerService {
 
 	@Autowired
 	private JobSeekerRepo seekerRepo ;
-	
-	 
-
-//	public JobEmployer saveBooking(JobSeeker job) {
-//		return seekerRepo.save(job);
-//	}
 	
 	public List<JobEmployer> getAllJobs()
 	{
@@ -35,7 +30,6 @@ public class JobSeekerService {
 	{
 		return seekerRepo.getByUsername(username);
 	}
-	
 	
 	public List<JobEmployer> getByLocation(int pincode)
 	{

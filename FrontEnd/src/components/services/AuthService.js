@@ -79,6 +79,26 @@ class AuthService {
   viewAllAdmin() {
     return axios.get(API_URL + "viewAllAdmin", { headers: authHeader() });
   }
+
+  getAdminCount()
+  {
+    return axios.get(API_URL + "getAdminCount", { headers: authHeader() });
+    
+  }
+
+  getEmployersCount()
+  {
+    return axios.get(API_URL + "getEmployerCount", { headers: authHeader() });
+    
+  }
+
+  getEmployeesCount()
+  {
+    return axios.get(API_URL + "getEmployeeCount", { headers: authHeader() });
+    
+  }
+
+
   //get current user
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user"));
