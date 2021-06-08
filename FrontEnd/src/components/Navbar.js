@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import AuthSeeker from "./services/AuthSeeker";
 import AuthService from "./services/AuthService";
+import AuthEmployer from "./services/AuthEmployer";
 
 //navbar
 export default class Navbar extends Component {
@@ -10,7 +12,9 @@ export default class Navbar extends Component {
       showEmployeeBoard: false,
       showAdminBoard: false,
       currentUser: undefined,
+      username: undefined,
     };
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   componentDidMount() {
@@ -19,14 +23,28 @@ export default class Navbar extends Component {
     if (user) {
       this.setState({
         currentUser: user,
+        username: user.username,
         showEmployeeBoard: user.roles.includes("ROLE_EMPLOYEE"),
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
       });
-      
     }
   }
 
   logOut() {
+    AuthService.logout();
+  }
+
+  deleteUser() {
+    // console.log(this.state.currentUser.roles);
+    const role = this.state.currentUser.roles[0];
+    console.log(role);
+    if (role === "ROLE_EMPLOYER") {
+      AuthEmployer.deleteEmployer(this.state.username);
+    } else if (role === "ROLE_JOB_SEEKER") {
+      AuthSeeker.deleteSeeker(this.state.username);
+    } else {
+      AuthService.deleteAdmin(this.state.username);
+    }
     AuthService.logout();
   }
 
@@ -68,15 +86,8 @@ export default class Navbar extends Component {
                 <li className="nav-item">
                   <div className="nav-link">Admin</div>
                 </li>
-
-                <li className="nav-item">
-                  <a href={"/userList"} className="nav-link">
-                    View Users
-                  </a>
-                </li>
               </div>
             )}
-          
 
             {/*------------Current User------------------------------------------------------------------------------------------------------------*/}
 
@@ -88,10 +99,33 @@ export default class Navbar extends Component {
                     <strong> {currentUser.username}</strong>
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a href="/login" className="nav-link" onClick={this.logOut}>
-                    LogOut
+                <li className="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Options
                   </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a
+                      href="/login"
+                      className="dropdown-item"
+                      onClick={this.logOut}
+                    >
+                      LogOut
+                    </a>
+                    <a
+                      class="dropdown-item"
+                      onClick={this.deleteUser}
+                      href="/login"
+                    >
+                      Delete
+                    </a>
+                  </div>
                 </li>
               </div>
             ) : (
