@@ -56,7 +56,8 @@ export default class JobCard extends Component {
           </form>
         </React.Fragment>
       );
-    } else {
+    } 
+    else {
       return (
         <article className="job-card">
           <div className="job-title">{this.props.jobTitle}</div>

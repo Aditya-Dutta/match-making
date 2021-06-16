@@ -16,6 +16,10 @@ import Dashboard_Admin from "./components/Dashboard/Dashboard_admin";
 import ViewUsers from "./components/Dashboard/ViewUsers";
 import CreateAdmin from "./components/Dashboard/CreateAdmin";
 import Applicants from "./components/Dashboard/Applicants";
+import JobApplincants from "./components/Dashboard/ApplicantsSeeker";
+import ApplicantsProfile from "./components/Dashboard/ApplicantsProfile";
+import AdminEmployers from "./components/Dashboard/AdminEmployer"
+import AdminEmployees from "./components/Dashboard/AdminEmployee"
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import { faEdit } from '@fortawesome/free-solid-svg-icons';
 // library.add(faEdit);
@@ -31,11 +35,12 @@ function App() {
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/userlist" component={UserList} />
         <Route exact path="/dashboard/profile" component={Profile} />
-        <Route
-          exact
-          path="/dashboard_employer"
-          component={Dashboard_Employer}
-        />
+        <Route exact path="/dashboard_employer" component={Dashboard_Employer}/>
+        <Route exact path="/dashboard/view_applicants" component={JobApplincants} />
+        <Route exact path="/dashboard/view_admin_employers" component={AdminEmployers} />
+        <Route exact path="/dashboard/view_admin_employees" component={AdminEmployees} />
+        <Route exact path="/dashboard/view_applicants_profile" component={ApplicantsProfile} />
+        
         <Route exact path="/dashboard/jobs" component={Jobs} />
         <Route exact path="/dashboard/create_job" component={CreateJob} />
         <Route exact path="/dashboard/appliedJobs" component={AppliedJobs} />

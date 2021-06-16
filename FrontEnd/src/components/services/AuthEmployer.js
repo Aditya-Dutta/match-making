@@ -48,6 +48,14 @@ class AuthEmployer {
     );
   }
 
+  getApplicantUser(id)
+  {
+    return axios.post(
+      API_URL + "getApplicantUser",
+      { id },
+      { headers: authHeader() }
+    );
+  }
   getApplicants(id) {
     return axios.post(
       API_URL + "getApplicants",

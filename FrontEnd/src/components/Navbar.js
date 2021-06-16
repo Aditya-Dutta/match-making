@@ -65,7 +65,7 @@ export default class Navbar extends Component {
   render() {
     const { currentUser, showAdminBoard } = this.state;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-2">
         {/*------------All User------------------------------------------------------------------------------------------------------------*/}
         {/* if current user, show the following links and navigations (COMMON TO ALL)*/}
         {currentUser ? (
