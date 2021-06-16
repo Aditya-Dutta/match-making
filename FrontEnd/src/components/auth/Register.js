@@ -141,13 +141,13 @@ class RegisterCustomerComponent extends Component {
 
             <form onSubmit={this.saveUser}>
               <div className="form-row">
-                <div class="form-group col-md-6">
+                <div className="form-group col-md-6">
                   <label for="username">Username: </label>
                   <div className="input-group register-input-fields">
                     <div className="input-group-prepend">
                       <span className="input-group-text icon-size">
                         {" "}
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                        <i className="fa fa-user-circle" aria-hidden="true"></i>
                       </span>
                     </div>
 
@@ -166,7 +166,7 @@ class RegisterCustomerComponent extends Component {
                   </div>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div className="form-group col-md-6">
                   <label for="firstname">First Name: </label>
                   <div className="input-group register-input-fields">
                     <div className="input-group-prepend">
@@ -190,9 +190,9 @@ class RegisterCustomerComponent extends Component {
                   </div>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div className="form-group col-md-6">
                   <label for="lastname">Last Name: </label>
-                  <div class="input-group register-input-fields">
+                  <div className="input-group register-input-fields">
                     <div className="input-group-prepend">
                       <span className="input-group-text icon-size">
                         {" "}
@@ -215,7 +215,7 @@ class RegisterCustomerComponent extends Component {
                   </div>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div className="form-group col-md-6">
                   <label for="email">Email: </label>
                   <div className="input-group register-input-fields">
                     <div className="input-group-prepend">
@@ -236,12 +236,15 @@ class RegisterCustomerComponent extends Component {
                       required
                     />
                   </div>
-                  <small id="passwordHelpBlock" class="form-text text-danger">
+                  <small
+                    id="passwordHelpBlock"
+                    className="form-text text-danger"
+                  >
                     {this.state.errors_message_email}{" "}
                   </small>
                 </div>
 
-                <div class="form-group col-md-12">
+                <div className="form-group col-md-12">
                   <label for="address">Address: </label>
                   <div className="input-group register-input-fields">
                     <div className="input-group-prepend">
@@ -266,7 +269,7 @@ class RegisterCustomerComponent extends Component {
                   </div>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div className="form-group col-md-6">
                   <label for="phone">Phone No: </label>
                   <div className="input-group register-input-fields">
                     <div className="input-group-prepend">
@@ -287,14 +290,14 @@ class RegisterCustomerComponent extends Component {
                       required
                     />
                   </div>
-                  <small class="form-text text-muted">
+                  <small className="form-text text-muted">
                     Phone no between 8-13 digits no characters.
                   </small>
-                  <small class="form-text text-danger">
+                  <small className="form-text text-danger">
                     {this.state.errors_message_phone}{" "}
                   </small>
                 </div>
-                <div class="form-group col-md-6">
+                <div className="form-group col-md-6">
                   <label for="phone">User Type: </label>
                   <div className="input-group register-input-fields">
                     <label className="Seeker">
@@ -321,7 +324,7 @@ class RegisterCustomerComponent extends Component {
                   </div>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div className="form-group col-md-6">
                   <label for="password">Password: </label>
                   <div className="input-group register-input-fields">
                     <div className="input-group-prepend">
@@ -342,18 +345,18 @@ class RegisterCustomerComponent extends Component {
                       }
                       required
                     />
-                    <small class="form-text text-muted">
+                    <small className="form-text text-muted">
                       Password must contain at least one UpperCase, one
                       LowerCase, one Digit, one Special character and minimum 8
                       character length.
                     </small>
-                    <small class="form-text text-danger">
+                    <small className="form-text text-danger">
                       {this.state.errors_message_password}{" "}
                     </small>
                   </div>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div className="form-group col-md-6">
                   <div className="field">
                     <p className="control">
                       <a href="/login">Already a user?</a>

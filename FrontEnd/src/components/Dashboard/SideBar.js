@@ -33,11 +33,11 @@ export default class SideBar extends Component {
     // console.log(this.state.currentUser.roles);
     const active = this.state.active;
     // console.log(active);
-    
+
     if (this.state.currentUser.roles == "ROLE_EMPLOYER") {
       // console.log("Employer Dashboard");
       return (
-        <div class="sidenav">
+        <div className="sidenav">
           {active === "dashboard" ? (
             <a href="/dashboard_employer" className="side-active">
               Dashboard
@@ -60,13 +60,18 @@ export default class SideBar extends Component {
           ) : (
             <a href="/dashboard/create_job">Create Job</a>
           )}
-
-          <a href="#s">Applicants</a>
+          {active === "applicants" ? (
+            <a href="/dashboard/applicants" className="side-active">
+              Applicants
+            </a>
+          ) : (
+            <a href="/dashboard/applicants">Applicants</a>
+          )}
         </div>
       );
     } else if (this.state.currentUser.roles == "ROLE_JOB_SEEKER") {
       return (
-        <div class="sidenav">
+        <div className="sidenav">
           {active === "dashboard" ? (
             <a href="/dashboard_seeker" className="side-active">
               Dashboard
@@ -93,7 +98,7 @@ export default class SideBar extends Component {
       );
     } else {
       return (
-        <div class="sidenav">
+        <div className="sidenav">
           {active === "dashboard" ? (
             <a href="/dashboard_admin" className="side-active">
               Dashboard
