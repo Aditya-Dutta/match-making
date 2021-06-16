@@ -261,8 +261,9 @@ main {
   margin-right: 3%;
 }
 
-.location-input {
+.form-control.location-input {
   margin-right: 4px;
+  width: 26%;
 }
 
 .radio-register {
@@ -552,8 +553,9 @@ article.job-card:focus {
   margin-right: 10px;
   font-size: 15px;
 }
+
 .apply {
-  display: block;
+  /* display: block; */
   width: 50%;
   cursor: pointer;
   border: 0;
@@ -561,7 +563,11 @@ article.job-card:focus {
   font-size: 14px;
   padding: 6px 12px;
   z-index: 2;
-  grid-area: 3 / 4 / 3 / 4;
+  /* grid-area: 3 / 4 / 3 / 4; */
+  width: max-content;
+  position: absolute;
+  bottom: 20px;
+  right: 100px;
   background-color: #43b7dd;
   color: #fff;
 }
@@ -621,6 +627,6 @@ article.job-card:focus {
   cursor: pointer;
 }
 
-.col-userList{
-  height: 50%
+.col-userList {
+  height: 50%;
 }

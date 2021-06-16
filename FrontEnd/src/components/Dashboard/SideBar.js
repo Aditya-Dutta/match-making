@@ -109,13 +109,12 @@ export default class SideBar extends Component {
 
           {active === "viewUsers" ? (
             <a href="/dashboard/viewUsers" className="side-active">
-              View All Users
+              View Users
             </a>
           ) : (
             <a href="/dashboard/viewUsers">View Users</a>
           )}
-          
-           
+
           {active === "create" ? (
             <a href="/dashboard/create_admin" className="side-active">
               Add Admin
