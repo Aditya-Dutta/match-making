@@ -64,6 +64,8 @@ export default class Profile extends Component {
     ).then(
       () => {
         alert("Profile created");
+        this.props.history.push("/dashboard_seeker");
+       window.location.reload();
       },
       (error) => {
         const resMessage =
@@ -93,6 +95,8 @@ export default class Profile extends Component {
     ).then(
       () => {
         alert("Profile Updated");
+        this.props.history.push("/dashboard_seeker");
+       window.location.reload();
       },
       (error) => {
         const resMessage =

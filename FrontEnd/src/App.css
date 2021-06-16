@@ -620,3 +620,7 @@ article.job-card:focus {
 .nav-link:hover {
   cursor: pointer;
 }
+
+.col-userList{
+  height: 50%
+}

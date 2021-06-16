@@ -3,6 +3,7 @@ import AuthSeeker from "../services/AuthSeeker";
 import AuthService from "../services/AuthService";
 import SideBar from "./SideBar";
 import JobCard from "./Card";
+import AuthProfile from "../services/AuthProfile";
 
 //home page for all users
 export default class Dashboard_Seeker extends Component {
@@ -36,6 +37,39 @@ export default class Dashboard_Seeker extends Component {
       });
       // console.log(result);
     });
+
+    AuthProfile.getProfile(currentUser.username).then((e) => 
+    
+    e.data.category == null ? (this.props.history.push({
+      pathname: '/dashboard/profile'
+  }),
+  console.log(this.state.category)
+  ) :
+    e=> {
+      this.setState({
+        personal_summary: e.data.summary,
+        category: e.data.category,
+        year_of_grad: e.data.date_of_graduation,
+        degree_type: e.data.degree_type,
+        university: e.data.university,
+        pincode: e.data.locationPincode,
+      });
+
+      
+
+
+      // if (this.state.category === "") {
+      //   this.props.history.push({
+      //     pathname: '/dashboard/profile'
+      // })
+      // }
+      // console.log(this.state.category);
+     
+
+      
+    });
+
+
   }
 
   handleSubmit(e) {
