@@ -80,24 +80,17 @@ export default class JobCard extends Component {
       );
     } else {
       return (
-        <div classNameName="col-md-12 job-card">
-          <div classNameName="card">
-            <div classNameName="card-body">
-              <h5 classNameName="card-title">{this.props.jobTitle}</h5>
-              <h6 classNameName="card-subtitle mb-2">
-                Category: {this.props.category}
-              </h6>
-              <p classNameName="card-text">
-                Job Type: {this.props.jobType} <br />
-                Description: {this.props.jobDescription}
-              </p>
-              <p classNameName="card-text">
-                Pay Type: {this.props.payType} <br />
-                Location Type: {this.props.locationType}
-              </p>
-            </div>
+        <article className="job-card">
+          <div className="job-title">{this.props.jobTitle}</div>
+          <div className="category">{this.props.category} </div>
+          <div className="description">{this.props.jobDescription}</div>
+          <div className="skills-container">
+            <div className="skill">Pay: {this.props.payType}</div>
+            <div className="skill">Job Type: {this.props.jobType}</div>
+            <div className="skill">Location: {this.props.locationType}</div>
           </div>
-        </div>
+          {/* <button className="apply">Apply</button> */}
+        </article>
       );
     }
   }
