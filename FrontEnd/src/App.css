@@ -448,7 +448,7 @@ a.side-active {
   margin: 2rem 0;
 }
 
-.cardAdmin{
+.cardAdmin {
   margin-left: 8rem;
   margin-top: 2rem;
   padding-bottom: 2rem;
@@ -456,9 +456,8 @@ a.side-active {
   padding: auto;
 }
 
-.cardbodyAdmin{
+.cardbodyAdmin {
   margin-right: 7rem;
-
 }
 
 article.job-card {
@@ -469,17 +468,15 @@ article.job-card {
   position: relative;
   border-top: 1px solid #e3e3e3;
   border-bottom: 1px solid #e3e3e3;
-  font-family: 'Helvetica';
+  font-family: "Helvetica";
   padding: 24px;
 }
 
 article.job-card:hover,
 article.job-card:focus {
-  background-color: rgba(0,166,194,.03);
-    border-color: #b2e4ec;
+  background-color: rgba(0, 166, 194, 0.03);
+  border-color: #b2e4ec;
 }
-
-
 
 .job-title {
   grid-area: 1 / 1 / 1 / 3;
@@ -490,7 +487,7 @@ article.job-card:focus {
   margin-bottom: 5px;
   padding: 0 8px;
 }
-.username{
+.username {
   grid-area: 1 / 1 / 1 / 3;
   font-size: 25px;
   align-self: start;
@@ -498,7 +495,6 @@ article.job-card:focus {
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 0 8px;
-
 }
 
 .description {
@@ -509,7 +505,6 @@ article.job-card:focus {
   margin-top: 15px;
   padding: 0 8px;
 }
-
 
 .category {
   grid-area: 2 / 1 / 2 / 3;
@@ -528,7 +523,7 @@ article.job-card:focus {
   margin-top: 0.1rem;
 }
 
-.job-type-container{
+.job-type-container {
   grid-area: 7 / 1 / 7 / 3;
   align-self: center;
   padding-top: 10px;
@@ -540,19 +535,19 @@ article.job-card:focus {
   display: inline;
   color: #00a6c2;
   border-radius: 2px;
-  background-color: rgba(0,166,194,.05);
-  border: 1px solid rgba(0,166,194,.15);
+  background-color: rgba(0, 166, 194, 0.05);
+  border: 1px solid rgba(0, 166, 194, 0.15);
   padding: 5px 8px;
   margin-right: 10px;
   font-size: 15px;
 }
 
-.job-type{
+.job-type {
   display: inline;
   color: #00a6c2;
   border-radius: 2px;
-  background-color: rgba(0,166,194,.05);
-  border: 1px solid rgba(0,166,194,.15);
+  background-color: rgba(0, 166, 194, 0.05);
+  border: 1px solid rgba(0, 166, 194, 0.15);
   padding: 5px 8px;
   margin-right: 10px;
   font-size: 15px;
@@ -570,7 +565,6 @@ article.job-card:focus {
   background-color: #43b7dd;
   color: #fff;
 }
-
 
 .address {
   grid-area: 3 / 1 / 3 / 5;
@@ -595,7 +589,7 @@ article.job-card:focus {
   align-self: center;
   font-size: 18px;
   color: #777;
-  margin-top: 0.0rem;
+  margin-top: 0rem;
   padding: 0 8px;
 }
 .firstname {
@@ -604,10 +598,9 @@ article.job-card:focus {
   font-size: 18px;
   color: #777;
   margin-top: 20px;
-  
+
   padding: 0 8px;
 }
-
 
 .delete-bt {
   display: block;
@@ -624,3 +617,6 @@ article.job-card:focus {
 }
 /* */
 
+.nav-link:hover {
+  cursor: pointer;
+}

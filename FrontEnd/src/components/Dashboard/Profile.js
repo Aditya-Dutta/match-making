@@ -192,7 +192,7 @@ export default class Profile extends Component {
                 <label for="field">Field Type:</label>
                 <select
                   id="field"
-                  class="form-control"
+                  className="form-control"
                   onChange={(e) => this.setState({ category: e.target.value })}
                   value={this.state.category}
                 >
@@ -208,7 +208,7 @@ export default class Profile extends Component {
                 <label for="location-type">Pincode:</label>
                 <input
                   id="location-type"
-                  class="form-control"
+                  className="form-control"
                   value={this.state.pincode}
                   onChange={(e) => this.setState({ pincode: e.target.value })}
                 ></input>

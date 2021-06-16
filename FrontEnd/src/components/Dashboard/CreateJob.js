@@ -129,7 +129,7 @@ export default class CreateJob extends Component {
                   <label for="job-type">Job Type:</label>
                   <select
                     id="job-type"
-                    class="form-control"
+                    className="form-control"
                     onChange={(e) => this.setState({ jobType: e.target.value })}
                   >
                     <option value="NA">Job Type</option>
@@ -142,7 +142,7 @@ export default class CreateJob extends Component {
               <label for="location-type">Location type:</label>
               <select
                 id="location-type"
-                class="form-control"
+                className="form-control"
                 onChange={(e) =>
                   this.setState({ locationPincode: e.target.value })
                 }
@@ -157,7 +157,7 @@ export default class CreateJob extends Component {
                   <label for="location-type">Pincode:</label>
                   <input
                     id="location-type"
-                    class="form-control"
+                    className="form-control"
                     value={this.state.locationPincode}
                     onChange={(e) =>
                       this.setState({ locationPincode: e.target.value })
@@ -169,7 +169,7 @@ export default class CreateJob extends Component {
                   <label for="category">Category:</label>
                   <select
                     id="category"
-                    class="form-control"
+                    className="form-control"
                     onChange={(e) =>
                       this.setState({ category: e.target.value })
                     }
@@ -187,7 +187,7 @@ export default class CreateJob extends Component {
                   <label for="pay-type">Pay type:</label>
                   <select
                     id="pay-type"
-                    class="form-control"
+                    className="form-control"
                     onChange={(e) => this.setState({ payType: e.target.value })}
                   >
                     <option value="Hourly">Pay Type</option>

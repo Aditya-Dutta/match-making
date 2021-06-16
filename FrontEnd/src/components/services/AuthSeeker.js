@@ -50,7 +50,7 @@ class AuthSeeker {
   }
 
   getAppliedJobs(username) {
-    return axios.get(
+    return axios.post(
       API_URL + "/getAppliedJobs",
       { username },
       { headers: authHeader() }

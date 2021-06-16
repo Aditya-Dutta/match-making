@@ -17,7 +17,7 @@ export default class Dashboard_Seeker extends Component {
       category: "",
       locationPincode: "",
       currentUser: undefined,
-      skilld: ""
+      skilld: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -60,7 +60,6 @@ export default class Dashboard_Seeker extends Component {
         <main>
           <h1 className="dashboard-heading">Dashboard</h1>
           <form onSubmit={this.handleSubmit}>
-          
             <div className="job-search-div">
               <select
                 // onChange={this.handleDropDown}
@@ -111,7 +110,7 @@ export default class Dashboard_Seeker extends Component {
               payType={item.payType}
               jobId={item.id}
               username={this.state.currentUser}
-              skills = {item.skills}
+              skills={item.skills}
               userType="Seeker"
             />
           ))}
