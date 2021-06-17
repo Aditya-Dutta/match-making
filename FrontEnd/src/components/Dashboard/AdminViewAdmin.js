@@ -6,7 +6,7 @@ import JobCard from "./Card";
 import AuthProfile from "../services/AuthProfile";
 import AuthSeeker from "../services/AuthSeeker";
 
-export default class AdminEmployee extends Component {
+export default class AdminViewAdmin extends Component {
   constructor(props) {
     super(props);
 
@@ -15,7 +15,7 @@ export default class AdminEmployee extends Component {
       employerUsername: "",
       applicants: [],
       isButtonDisabled: false,
-      userList: [],
+      adminList: [],
     };
   }
   componentDidMount() {
@@ -28,23 +28,8 @@ export default class AdminEmployee extends Component {
         employerUsername: user.username,
       });
     }
-    AuthSeeker.viewAllSeeker().then((result) => {
-      this.setState({ userList: result.data });
-    });
-    // console.log(this.props.location.state.job_id);
-    // AuthProfile.getProfile(this.props.location.state.username).then(
-    //     (result)=>{
-    //         this.setState({ profileList: result.data });
-    //         console.log(result.data);
-    //     }
-    // );
-  }
-
-  viewAppliedJobs(values) {
-    // this.props.history.push("/dashboard/view_applicants");
-    this.props.history.push({
-      pathname: "/dashboard/admin/seeker/jobs",
-      state: { username: values },
+    AuthService.viewAllAdmin().then((result) => {
+      this.setState({ adminList: result.data });
     });
   }
 
@@ -53,9 +38,9 @@ export default class AdminEmployee extends Component {
       <div>
         <SideBar active="applicants" />
         <main>
-          <h2>All Job Seekers</h2>
+          <h2>All Admin </h2>
           <div className="component">
-            {this.state.userList.map((item) => (
+            {this.state.adminList.map((item) => (
               <article className="job-card">
                 <div className="job-title">
                   {item.firstname} {item.lastname}
@@ -66,14 +51,6 @@ export default class AdminEmployee extends Component {
                   <div className="skill">Email: {item.email}</div>
                   <div className="skill">Phone: {item.phone}</div>
                 </div>
-
-                <button
-                  className="apply"
-                  onClick={() => this.viewAppliedJobs(item.username)}
-                  disabled={this.state.isButtonDisabled}
-                >
-                  View applied jobs{" "}
-                </button>
               </article>
             ))}
           </div>

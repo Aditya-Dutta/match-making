@@ -114,7 +114,6 @@ export default class Dashboard_Employer extends Component {
         <SideBar active="dashboard" />
         <main>
           <div className="component">
-           
             <div className="jobs-created">
               <h2 className="created-title">Recent Jobs Created</h2>
               <div className="row">

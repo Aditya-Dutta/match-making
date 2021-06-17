@@ -5,7 +5,6 @@ import SideBar from "./SideBar";
 import JobCard from "./Card";
 
 export default class Applicants extends Component {
-  
   constructor(props) {
     super(props);
 
@@ -15,9 +14,8 @@ export default class Applicants extends Component {
       applicants: [],
       isButtonDisabled: false,
       jobList: [],
-      job_id: undefined
+      job_id: undefined,
     };
-
   }
   componentDidMount() {
     // console.log(this.state);
@@ -48,52 +46,46 @@ export default class Applicants extends Component {
     console.log(this.state.applicants);
   }
 
-  
-  viewApplicants = (values ) =>
-    {
-      this.setState({
-        isButtonDisabled: true,
-        job_id: values
-      });
+  viewApplicants = (values) => {
+    this.setState({
+      isButtonDisabled: true,
+      job_id: values,
+    });
 
-      this.props.history.push({
-        pathname: '/dashboard/view_applicants',
-        state: {job_id: values}  
-    })
-      console.log(values)
-    }
+    this.props.history.push({
+      pathname: "/dashboard/view_applicants",
+      state: { job_id: values },
+    });
+    console.log(values);
+  };
 
-  
-
-  
   render() {
-   
-   
     return (
-      
-      
       <div>
-         
         <SideBar active="applicants" />
         <main>
-        <h1 >Jobs</h1>
+          <h1>Jobs</h1>
           <div className="component">
-          {this.state.jobList.map((item) => (
-                
-                 <article className="job-card">
-                   <div className="job-title">{item.jobTitle}</div>
-                   <div className="category">{item.category} </div>
-                   <div className="description">{item.jobDescription}</div>
-                   <div className="skills-container">
-                     <div className="skill">Pay: {item.payType}</div>
-                     <div className="skill">Job Type: {item.jobType}</div>
-                     <div className="skill">Location: {item.locationPincode}</div>
-                   </div>
-                   
-                   <button className="apply" onClick={() => this.viewApplicants(item.id)}  disabled={this.state.isButtonDisabled}>View Applicants </button>
-                 </article>
-              
-                ))}
+            {this.state.jobList.map((item) => (
+              <article className="job-card">
+                <div className="job-title">{item.jobTitle}</div>
+                <div className="category">{item.category} </div>
+                <div className="description">{item.jobDescription}</div>
+                <div className="skills-container">
+                  <div className="skill">Pay: {item.payType}</div>
+                  <div className="skill">Job Type: {item.jobType}</div>
+                  <div className="skill">Location: {item.locationPincode}</div>
+                </div>
+
+                <button
+                  className="apply"
+                  onClick={() => this.viewApplicants(item.id)}
+                  disabled={this.state.isButtonDisabled}
+                >
+                  View Applicants{" "}
+                </button>
+              </article>
+            ))}
           </div>
         </main>
       </div>

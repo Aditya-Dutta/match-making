@@ -46,6 +46,8 @@ export default class CreateAdmin extends Component {
     ).then(
       () => {
         alert("Admin added");
+        this.props.history.push("/Dashboard_admin");
+        window.location.reload();
       },
       (error) => {
         alert("Error with for details");

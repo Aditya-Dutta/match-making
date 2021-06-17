@@ -4,9 +4,8 @@ import AuthService from "../services/AuthService";
 import SideBar from "./SideBar";
 import JobCard from "./Card";
 import AuthProfile from "../services/AuthProfile";
-import AuthSeeker from "../services/AuthSeeker";
 
-export default class AdminEmployee extends Component {
+export default class AdminEmployerJobs extends Component {
   constructor(props) {
     super(props);
 
@@ -15,7 +14,7 @@ export default class AdminEmployee extends Component {
       employerUsername: "",
       applicants: [],
       isButtonDisabled: false,
-      userList: [],
+      empList: [],
     };
   }
   componentDidMount() {
@@ -28,10 +27,15 @@ export default class AdminEmployee extends Component {
         employerUsername: user.username,
       });
     }
-    AuthSeeker.viewAllSeeker().then((result) => {
-      this.setState({ userList: result.data });
-    });
-    // console.log(this.props.location.state.job_id);
+
+    AuthEmployer.get_all_jobs(this.props.location.state.username).then(
+      (result) => {
+        this.setState({ empList: result.data });
+        console.log(result.data);
+      }
+    );
+
+    //console.log(this.props.location.state.job_id);
     // AuthProfile.getProfile(this.props.location.state.username).then(
     //     (result)=>{
     //         this.setState({ profileList: result.data });
@@ -40,11 +44,10 @@ export default class AdminEmployee extends Component {
     // );
   }
 
-  viewAppliedJobs(values) {
-    // this.props.history.push("/dashboard/view_applicants");
+  viewApplicants(values) {
     this.props.history.push({
-      pathname: "/dashboard/admin/seeker/jobs",
-      state: { username: values },
+      pathname: "/dashboard/view_applicants",
+      state: { job_id: values },
     });
   }
 
@@ -53,26 +56,25 @@ export default class AdminEmployee extends Component {
       <div>
         <SideBar active="applicants" />
         <main>
-          <h2>All Job Seekers</h2>
+          <h2>All Jobs of {this.props.location.state.username}</h2>
           <div className="component">
-            {this.state.userList.map((item) => (
+            {this.state.empList.map((item) => (
               <article className="job-card">
-                <div className="job-title">
-                  {item.firstname} {item.lastname}
-                </div>
-                <div className="category">Username: {item.username}</div>
-                <div className="description">Address: {item.address} </div>
+                <div className="job-title">{item.jobTitle}</div>
+                <div className="category">{item.category} </div>
+                <div className="description">{item.jobDescription}</div>
                 <div className="skills-container">
-                  <div className="skill">Email: {item.email}</div>
-                  <div className="skill">Phone: {item.phone}</div>
+                  <div className="skill">Pay: {item.payType}</div>
+                  <div className="skill">Job Type: {item.jobType}</div>
+                  <div className="skill">Location: {item.locationPincode}</div>
                 </div>
 
                 <button
                   className="apply"
-                  onClick={() => this.viewAppliedJobs(item.username)}
+                  onClick={() => this.viewApplicants(item.id)}
                   disabled={this.state.isButtonDisabled}
                 >
-                  View applied jobs{" "}
+                  View Applicants{" "}
                 </button>
               </article>
             ))}
