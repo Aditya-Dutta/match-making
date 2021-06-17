@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import AuthEmployer from "../services/AuthEmployer";
 import AuthService from "../services/AuthService";
 import SideBar from "./SideBar";
-import JobCard from "./Card";
-import AuthProfile from "../services/AuthProfile";
 import AuthSeeker from "../services/AuthSeeker";
 
 export default class AdminEmployee extends Component {

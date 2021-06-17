@@ -17,7 +17,6 @@ export default class Dashboard_Seeker extends Component {
       job_type: "",
       category: "",
       locationPincode: "",
-      currentUser: undefined,
       skilld: "",
     };
 
@@ -87,7 +86,6 @@ export default class Dashboard_Seeker extends Component {
   }
 
   render() {
-    const { currentUser } = this.state;
     return (
       <React.Fragment>
         <SideBar active="dashboard" />
