@@ -4,6 +4,7 @@ import authHeader from "./AuthHeader";
 const API_URL = "http://localhost:8080/api/auth/";
 // const API_URL = "https://prog-pp1.herokuapp.com/api/auth/";
 
+// This is the axios class that is used to connect with the API.
 class AuthService {
   //communicate with the controller
   login(username, password) {

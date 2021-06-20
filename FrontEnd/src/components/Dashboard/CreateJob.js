@@ -61,6 +61,8 @@ export default class CreateJob extends Component {
         });
       } else {
         //pass the values into controller
+        // This will pass data to the API and data will be stored in the db
+        // appropriately.
         AuthEmployer.post_job(
           this.state.jobTitle,
           this.state.locationPincode,
@@ -123,7 +125,6 @@ export default class CreateJob extends Component {
                     required
                   />
                 </div>
-                {/* {this.state.employerUsername=this.state.currentUser.getCurrentUser} */}
 
                 <div className="form-group col-md-3">
                   <label for="job-type">Job Type:</label>

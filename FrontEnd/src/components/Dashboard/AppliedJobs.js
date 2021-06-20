@@ -13,10 +13,10 @@ export default class AppliedJobs extends Component {
       jobList: [],
       jobTitle: "",
     };
-    // console.log(props);
   }
 
   componentDidMount() {
+    // Get current user
     const user = AuthService.getCurrentUser();
     if (!user) this.setState({ redirect: "/" });
     //set redirect path is no user found
@@ -26,7 +26,6 @@ export default class AppliedJobs extends Component {
         username: user.username,
       });
     }
-    // console.log(user.username);
     AuthSeeker.getAppliedJobs(user.username).then((result) => {
       this.setState({ jobList: result.data });
       console.log(result.data);
@@ -39,6 +38,7 @@ export default class AppliedJobs extends Component {
         <SideBar active="appJobs" />
         <main>
           <h2>You have applied for: </h2>
+          {/* Loop Through the jobList fetched from db and pass data to reusable react component */}
           {this.state.jobList.length === 0 ? (
             <p>You have not applied yet</p>
           ) : (

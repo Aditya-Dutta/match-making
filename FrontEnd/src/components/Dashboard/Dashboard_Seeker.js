@@ -5,12 +5,9 @@ import SideBar from "./SideBar";
 import JobCard from "./Card";
 import AuthProfile from "../services/AuthProfile";
 
-//home page for all users
 export default class Dashboard_Seeker extends Component {
   constructor(props) {
     super(props);
-
-    //  this.logOut = this.logOut.bind(this);
     this.state = {
       jobList: [],
       currentUser: false,
@@ -37,6 +34,7 @@ export default class Dashboard_Seeker extends Component {
       // console.log(result);
     });
 
+    // To get the seekers proile if its there.
     AuthProfile.getProfile(currentUser.username).then((e) =>
       e.data.category == null
         ? (this.props.history.push({
@@ -52,19 +50,13 @@ export default class Dashboard_Seeker extends Component {
               university: e.data.university,
               pincode: e.data.locationPincode,
             });
-
-            // if (this.state.category === "") {
-            //   this.props.history.push({
-            //     pathname: '/dashboard/profile'
-            // })
-            // }
-            // console.log(this.state.category);
           }
     );
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    // This function handles the searching for a job using specific filters.
     AuthSeeker.find_all_search(
       this.state.job_type,
       this.state.category,

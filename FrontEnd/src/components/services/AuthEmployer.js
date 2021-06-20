@@ -2,8 +2,12 @@ import axios from "axios";
 
 import authHeader from "./AuthHeader";
 
+// API url for where the api is hosted on heroku
+// const API_URL = "https://prog-pp1.herokuapp.com/job/employer/";
+
 const API_URL = "http://localhost:8080/job/employer/";
 
+// This is the axios class that is used to connect with the API.
 class AuthEmployer {
   get_all_jobs(username) {
     return axios.post(
@@ -48,8 +52,7 @@ class AuthEmployer {
     );
   }
 
-  getApplicantUser(id)
-  {
+  getApplicantUser(id) {
     return axios.post(
       API_URL + "getApplicantUser",
       { id },

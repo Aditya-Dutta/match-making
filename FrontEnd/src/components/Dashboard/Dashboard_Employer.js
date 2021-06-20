@@ -20,18 +20,14 @@ export default class Dashboard_Employer extends Component {
       jobDescription: "",
       employerUsername: "",
       currentUser: undefined,
-      // employerID: this.state.currentUser.ID,
       showForm: false,
       jobList: [],
     };
     this.saveJob = this.saveJob.bind(this);
-    // this.onInputChange = this.onInputChange.bind(this);
-    this.handleForm = this.handleForm.bind(this);
   }
 
   //to the the update of current user
   componentDidMount() {
-    // console.log(this.state);
     const user = AuthService.getCurrentUser();
     if (!user) this.setState({ redirect: "/" });
     //set redirect path is no user found
@@ -44,14 +40,15 @@ export default class Dashboard_Employer extends Component {
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
       });
     }
-    //console.clear();
-    //this.state.employerUsername = user.username;
+
+    // Gets the top 3 latest jobs to display on the dashboard
     AuthEmployer.get_top3_jobs(user.username).then((result) => {
       this.setState({ jobList: result.data });
       console.log(result.data);
     });
   }
 
+  // Function to save job created by the employer
   saveJob = (e) => {
     e.preventDefault();
     this.setState({
@@ -102,12 +99,6 @@ export default class Dashboard_Employer extends Component {
     }
   };
 
-  handleForm = (e) => {
-    e.preventDefault();
-    // Send data to db
-    console.log(this.state);
-  };
-
   render() {
     return (
       <React.Fragment>
@@ -128,24 +119,8 @@ export default class Dashboard_Employer extends Component {
                     userType="Employer"
                   />
                 ))}
-
-                {/* <div className="field">
-                  <p className="control">
-                    <button className="btn btn-primary" onClick={this.saveUser}>
-                      Register
-                    </button>
-                  </p>
-                </div> */}
               </div>
             </div>
-            {/* <button
-              className="btn btn-primary create-btn"
-              onClick={() => this.setState({ showForm: true })}
-            >
-              Create Job
-            </button>
-          </div>
-          {this.state.showForm ? this.showForm() : null} */}
           </div>
         </main>
       </React.Fragment>

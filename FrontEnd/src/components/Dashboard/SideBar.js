@@ -19,8 +19,6 @@ export default class SideBar extends Component {
     if (!currentUser) this.setState({ redirect: "/" });
 
     this.setState({ currentUser: currentUser, userReady: true });
-
-    // console.log(currentUser.roles);
     AuthSeeker.get_job().then((result) => {
       this.setState({
         job_list: result.data,
@@ -29,14 +27,12 @@ export default class SideBar extends Component {
   }
 
   renderContent() {
-    // console.clear();
-    // console.log(this.state.currentUser.roles);
     const active = this.state.active;
-    // console.log(active);
 
     if (this.state.currentUser.roles == "ROLE_EMPLOYER") {
-      // console.log("Employer Dashboard");
       return (
+        // Active pages get an underline. This is determined using the
+        // React prop system.
         <div className="sidenav">
           {active === "dashboard" ? (
             <a href="/dashboard_employer" className="side-active">

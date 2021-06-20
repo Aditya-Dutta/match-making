@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import SideBar from "./SideBar";
 import AuthService from "../services/AuthService";
-//import Donut from "react-donut";
 
 export default class Dashboard_admin extends Component {
   constructor(props) {
@@ -16,11 +15,12 @@ export default class Dashboard_admin extends Component {
   }
 
   async componentDidMount() {
+    // Get the current user
     const currentUser = AuthService.getCurrentUser();
     if (!currentUser) this.setState({ redirect: "/" });
 
     this.setState({ username: currentUser.username });
-
+    // Gets the number of admins in the system
     await AuthService.getAdminCount().then((result) => {
       this.setState({
         admin: result.data,
@@ -28,14 +28,14 @@ export default class Dashboard_admin extends Component {
       console.log(this.state.admin);
     });
     console.log(this.state.admin);
-
+    // Gets the number of seekers in the system
     await AuthService.getEmployeesCount().then((result) => {
       this.setState({
         employee: result.data,
       });
     });
     console.log(this.state.employee);
-
+    // Gets the number of employers in the system
     await AuthService.getEmployersCount().then((result) => {
       this.setState({
         employer: result.data,
@@ -81,22 +81,6 @@ export default class Dashboard_admin extends Component {
                 </div>
               </div>
             </div>
-
-            {/* <Donut
-            title= "Total User"
-              chartData={[
-                { name: "Admin", data: admin+10 },
-                { name: "Job Seeker", data: employee+7 },
-                { name: "Job Employer", data: employer+8 },
-              ]}
-              chartWidth={500}
-              chartHeight={500}
-              chartThemeConfig={{
-                series: {
-                  colors: ["#ffe0bd", "#0080ff", "#6cbfce"],
-                },
-              }}
-            /> */}
           </div>
         </main>
       </React.Fragment>

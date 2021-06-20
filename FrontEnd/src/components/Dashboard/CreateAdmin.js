@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SideBar from "./SideBar";
 import AuthService from "../services/AuthService";
 
+// This is the create admin form.
 export default class CreateAdmin extends Component {
   constructor(props) {
     super(props);
@@ -28,13 +29,14 @@ export default class CreateAdmin extends Component {
   }
 
   componentDidMount() {
-    // console.log(this.state);
     const user = AuthService.getCurrentUser();
     if (!user) this.setState({ redirect: "/" });
   }
 
   handleForm = (e) => {
     e.preventDefault();
+    // This function will submit the data to the API using axios and data
+    // will be added to the database.
     AuthService.add_admin(
       this.state.firstname,
       this.state.lastname,
@@ -51,20 +53,8 @@ export default class CreateAdmin extends Component {
       },
       (error) => {
         alert("Error with for details");
-        // const resMessage =
-        //   (error.response &&
-        //     error.response.data &&
-        //     error.response.data.message) ||
-        //   error.message ||
-        //   error.toString();
-
-        // this.setState({
-        //   successful: false,
-        //   message: resMessage,
-        // });
       }
     );
-    // console.log(this.state);
   };
 
   render() {

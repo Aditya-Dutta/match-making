@@ -5,6 +5,8 @@ import AuthSeeker from "../services/AuthSeeker";
 import AuthEmployer from "../services/AuthEmployer";
 import UsersCard from "../utility/UsersCard";
 
+// Admin functionality
+// An Admin should be able to view all user.
 export default class ViewUsers extends Component {
   constructor(props) {
     super(props);

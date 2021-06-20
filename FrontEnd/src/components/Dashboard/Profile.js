@@ -3,10 +3,11 @@ import SideBar from "./SideBar";
 import AuthService from "../services/AuthService";
 import AuthProfile from "../services/AuthProfile";
 
+// Seeker's Profile class
 export default class Profile extends Component {
   constructor(props) {
     super(props);
-
+    // All data that is necessary from a seeker
     this.state = {
       personal_summary: "",
       university: "",
@@ -51,6 +52,7 @@ export default class Profile extends Component {
     });
   }
 
+  // Function to save profile
   saveProfile = (e) => {
     e.preventDefault();
     AuthProfile.saveProfile(
@@ -82,6 +84,7 @@ export default class Profile extends Component {
     );
   };
 
+  // Function to update profile.
   updateProfile = (e) => {
     e.preventDefault();
     AuthProfile.updateProfile(
@@ -121,7 +124,6 @@ export default class Profile extends Component {
     } else {
       this.saveProfile(e);
     }
-    // console.log(exits);
   };
 
   render() {

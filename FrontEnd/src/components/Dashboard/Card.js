@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import AuthSeeker from "../services/AuthSeeker";
 
-// const JobCard = (props) => {
+// This is a reusable React component made to display Jobs in a specific format
+// It helps make code more efficient and much smaller
 export default class JobCard extends Component {
   constructor(props) {
     super(props);
-    // console.log(props);
-    //  this.logOut = this.logOut.bind(this);
     this.state = {
       jobTitle: "",
       jobType: "",
@@ -20,7 +19,7 @@ export default class JobCard extends Component {
       jobId: "",
       currentUser: undefined,
     };
-    console.log(props);
+    // console.log(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -38,6 +37,8 @@ export default class JobCard extends Component {
   }
 
   render() {
+    // Different Kinds of cards are generated according to the type of users.
+    // Seekers get an apply button while Employers and Admins don't.
     if (this.props.userType === "Seeker") {
       return (
         <React.Fragment>

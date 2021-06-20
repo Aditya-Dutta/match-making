@@ -3,7 +3,7 @@ import AuthSeeker from "./services/AuthSeeker";
 import AuthService from "./services/AuthService";
 import AuthEmployer from "./services/AuthEmployer";
 
-//navbar
+// Navbar. Allows for logout and delete functionality.
 export default class Navbar extends Component {
   constructor(props) {
     super(props);

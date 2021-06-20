@@ -2,8 +2,10 @@ import axios from "axios";
 
 import authHeader from "./AuthHeader";
 
+// const API_URL = "https://prog-pp1.herokuapp.com/job/seeker";
 const API_URL = "http://localhost:8080/job/seeker";
 
+// This is the axios class that is used to connect with the API.
 class AuthSeeker {
   get_job() {
     return axios.get(API_URL + "/getjob", { headers: authHeader() });

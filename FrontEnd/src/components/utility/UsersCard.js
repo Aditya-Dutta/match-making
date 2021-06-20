@@ -3,12 +3,12 @@ import AuthEmployer from "../services/AuthEmployer";
 import AuthSeeker from "../services/AuthSeeker";
 import AuthService from "../services/AuthService";
 
-// const JobCard = (props) => {
+// Reusable React component made to make more efficient code and avoid repitition.
+// Also this has selective rendering so Admins get the delete functionality but
+// Employers or Seekers do not.
 export default class UsersCard extends Component {
   constructor(props) {
     super(props);
-    // console.log(props);
-    //  this.logOut = this.logOut.bind(this);
     this.state = {
       username: undefined,
       address: "",
@@ -19,9 +19,8 @@ export default class UsersCard extends Component {
       user_type: "",
       currentUser: undefined,
     };
-    console.log(props);
+    // console.log(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -46,10 +45,6 @@ export default class UsersCard extends Component {
     document.location.reload();
   }
 
-  // handleDelete() {
-  //   console.log(this.props);
-  // }
-
   render() {
     if (this.props.userType === "Admin") {
       return (
@@ -71,27 +66,6 @@ export default class UsersCard extends Component {
               </div>
               <button className="delete-bt">Delete</button>
             </article>
-
-            {/* <div className="col-md-12 job-card">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{this.props.username}</h5>
-                  <h6 className="card-subtitle mb-2">
-                    {this.props.firstname} {this.props.lastname}
-                  </h6>
-                  <p className="card-text">
-                    User Type: {this.props.user_type} <br />
-                    Address: {this.props.address}
-                  </p>
-                  <p className="card-text last-text">
-                    Email: {this.props.email} <br />
-                    Phone: {this.props.phone}
-                  </p>
-                  <button className="apply-job-btn">Delete</button>
-                 
-                </div>
-              </div>
-            </div> */}
           </form>
         </React.Fragment>
       );
