@@ -114,16 +114,27 @@ export default class SideBar extends Component {
           ) : (
             <a href="/dashboard/viewUsers">View Users</a>
           )}
-          
-           <a href="/dashboard/view_admin_employees">
-              Job Seeker
+          {active === "admin_employee" ? (
+            <a href="/dashboard/view_admin_employees" className="side-active">
+              Job Seekers
             </a>
-            <a href="/dashboard/view_admin_employers" >
+          ) : (
+            <a href="/dashboard/view_admin_employees">Job Seekers</a>
+          )}
+          {active === "admin_employer" ? (
+            <a href="/dashboard/view_admin_employers" className="side-active">
               Employers
             </a>
-            <a href="/dashboard/admin/viewAdmin" >
+          ) : (
+            <a href="/dashboard/view_admin_employers">Employers</a>
+          )}
+          {active === "admin_admin" ? (
+            <a href="/dashboard/admin/viewAdmin" className="side-active">
               Admin
             </a>
+          ) : (
+            <a href="/dashboard/admin/viewAdmin">Admin</a>
+          )}
 
           {active === "create" ? (
             <a href="/dashboard/create_admin" className="side-active">

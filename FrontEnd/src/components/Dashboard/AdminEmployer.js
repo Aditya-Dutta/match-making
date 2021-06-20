@@ -3,7 +3,6 @@ import AuthEmployer from "../services/AuthEmployer";
 import AuthService from "../services/AuthService";
 import SideBar from "./SideBar";
 
-
 export default class AdminEmployer extends Component {
   constructor(props) {
     super(props);
@@ -52,7 +51,7 @@ export default class AdminEmployer extends Component {
   render() {
     return (
       <div>
-        <SideBar active="applicants" />
+        <SideBar active="admin_employer" />
         <main>
           <h2>All Employers</h2>
           <div className="component">

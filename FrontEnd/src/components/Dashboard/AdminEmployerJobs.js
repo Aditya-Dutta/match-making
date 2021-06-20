@@ -52,7 +52,7 @@ export default class AdminEmployerJobs extends Component {
   render() {
     return (
       <div>
-        <SideBar active="applicants" />
+        <SideBar active="admin_employer" />
         <main>
           <h2>All Jobs of {this.props.location.state.username}</h2>
           <div className="component">
