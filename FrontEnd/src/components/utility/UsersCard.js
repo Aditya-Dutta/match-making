@@ -55,24 +55,22 @@ export default class UsersCard extends Component {
       return (
         <React.Fragment>
           <form onSubmit={this.handleSubmit}>
-
-         
-          
-
-          <article className="job-card">
-  
-  <div className="username">Username: {this.props.username}</div>
-  <div className="firstname">FirstName: {this.props.firstname}  LastName: {this.props.lastname}</div>
-  <div className="address">Address: {this.props.address}</div>
-  <div className="email">Email: {this.props.email}</div>
-  <div className="phone">Phone Number: {this.props.phone}</div>
-  <div className="job-type-container">
-    <div className="job-type">User Type: {this.props.user_type}</div>
-  </div>
-  <button className="delete-bt">Delete</button>
-  
- 
-</article>
+            <article className="job-card">
+              <div className="username">Username: {this.props.username}</div>
+              <div className="firstname">
+                FirstName: {this.props.firstname} LastName:{" "}
+                {this.props.lastname}
+              </div>
+              <div className="address">Address: {this.props.address}</div>
+              <div className="email">Email: {this.props.email}</div>
+              <div className="phone">Phone Number: {this.props.phone}</div>
+              <div className="job-type-container">
+                <div className="job-type">
+                  User Type: {this.props.user_type}
+                </div>
+              </div>
+              <button className="delete-bt">Delete</button>
+            </article>
 
             {/* <div className="col-md-12 job-card">
               <div className="card">

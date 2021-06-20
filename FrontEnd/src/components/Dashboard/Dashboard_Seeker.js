@@ -66,7 +66,6 @@ export default class Dashboard_Seeker extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("Function called");
     AuthSeeker.find_all_search(
       this.state.job_type,
       this.state.category,
@@ -113,7 +112,7 @@ export default class Dashboard_Seeker extends Component {
               </select>
               <input
                 className="form-control location-input"
-                type="text"
+                type="number"
                 placeholder="Location"
                 aria-label="location"
                 onChange={(e) =>
