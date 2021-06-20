@@ -66,7 +66,7 @@ export default class Dashboard_admin extends Component {
                 <div class="col-sm-3">
                   <div class="card border-info mb-3">
                     <div class="card-body text-info">
-                      <h5 class="card-title">Emoloyers</h5>
+                      <h5 class="card-title">Employers</h5>
                       <h1 class="card-text text-dark">{employer}</h1>
                     </div>
                   </div>

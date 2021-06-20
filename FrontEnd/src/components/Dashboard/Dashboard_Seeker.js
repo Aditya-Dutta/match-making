@@ -37,43 +37,34 @@ export default class Dashboard_Seeker extends Component {
       // console.log(result);
     });
 
-    AuthProfile.getProfile(currentUser.username).then((e) => 
-    
-    e.data.category == null ? (this.props.history.push({
-      pathname: '/dashboard/profile'
-  }),
-  console.log(this.state.category)
-  ) :
-    e=> {
-      this.setState({
-        personal_summary: e.data.summary,
-        category: e.data.category,
-        year_of_grad: e.data.date_of_graduation,
-        degree_type: e.data.degree_type,
-        university: e.data.university,
-        pincode: e.data.locationPincode,
-      });
+    AuthProfile.getProfile(currentUser.username).then((e) =>
+      e.data.category == null
+        ? (this.props.history.push({
+            pathname: "/dashboard/profile",
+          }),
+          console.log(this.state.category))
+        : (e) => {
+            this.setState({
+              personal_summary: e.data.summary,
+              category: e.data.category,
+              year_of_grad: e.data.date_of_graduation,
+              degree_type: e.data.degree_type,
+              university: e.data.university,
+              pincode: e.data.locationPincode,
+            });
 
-      
-
-
-      // if (this.state.category === "") {
-      //   this.props.history.push({
-      //     pathname: '/dashboard/profile'
-      // })
-      // }
-      // console.log(this.state.category);
-     
-
-      
-    });
-
-
+            // if (this.state.category === "") {
+            //   this.props.history.push({
+            //     pathname: '/dashboard/profile'
+            // })
+            // }
+            // console.log(this.state.category);
+          }
+    );
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("Function called");
     AuthSeeker.find_all_search(
       this.state.job_type,
       this.state.category,
@@ -118,8 +109,8 @@ export default class Dashboard_Seeker extends Component {
                 <option value="Art">Art</option>
               </select>
               <input
-                className="form-control w-50 location-input"
-                type="text"
+                className="form-control location-input"
+                type="number"
                 placeholder="Location"
                 aria-label="location"
                 onChange={(e) =>

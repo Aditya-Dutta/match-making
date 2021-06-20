@@ -65,7 +65,7 @@ export default class Profile extends Component {
       () => {
         alert("Profile created");
         this.props.history.push("/dashboard_seeker");
-       window.location.reload();
+        window.location.reload();
       },
       (error) => {
         const resMessage =
@@ -96,7 +96,7 @@ export default class Profile extends Component {
       () => {
         alert("Profile Updated");
         this.props.history.push("/dashboard_seeker");
-       window.location.reload();
+        window.location.reload();
       },
       (error) => {
         const resMessage =
@@ -179,7 +179,9 @@ export default class Profile extends Component {
                     </select>
                     <label for="school">Year of Graduation</label>
                     <input
-                      type="text"
+                      type="number"
+                      min="1990"
+                      max="2021"
                       id="year_of_grad"
                       name="year_of_grad"
                       className="form-control w-50"
@@ -212,6 +214,7 @@ export default class Profile extends Component {
                 <label for="location-type">Pincode:</label>
                 <input
                   id="location-type"
+                  type="number"
                   className="form-control"
                   value={this.state.pincode}
                   onChange={(e) => this.setState({ pincode: e.target.value })}
