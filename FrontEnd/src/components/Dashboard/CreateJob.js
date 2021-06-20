@@ -120,6 +120,7 @@ export default class CreateJob extends Component {
                     onChange={(e) =>
                       this.setState({ jobTitle: e.target.value })
                     }
+                    required
                   />
                 </div>
                 {/* {this.state.employerUsername=this.state.currentUser.getCurrentUser} */}
@@ -130,6 +131,7 @@ export default class CreateJob extends Component {
                     id="job-type"
                     className="form-control"
                     onChange={(e) => this.setState({ jobType: e.target.value })}
+                    required
                   >
                     <option value="NA">Job Type</option>
                     <option value="Full Time">Full Time</option>
@@ -137,30 +139,18 @@ export default class CreateJob extends Component {
                     <option value="Casual">Casual</option>
                   </select>
                 </div>
-                {/* <div className="form-group col-md-3">
-              <label for="location-type">Location type:</label>
-              <select
-                id="location-type"
-                className="form-control"
-                onChange={(e) =>
-                  this.setState({ locationPincode: e.target.value })
-                }
-              >
-                <option value="Person">Location Type</option>
-                <option vaue="Person">In Person</option>
-                <option value="Remote">Remote</option>
-              </select>
-            </div> */}
 
                 <div className="form-group col-md-3">
                   <label for="location-type">Pincode:</label>
                   <input
                     id="location-type"
+                    type="number"
                     className="form-control"
                     value={this.state.locationPincode}
                     onChange={(e) =>
                       this.setState({ locationPincode: e.target.value })
                     }
+                    required
                   ></input>
                 </div>
 
@@ -172,6 +162,7 @@ export default class CreateJob extends Component {
                     onChange={(e) =>
                       this.setState({ category: e.target.value })
                     }
+                    required
                   >
                     <option value="">Category</option>
                     <option vaue="IT">Information Technology</option>
@@ -188,6 +179,7 @@ export default class CreateJob extends Component {
                     id="pay-type"
                     className="form-control"
                     onChange={(e) => this.setState({ payType: e.target.value })}
+                    required
                   >
                     <option value="Hourly">Pay Type</option>
                     <option vaue="Person">Hourly</option>
@@ -205,6 +197,7 @@ export default class CreateJob extends Component {
                     onChange={(e) =>
                       this.setState({ jobDescription: e.target.value })
                     }
+                    required
                   ></textarea>
                 </div>
 
