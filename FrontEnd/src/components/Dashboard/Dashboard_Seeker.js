@@ -90,9 +90,9 @@ export default class Dashboard_Seeker extends Component {
                 id="job_type"
                 onChange={(e) => this.setState({ job_type: e.target.value })}
               >
-                <option value="Full">Job Type</option>
-                <option value="Full">Full Time</option>
-                <option value="Part">Part Time</option>
+                <option>Job Type</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
                 <option value="Casual">Casual</option>
               </select>
               <select
@@ -101,8 +101,10 @@ export default class Dashboard_Seeker extends Component {
                 id="category"
                 onChange={(e) => this.setState({ category: e.target.value })}
               >
-                <option value="IT">Category</option>
-                <option vaue="IT">Information Technology</option>
+                <option>Category</option>
+                <option value="Information Technology">
+                  Information Technology
+                </option>
                 <option value="Engineering">Engineering</option>
                 <option value="Medical">Medical</option>
                 <option value="Art">Art</option>

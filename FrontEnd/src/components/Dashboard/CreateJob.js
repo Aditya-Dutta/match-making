@@ -165,7 +165,9 @@ export default class CreateJob extends Component {
                     required
                   >
                     <option value="">Category</option>
-                    <option vaue="IT">Information Technology</option>
+                    <option vaue="Information Technology">
+                      Information Technology
+                    </option>
                     <option value="Engineering">Engineering</option>
                     <option value="Medical">Medical</option>
                     <option value="Art">Art</option>
