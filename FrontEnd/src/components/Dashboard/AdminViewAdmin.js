@@ -32,7 +32,7 @@ export default class AdminViewAdmin extends Component {
   render() {
     return (
       <div>
-        <SideBar active="applicants" />
+        <SideBar active="admin_admin" />
         <main>
           <h2>All Admin </h2>
           <div className="component">

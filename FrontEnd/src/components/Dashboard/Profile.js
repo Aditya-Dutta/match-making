@@ -180,7 +180,7 @@ export default class Profile extends Component {
                     <label for="school">Year of Graduation</label>
                     <input
                       type="number"
-                      min="1990"
+                      min="1930"
                       max="2021"
                       id="year_of_grad"
                       name="year_of_grad"

@@ -48,7 +48,7 @@ export default class AdminEmployee extends Component {
   render() {
     return (
       <div>
-        <SideBar active="applicants" />
+        <SideBar active="admin_employee" />
         <main>
           <h2>All Job Seekers</h2>
           <div className="component">

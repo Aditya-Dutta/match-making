@@ -72,7 +72,6 @@ export default class Dashboard_Seeker extends Component {
       this.state.currentUser
     ).then((result) => {
       this.setState({ jobList: result.data });
-      // console.log(result);
     });
   }
 
@@ -107,6 +106,7 @@ export default class Dashboard_Seeker extends Component {
                 <option value="Engineering">Engineering</option>
                 <option value="Medical">Medical</option>
                 <option value="Art">Art</option>
+                <option value="Education">Education</option>
               </select>
               <input
                 className="form-control location-input"
@@ -138,14 +138,6 @@ export default class Dashboard_Seeker extends Component {
             />
           ))}
         </main>
-
-        {/* {currentUser ? (
-          <p>Implement Dash Board</p>
-        ) : (
-          <a className="name-link" href="/">
-            <strong>Invalid Access</strong>
-          </a>
-        )}  Implement Later */}
       </React.Fragment>
     );
   }
