@@ -84,23 +84,7 @@ function validateForm(event, state) {
         return { passwordmatch: true };
     }
 
-    if ((state.hasOwnProperty("service_prodider") || state.hasOwnProperty("name")) && (state.service_prodider === "" || state.name === "")) {
-        document.getElementById("service_prodider").classList.add("is-danger");
-        return { blankfield: true };
-    }
-
-    if (state.hasOwnProperty("appointment_day") && state.appointment_day === "") {
-        document.getElementById("appointment_day").classList.add("is-danger");
-        return { blankfield: true };
-    }
-    if (state.hasOwnProperty("appointment_time") && state.appointment_time === "") {
-        document.getElementById("appointment_time").classList.add("is-danger");
-        return { blankfield: true };
-    }
-    if (state.hasOwnProperty("service") && state.service === "") {
-        document.getElementById("service").classList.add("is-danger");
-        return { blankfield: true };
-    }
+    
     return;
 
 }

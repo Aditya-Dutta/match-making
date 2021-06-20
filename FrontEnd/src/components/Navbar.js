@@ -48,10 +48,24 @@ export default class Navbar extends Component {
     AuthService.logout();
   }
 
+  handleNav = () => {
+    const role = this.state.currentUser.roles[0];
+    console.log(role);
+    if (role === "ROLE_EMPLOYER") {
+      // this.props.history.push("/Dashboard_Employer");
+      window.location.href = "/Dashboard_Employer";
+      // window.location.reload();
+    } else if (role === "ROLE_JOB_SEEKER") {
+      window.location.href = "/Dashboard_Seeker";
+    } else {
+      window.location.href = "/Dashboard_admin";
+    }
+  };
+
   render() {
     const { currentUser, showAdminBoard } = this.state;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-2">
         {/*------------All User------------------------------------------------------------------------------------------------------------*/}
         {/* if current user, show the following links and navigations (COMMON TO ALL)*/}
         {currentUser ? (
@@ -84,7 +98,9 @@ export default class Navbar extends Component {
             {showAdminBoard && (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <div className="nav-link">Admin</div>
+                  <div className="nav-link" onClick={this.handleNav}>
+                    Admin
+                  </div>
                 </li>
               </div>
             )}
@@ -95,13 +111,13 @@ export default class Navbar extends Component {
             {currentUser ? (
               <div className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <a href={"/Dashboard_Seeker"} className="nav-link">
+                  <a onClick={this.handleNav} className="nav-link">
                     <strong> {currentUser.username}</strong>
                   </a>
                 </li>
                 <li className="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle"
                     id="navbarDropdown"
                     role="button"
                     data-toggle="dropdown"
@@ -110,7 +126,10 @@ export default class Navbar extends Component {
                   >
                     Options
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
                     <a
                       href="/login"
                       className="dropdown-item"
@@ -119,7 +138,7 @@ export default class Navbar extends Component {
                       LogOut
                     </a>
                     <a
-                      class="dropdown-item"
+                      className="dropdown-item"
                       onClick={this.deleteUser}
                       href="/login"
                     >

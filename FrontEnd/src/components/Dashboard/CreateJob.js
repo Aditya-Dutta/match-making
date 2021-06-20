@@ -3,7 +3,6 @@ import SideBar from "./SideBar";
 import AuthService from "../services/AuthService";
 import Validate from "../utility/FormValidaton";
 import AuthEmployer from "../services/AuthEmployer";
-import AuthSeeker from "../services/AuthSeeker";
 
 export default class CreateJob extends Component {
   constructor(props) {
@@ -121,6 +120,7 @@ export default class CreateJob extends Component {
                     onChange={(e) =>
                       this.setState({ jobTitle: e.target.value })
                     }
+                    required
                   />
                 </div>
                 {/* {this.state.employerUsername=this.state.currentUser.getCurrentUser} */}
@@ -129,8 +129,9 @@ export default class CreateJob extends Component {
                   <label for="job-type">Job Type:</label>
                   <select
                     id="job-type"
-                    class="form-control"
+                    className="form-control"
                     onChange={(e) => this.setState({ jobType: e.target.value })}
+                    required
                   >
                     <option value="NA">Job Type</option>
                     <option value="Full Time">Full Time</option>
@@ -138,30 +139,18 @@ export default class CreateJob extends Component {
                     <option value="Casual">Casual</option>
                   </select>
                 </div>
-                {/* <div className="form-group col-md-3">
-              <label for="location-type">Location type:</label>
-              <select
-                id="location-type"
-                class="form-control"
-                onChange={(e) =>
-                  this.setState({ locationPincode: e.target.value })
-                }
-              >
-                <option value="Person">Location Type</option>
-                <option vaue="Person">In Person</option>
-                <option value="Remote">Remote</option>
-              </select>
-            </div> */}
 
                 <div className="form-group col-md-3">
                   <label for="location-type">Pincode:</label>
                   <input
                     id="location-type"
-                    class="form-control"
+                    type="number"
+                    className="form-control"
                     value={this.state.locationPincode}
                     onChange={(e) =>
                       this.setState({ locationPincode: e.target.value })
                     }
+                    required
                   ></input>
                 </div>
 
@@ -169,13 +158,16 @@ export default class CreateJob extends Component {
                   <label for="category">Category:</label>
                   <select
                     id="category"
-                    class="form-control"
+                    className="form-control"
                     onChange={(e) =>
                       this.setState({ category: e.target.value })
                     }
+                    required
                   >
                     <option value="">Category</option>
-                    <option vaue="IT">Information Technology</option>
+                    <option vaue="Information Technology">
+                      Information Technology
+                    </option>
                     <option value="Engineering">Engineering</option>
                     <option value="Medical">Medical</option>
                     <option value="Art">Art</option>
@@ -187,8 +179,9 @@ export default class CreateJob extends Component {
                   <label for="pay-type">Pay type:</label>
                   <select
                     id="pay-type"
-                    class="form-control"
+                    className="form-control"
                     onChange={(e) => this.setState({ payType: e.target.value })}
+                    required
                   >
                     <option value="Hourly">Pay Type</option>
                     <option vaue="Person">Hourly</option>
@@ -206,6 +199,7 @@ export default class CreateJob extends Component {
                     onChange={(e) =>
                       this.setState({ jobDescription: e.target.value })
                     }
+                    required
                   ></textarea>
                 </div>
 

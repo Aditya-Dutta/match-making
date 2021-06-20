@@ -2,6 +2,7 @@ import axios from "axios";
 import authHeader from "./AuthHeader";
 
 const API_URL = "http://localhost:8080/api/auth/";
+// const API_URL = "https://prog-pp1.herokuapp.com/api/auth/";
 
 class AuthService {
   //communicate with the controller
@@ -79,6 +80,19 @@ class AuthService {
   viewAllAdmin() {
     return axios.get(API_URL + "viewAllAdmin", { headers: authHeader() });
   }
+
+  getAdminCount() {
+    return axios.get(API_URL + "getAdminCount", { headers: authHeader() });
+  }
+
+  getEmployersCount() {
+    return axios.get(API_URL + "getEmployerCount", { headers: authHeader() });
+  }
+
+  getEmployeesCount() {
+    return axios.get(API_URL + "getEmployeeCount", { headers: authHeader() });
+  }
+
   //get current user
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user"));

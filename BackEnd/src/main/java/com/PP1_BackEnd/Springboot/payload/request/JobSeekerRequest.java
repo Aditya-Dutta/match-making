@@ -1,16 +1,19 @@
 package com.PP1_BackEnd.Springboot.payload.request;
 
+/*
+ * request parameter used on seeker controller as input
+ */
 public class JobSeekerRequest {
-	
+
 	private int id;
-	
-	 private String username;
 
-	  private int locationPincode;
+	private String username;
 
-	  private String category;
+	private String locationPincode;
 
-	  private String jobType;
+	private String category;
+
+	private String jobType;
 
 	public String getUsername() {
 		return username;
@@ -20,11 +23,11 @@ public class JobSeekerRequest {
 		this.username = username;
 	}
 
-	public int getLocationPincode() {
+	public String getLocationPincode() {
 		return locationPincode;
 	}
 
-	public void setLocationPincode(int locationPincode) {
+	public void setLocationPincode(String locationPincode) {
 		this.locationPincode = locationPincode;
 	}
 
@@ -52,5 +55,5 @@ public class JobSeekerRequest {
 		this.id = id;
 	}
 
-	  
+
 }

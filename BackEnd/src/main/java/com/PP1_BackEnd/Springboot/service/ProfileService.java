@@ -7,6 +7,11 @@ import org.springframework.stereotype.Service;
 import com.PP1_BackEnd.Springboot.model.Profile;
 import com.PP1_BackEnd.Springboot.repository.ProfileRepo;
 
+/*
+ * service responsible and used by the controllers
+ * to communicate with the repositories
+ * passes the details from the controller to the repositories
+ */
 @Service
 public class ProfileService {
 	
@@ -46,15 +51,10 @@ public class ProfileService {
 	}
 	
 	
-	public int getByPincode(String username)
+	public String getByPincode(String username)
 	{
 		return profileRepo.getUserByLocation(username);
 	}
 	
-	
-
-
-	
-
 }
 

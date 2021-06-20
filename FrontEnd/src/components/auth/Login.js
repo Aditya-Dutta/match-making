@@ -97,7 +97,7 @@ class LogIn extends Component {
               <div className="input-group-prepend">
                 <span className="input-group-text">
                   {" "}
-                  <i class="fa fa-user-circle" aria-hidden="true"></i>
+                  <i className="fa fa-user-circle" aria-hidden="true"></i>
                 </span>
               </div>
 

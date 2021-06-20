@@ -46,6 +46,8 @@ export default class CreateAdmin extends Component {
     ).then(
       () => {
         alert("Admin added");
+        this.props.history.push("/Dashboard_admin");
+        window.location.reload();
       },
       (error) => {
         alert("Error with for details");
@@ -81,6 +83,7 @@ export default class CreateAdmin extends Component {
                   id="firstname"
                   className="form-control"
                   onChange={(e) => this.setState({ firstname: e.target.value })}
+                  pattern="[a-zA-z]*"
                   required
                 />
               </div>
@@ -92,6 +95,7 @@ export default class CreateAdmin extends Component {
                   id="lastname"
                   className="form-control"
                   onChange={(e) => this.setState({ lastname: e.target.value })}
+                  pattern="[a-zA-z]*"
                   required
                 />
               </div>
