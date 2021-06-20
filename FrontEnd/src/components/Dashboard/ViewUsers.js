@@ -83,16 +83,7 @@ export default class ViewUsers extends Component {
               lastname={item.lastname}
             />
           ))}
-          <div>
-
-
-
-
-
-
-
-
-        </div>
+          <div></div>
         </main>
       </React.Fragment>
     );

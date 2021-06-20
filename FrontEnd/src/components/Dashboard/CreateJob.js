@@ -3,7 +3,6 @@ import SideBar from "./SideBar";
 import AuthService from "../services/AuthService";
 import Validate from "../utility/FormValidaton";
 import AuthEmployer from "../services/AuthEmployer";
-import AuthSeeker from "../services/AuthSeeker";
 
 export default class CreateJob extends Component {
   constructor(props) {

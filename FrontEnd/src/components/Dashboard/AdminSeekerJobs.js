@@ -3,7 +3,7 @@ import AuthService from "../services/AuthService";
 import SideBar from "./SideBar";
 import AuthSeeker from "../services/AuthSeeker";
 
-export default class AdminEmployee extends Component {
+export default class AdminSeekerJobs extends Component {
   constructor(props) {
     super(props);
 
@@ -25,9 +25,11 @@ export default class AdminEmployee extends Component {
         employerUsername: user.username,
       });
     }
-    AuthSeeker.viewAllSeeker().then((result) => {
-      this.setState({ userList: result.data });
-    });
+    AuthSeeker.getAppliedJobs(this.props.location.state.username).then(
+      (result) => {
+        this.setState({ userList: result.data });
+      }
+    );
     // console.log(this.props.location.state.job_id);
     // AuthProfile.getProfile(this.props.location.state.username).then(
     //     (result)=>{
@@ -37,12 +39,12 @@ export default class AdminEmployee extends Component {
     // );
   }
 
-  viewAppliedJobs(values) {
-    // this.props.history.push("/dashboard/view_applicants");
-    this.props.history.push({
-      pathname: "/dashboard/admin/seeker/jobs",
-      state: { username: values },
-    });
+  Back() {
+    this.props.history.push("/dashboard/view_admin_employees");
+    // this.props.history.push({
+    //     pathname: '/dashboard/view_applicants',
+    //     state: {username: values},
+    // })
   }
 
   render() {
@@ -50,30 +52,30 @@ export default class AdminEmployee extends Component {
       <div>
         <SideBar active="applicants" />
         <main>
-          <h2>All Job Seekers</h2>
+          <h2> Jobs Applied by {this.props.location.state.username} </h2>
           <div className="component">
             {this.state.userList.map((item) => (
               <article className="job-card">
-                <div className="job-title">
-                  {item.firstname} {item.lastname}
-                </div>
-                <div className="category">Username: {item.username}</div>
-                <div className="description">Address: {item.address} </div>
+                <div className="job-title">{item.jobTitle}</div>
+                <div className="category">{item.category} </div>
+                <div className="description">{item.jobDescription}</div>
                 <div className="skills-container">
-                  <div className="skill">Email: {item.email}</div>
-                  <div className="skill">Phone: {item.phone}</div>
+                  <div className="skill">Pay: {item.payType}</div>
+                  <div className="skill">Job Type: {item.jobType}</div>
+                  <div className="skill">Location: {item.locationPincode}</div>
                 </div>
-
-                <button
-                  className="apply"
-                  onClick={() => this.viewAppliedJobs(item.username)}
-                  disabled={this.state.isButtonDisabled}
-                >
-                  View applied jobs{" "}
-                </button>
               </article>
             ))}
           </div>
+
+          <button
+            type="button "
+            onClick={() => this.Back()}
+            disabled={this.state.isButtonDisabled}
+            class="btn btn-outline-info text-center"
+          >
+            Back
+          </button>
         </main>
       </div>
     );

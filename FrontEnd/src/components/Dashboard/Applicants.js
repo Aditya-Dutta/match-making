@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import AuthEmployer from "../services/AuthEmployer";
 import AuthService from "../services/AuthService";
 import SideBar from "./SideBar";
-import JobCard from "./Card";
 
 export default class Applicants extends Component {
   constructor(props) {
